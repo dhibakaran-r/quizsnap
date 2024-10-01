@@ -12,7 +12,8 @@ function PageNotFound404() {
                 <img src={FNF} alt="404" />
             </div>
             <div className='bg-primary px-4 py-2 rounded-tr-full rounded-bl-full border border-secondary text-xl text-bluebg'>
-                <Link to={checkAdmin ? '/qsadmin/admindashboard' : '/qsuser/dashboard' } className='flex justify-center items-center'><FaAngleDoubleLeft />Go Back</Link>
+                <Link to={'/login' } className='flex justify-center items-center'><FaAngleDoubleLeft />Go Back</Link>
+                {/* <Link to={checkAdmin ? '/qsadmin/admindashboard' : '/qsuser/dashboard' } className='flex justify-center items-center'><FaAngleDoubleLeft />Go Back</Link> */}
             </div>
         </div>
     </section>

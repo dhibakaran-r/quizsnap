@@ -22,7 +22,7 @@ function App() {
                           </div>}>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<QuizSnap />} />
+            <Route path='/quizsnap' element={<QuizSnap />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/qsuser/*' 
