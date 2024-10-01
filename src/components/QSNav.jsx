@@ -68,7 +68,7 @@ function QSNav() {
                         </Link>
 
                         
-                        <Link to='/quizsnap' className='block text-secondary text-2xl font-semibold'>QuizSnap</Link>
+                        <Link to='/' className='block text-secondary text-2xl font-semibold'>QuizSnap</Link>
 
                         
                  

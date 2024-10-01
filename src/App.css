@@ -52,12 +52,12 @@ body{
 }
 
 .box{
-  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg lg:rounded-md lg:rounded-se-full lg:rounded-s-full duration-300 delay-100 hover:-translate-y-5 lg:hover:translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
+  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg lg:!rounded-md lg:!rounded-se-full lg:!rounded-s-full duration-300 delay-100 hover:-translate-y-5 lg:hover:translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
   
 }
 
 .revbox{
-  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg lg:rounded-md lg:rounded-ss-full lg:rounded-e-full duration-300 delay-100 hover:-translate-y-5 lg:hover:-translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
+  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg lg:!rounded-md lg:!rounded-ss-full lg:!rounded-e-full duration-300 delay-100 hover:-translate-y-5 lg:hover:-translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
 }
 
 .mycard{

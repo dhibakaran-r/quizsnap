@@ -20,9 +20,9 @@ function App() {
                             {/* <MutatingDots visible={true} height="100" width="100" color="#0144CB" secondaryColor="#3572EF" radius="12.5" ariaLabel="mutating-dots-loading" wrapperStyle={{}} wrapperClass=""/> */}
                             <p className='text-secondary text-3xl flex'>QuizSnap </p><p><LineWave visible={true} height="100" width="100" color="#3572EF" ariaLabel="line-wave-loading" wrapperStyle={{}} wrapperClass="" firstLineColor="" middleLineColor="" lastLineColor=""/></p>
                           </div>}>
-        <BrowserRouter>
+        <BrowserRouter basename='/quizsnap'>
           <Routes>
-            <Route path='/quizsnap' element={<QuizSnap />} />
+            <Route path='/' element={<QuizSnap />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/qsuser/*' 
