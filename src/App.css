@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{
+  @apply scroll-smooth;
+}
+
+body{
+  @apply bg-bluebg;
+}
+
+.mobile-nav{
+  @apply fixed flex flex-row justify-around items-center gap-2 top-10 left-0 bg-bluebg py-3 px-5 w-full;
+  background: rgba(125, 125, 125, 0.22);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.2px);
+  -webkit-backdrop-filter: blur(6.2px);
+  border: 1px solid rgba(125, 125, 125, 0.41); 
+}
+
+.uline {
+  @apply flex justify-center items-center gap-2 duration-300 hover:text-secondary relative;
+}
+
+.uline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #3572EF;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.uline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
+.details{
+  @apply flex flex-col-reverse lg:flex-row lg:mb-12 gap-8 justify-around items-center w-full ;
+}
+
+.revdetails{
+  @apply flex flex-col-reverse  lg:mb-12 gap-8 justify-around items-center w-full lg:!flex-row-reverse;
+}
+
+.box{
+  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg lg:rounded-md lg:rounded-se-full lg:rounded-s-full duration-300 delay-100 hover:-translate-y-5 lg:hover:translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
+  
+}
+
+.revbox{
+  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg lg:rounded-md lg:rounded-ss-full lg:rounded-e-full duration-300 delay-100 hover:-translate-y-5 lg:hover:-translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
+}
+
+.mycard{
+  @apply w-[85%] md:w-[50%] xl:w-[21%] lg:w-[30%] flex flex-col gap-8 items-center h-[30rem] duration-300 hover:-translate-y-5 shadow hover:shadow-primlight hover:shadow-2xl;
+  background: rgba(58, 190, 249, 0.37);
+  border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.9px);
+  -webkit-backdrop-filter: blur(5.9px);
+  border: 1px solid rgba(58, 190, 249, 1);
+}
+
+.card {
+  @apply flex flex-col justify-center items-center gap-8 w-[330px] lg:w-[300px] xl:w-[350px] md:w-[400px] rounded-[16px] bg-[#e0e0e0] p-4 hover:-translate-y-16 duration-300;
+  /* box-shadow: 15px 15px 30px #bebebe,
+  -15px -15px 30px #ffffff; */
+  background: lightgrey;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+}
+
+@media (min-width: 2560px) { 
+  .mycard{
+    @apply w-[15%] justify-center;
+  }
+  .fix{
+    @apply justify-center;
+  }
+}
+
+/* From Uiverse.io by vinodjangid07 */ 
+.contactcard {
+  @apply lg:w-[300px] md:w-[500px] xl:w-[360px] h-[300px] bg-secondary flex flex-col items-start justify-center gap-[20px] p-[20px] relative overflow-hidden hover:-translate-y-4 xl:hover:-translate-x-8 duration-300;
+  
+}
+
+.contactcard::before {
+  @apply w-[200px] h-[200px] md:w-[260px] md:h-[240px] lg:w-[200px] lg:h-[200px] bg-bluellg absolute z-10 rounded-full -right-1/4 -top-1/4;
+  content: "";
+}
+
+
+/* sidenav */
+
+
+
+
+.nav-bar-1{
+  @apply bg-primary w-[16.1rem] h-dvh flex flex-col fixed top-0 duration-500 z-10;
+  
+}
+.nav-bar-2{
+  @apply bg-primary w-20 pe-2 h-dvh flex flex-col fixed top-0 duration-500 z-10;
+  
+}
+
+.nav-bar.active{
+  @apply left-0 duration-200;
+  
+}
+
+.item-name{
+  @apply flex items-center justify-start text-bluebg py-2 ps-0 list-none h-20 duration-300 hover:translate-x-2;
+  
+}
+/* .item-name {
+  @apply flex justify-center items-center gap-2 duration-300 hover:text-secondary relative;
+  } */
+  
+  .item-name::after {
+    content: '';
+    position: absolute;
+    width: 90%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .item-name:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  .item-name a{
+    @apply h-full flex items-center text-xl py-0 px-4 rounded duration-300 ;
+    
+  }
+  
+  .item-icon{
+    @apply w-full text-bluebg flex items-center justify-center h-20;
+    
+  }
+  
+  .item-icon a {
+    @apply h-full flex justify-center items-center text-xl py-0 px-4 rounded duration-300;
+    
+  }
+  
+  .nav-items{
+    @apply w-full relative top-12;
+    
+  }
+  
+  .item-name span{
+    margin-left: 16px;
+  }
+  
+  
+
+/* icon bar */
+
+.icon-nav-bar{
+  @apply bg-primary w-16 h-dvh flex flex-col fixed top-0 duration-300 z-10;
+  
+}
+/* .no-logo{
+  display: none;
+  } */
+  .icon-items{
+    @apply w-full relative top-12;
+  }
+  /* .nav-title{
+    display: block;
+    }
+    .no-title{
+      display: none;
+      } */
+      
+      .slowSpin{
+        animation: spin 10s linear infinite;
+        
+      }
+      .clockSpin{
+        animation: spin 60s linear infinite;
+
+      }
+      
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes ani {
+        0% {
+          transform: translate(1px);
+        }
+        25% {
+          transform: translate(200px,150px);
+        }
+        50% {
+          transform: translate(400px,250px);
+        }
+        75% {
+          transform: translate(200px,150px);
+        }
+        100% {
+          transform: translate(1px);
+        }
+      }
+      
+      
+      .popup-card input{
+        @apply border border-textgray ps-2 py-2 rounded-md outline-none;
+      }
+      
+      .popup-card{
+        background: transparent;
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(7.3px);
+        -webkit-backdrop-filter: blur(7.3px);
+        border: 1px solid rgba(255, 255, 255, 0.63);
+      }
+      .testcard::before {
+        @apply block w-[200px] h-[200px] md:w-[260px] md:h-[240px] lg:w-[200px] lg:h-[200px] absolute rounded-full -left-[100%] -top-[1000%] ;
+        animation: ani 60s linear infinite;
+        content: url(./assets/images/sky.jpg);
+      }
+      
