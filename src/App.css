@@ -11,7 +11,7 @@ body{
 }
 
 .mobile-nav{
-  @apply fixed flex flex-row justify-around items-center gap-2 top-10 left-8 bg-bluebg py-3 px-5 w-10/12;
+  @apply fixed flex flex-row justify-around items-center gap-2 top-10 left-4 bg-bluebg py-3 px-5 w-[80%];
   background: rgba(125, 125, 125, 0.22);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -241,7 +241,7 @@ body{
       }
       .testcard::before {
         @apply block w-[200px] h-[200px] md:w-[260px] md:h-[240px] lg:w-[200px] lg:h-[200px] absolute rounded-full -left-[200%] -top-[1000%] ;
-        animation: ani 6s linear infinite;
+        animation: ani 60s linear infinite;
         content: url(./assets/images/sky.jpg);
       }
       
