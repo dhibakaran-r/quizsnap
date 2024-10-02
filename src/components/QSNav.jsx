@@ -57,7 +57,7 @@ function QSNav() {
         <>
             <div className='w-full bg-bluebg border-b-2 border-b-graylg flex justify-start items-center h-16 fixed z-10'>
                 
-                <div className={sidebar ? "flex justify-center items-center gap-20 md:gap-40  ms-72 duration-500" : "flex justify-center items-center gap-20 md:gap-40  ms-28 duration-500" }>
+                <div className={sidebar ? "flex justify-center items-center gap-20 md:gap-40 ms-8 md:ms-72 duration-500" : "flex justify-center items-center gap-20 md:gap-40 ms-8 md:ms-28 duration-500" }>
                     
                     {/* <div className="flex items-center justify-around"> */}
                     
@@ -87,20 +87,20 @@ function QSNav() {
 
                 </div>
                 
-                <div className='w-[75%] hidden md:flex justify-end items-center ms-28'>
+                <div className='w-8 md:w-[75%] flex justify-end items-center ms-16 md:ms-28'>
                     {userData.name && userData.email && userData.uid ? 
                         (<div className={showDown ? 'flex flex-col gap-2 me-4 relative top-12' :'flex flex-col gap-0 me-4 relative top-9'}>
                             {/* <div className='flex flex-col'> */}
 
                                 <div className=  'duration-300 bg-bluebg'>
                                     
-                                    <button onClick={showUser} className=' border-2 border-graylg p-2 flex justify-center items-center gap-2 rounded-md duration-300'>
-                                        <img src={pro} className='w-8 rounded-3xl'/> <p className='w-36 flex justify-start'>{userData.name}</p> {showDown ? <FaAngleDown className='rotate-180 duration-300'/> : <FaAngleDown className='duration-300'/>}
+                                    <button onClick={showUser} className='w-20 md:w-auto border-2 border-graylg p-2 flex justify-center items-center gap-2 rounded-md duration-300'>
+                                        <img src={pro} className='w-8 rounded-3xl'/> <p className='hidden md:w-36 md:flex justify-start'>{userData.name}</p> {showDown ? <FaAngleDown className=' rotate-180 duration-300'/> : <FaAngleDown className='duration-300'/>}
                                     </button>
 
                                 </div> 
 
-                                <div className={showDown ? 'w-56 h-24 duration-300 bg-primary rounded-md' : 'h-0 duration-500'}>
+                                <div className={showDown ? 'w-28 md:w-56 h-24 duration-300 bg-primary rounded-md' : 'h-0 duration-500'}>
                                     <ul className={showDown ? 'p-4 text-bluebg' : "hidden"}>
                                         <Link to={profile} onClick={()=>setShowDown(false)}><li className='mb-2 flex gap-2 items-center duration-200 hover:translate-x-2'><PiUserListDuotone /> Profile</li></Link>
                                         <Link><li className='flex gap-2 items-center duration-200 hover:translate-x-2' onClick={handleLogout}><LuLogOut /> Logout</li></Link>
@@ -123,7 +123,7 @@ function QSNav() {
                 
                 <ul className='nav-items'>
                  
-
+                    <li className='flex text-bgwhite mb-8 relative right-8 md:hidden'><RiCloseLargeLine className='w-40 inline' size={35} onClick={showSidebar}/></li>
                     {MenuData.map((navData, index) => {
                         return (
                             <li key={index} className='item-name'>

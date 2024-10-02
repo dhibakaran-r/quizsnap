@@ -11,7 +11,7 @@ body{
 }
 
 .mobile-nav{
-  @apply fixed flex flex-row justify-around items-center gap-2 top-10 left-0 bg-bluebg py-3 px-5 w-full;
+  @apply fixed flex flex-row justify-around items-center gap-2 top-10 left-8 bg-bluebg py-3 px-5 w-10/12;
   background: rgba(125, 125, 125, 0.22);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -52,12 +52,12 @@ body{
 }
 
 .box{
-  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg lg:!rounded-md lg:!rounded-se-full lg:!rounded-s-full duration-300 delay-100 hover:-translate-y-5 lg:hover:translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
+  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg  xl:!rounded-se-full xl:!rounded-ee-full duration-300 delay-100 hover:-translate-y-5 lg:hover:translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
   
 }
 
 .revbox{
-  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg lg:!rounded-md lg:!rounded-ss-full lg:!rounded-e-full duration-300 delay-100 hover:-translate-y-5 lg:hover:-translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
+  @apply xl:w-2/3 px-5 py-2 border-4 border-bluelg rounded-lg  xl:!rounded-ss-full xl:!rounded-es-full duration-300 delay-100 hover:-translate-y-5 lg:hover:-translate-x-5 shadow-2xl hover:shadow-primlight hover:shadow-inner;
 }
 
 .mycard{
@@ -109,7 +109,7 @@ body{
   
 }
 .nav-bar-2{
-  @apply bg-primary w-20 pe-2 h-dvh flex flex-col fixed top-0 duration-500 z-10;
+  @apply bg-primary hidden w-20 pe-2 h-dvh md:flex flex-col fixed top-0 duration-500 z-10;
   
 }
 
@@ -188,7 +188,9 @@ body{
     .no-title{
       display: none;
       } */
-      
+.th-p tr{
+  @apply p-8 md:p-0 xl:p-8;
+}
       .slowSpin{
         animation: spin 10s linear infinite;
         
@@ -238,8 +240,8 @@ body{
         border: 1px solid rgba(255, 255, 255, 0.63);
       }
       .testcard::before {
-        @apply block w-[200px] h-[200px] md:w-[260px] md:h-[240px] lg:w-[200px] lg:h-[200px] absolute rounded-full -left-[100%] -top-[1000%] ;
-        animation: ani 60s linear infinite;
+        @apply block w-[200px] h-[200px] md:w-[260px] md:h-[240px] lg:w-[200px] lg:h-[200px] absolute rounded-full -left-[200%] -top-[1000%] ;
+        animation: ani 6s linear infinite;
         content: url(./assets/images/sky.jpg);
       }
       

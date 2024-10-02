@@ -84,7 +84,7 @@ function UserDetails() {
       {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin'/></div> : <>
         <table className={bgBlur ? "p-4 w-11/12 blur-md" : "p-4 w-11/12"}>
               <thead className='h-20'>
-                  <tr className='text-center bg-outlg border-[1rem] border-bluebg rounded-md'>
+                  <tr className='th-p text-center bg-outlg border-[1rem] border-bluebg rounded-md'>
                       <th>Sno</th>
                       <th>ID</th>
                       <th>First Name</th>
@@ -100,7 +100,7 @@ function UserDetails() {
                userDatas.map((data, index) => {
                 return (
 
-                  <tr key={index} className={bgBlur ? 'h-24 text-center bg-outlg border-[1rem] border-bluebg rounded-md':'h-24 text-center bg-outlg border-[1rem] border-bluebg rounded-md duration-300 hover:scale-105'}>
+                  <tr key={index} className={bgBlur ? 'th-p h-24 text-center bg-outlg border-[1rem] border-bluebg rounded-md':'th-p h-24 text-center bg-outlg border-[1rem] border-bluebg rounded-md duration-300 hover:scale-105'}>
                     <td>{index+1}</td>
                     <td>{data.id}</td>
                     <td>{data.firstname}</td>

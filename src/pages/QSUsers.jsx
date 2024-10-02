@@ -13,7 +13,7 @@ function QSUsers() {
     <div>
 
         <QSNav />
-        <section className='flex flex-col gap-24 ms-60 relative top-24'>
+        <section className='flex flex-col gap-24 md:ms-40 2xl:ms-60 relative top-24'>
           <Routes>
               <Route path='/dashboard' element={<Dashboard/>} />
               <Route path='/mcqs' element={<McqPage/>} />

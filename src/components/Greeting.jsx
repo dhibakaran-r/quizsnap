@@ -50,11 +50,12 @@ const Greeting = () => {
 
   const getGreeting = () => {
     const hours = currentTime.getHours();
+    // console.log(hours)
     let greeting;
 
     if (hours >= 5 && hours < 12) {
       greeting = <p className="flex items-center gap-4"><FiSunrise className=""/>Good Morning !</p>;
-    } else if (hours >= 12 && hours < 16) {
+    } else if (hours >= 12 && hours < 17) {
       greeting = <p className="flex items-center gap-4"><FiSun className="slowSpin"/>Good Afternoon !</p>;
     } else if (hours >= 17 && hours < 20) {
       greeting = <p className="flex items-center gap-4"><FiSunset/>Good Evening !</p>;
@@ -66,7 +67,7 @@ const Greeting = () => {
   };
 
   return (
-    <div className="w-full flex justify-between">
+    <div className="w-full flex flex-col gap-4 items-center md:flex-row md:justify-between">
       <div className=" px-4 py-2 text-2xl text-primlight bg-bgwhite border-t border-l border-r border-shadbg rounded-3xl shadow-lg shadow-shadbg ">{getGreeting()}</div>
       <div className=" flex gap-12 mr-4 text-textgray">
         <div className="flex flex-col">

@@ -54,11 +54,11 @@ function AdminCard() {
 
 
   return (
-    <div className='w-11/12 flex justify-between'>
+    <div className='w-full items-center md:w-11/12 flex flex-col gap-8 lg:flex-row lg:justify-between'>
         {
             cardData.map((card, index)=>{
                 return(
-                <div key={index} className='w-96 h-40 px-8 py-4 flex flex-col justify-around border border-outlg shadow-[0_1px_8px_2px] shadow-shadbg duration-300 hover:shadow-none rounded-md'>
+                <div key={index} className='w-96 xl:w-80 lg:w-60 2xl:w-96 h-40 px-8 py-4 flex flex-col justify-around border border-outlg shadow-[0_1px_8px_2px] shadow-shadbg duration-300 hover:shadow-none rounded-md'>
                     <div className='w-full flex justify-around items-center text-3xl '>
                         {usersCount ? <p className='text-textsec'>{card.data}</p> : <p className='animate-spin text-primary'><TbLoader3 /></p>}
                         <p className='bg-outlg text-bluedk rounded-full p-2'>{card.icon}</p>

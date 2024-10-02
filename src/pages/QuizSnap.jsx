@@ -17,7 +17,7 @@ function QuizSnap() {
 
   return (
      
-        <div className='flex flex-col justify-center items-center'>
+        <div className='w-full flex flex-col justify-center items-center'>
 
             <Navbar />
             <Home />

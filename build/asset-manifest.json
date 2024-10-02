@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/quizsnap/static/css/main.da06f6e7.css",
-    "main.js": "/quizsnap/static/js/main.fd4cfc22.js",
+    "main.css": "/quizsnap/static/css/main.c03bf32f.css",
+    "main.js": "/quizsnap/static/js/main.07a8ef7e.js",
     "static/js/748.69d41663.chunk.js": "/quizsnap/static/js/748.69d41663.chunk.js",
     "static/css/704.a2abf263.chunk.css": "/quizsnap/static/css/704.a2abf263.chunk.css",
     "static/js/704.ce75fd09.chunk.js": "/quizsnap/static/js/704.ce75fd09.chunk.js",
@@ -20,7 +20,7 @@
     "static/js/373.77d373ed.chunk.js": "/quizsnap/static/js/373.77d373ed.chunk.js",
     "static/js/873.191e0e26.chunk.js": "/quizsnap/static/js/873.191e0e26.chunk.js",
     "static/js/921.d3e9a847.chunk.js": "/quizsnap/static/js/921.d3e9a847.chunk.js",
-    "static/js/149.592c9884.chunk.js": "/quizsnap/static/js/149.592c9884.chunk.js",
+    "static/js/149.9c00df30.chunk.js": "/quizsnap/static/js/149.9c00df30.chunk.js",
     "static/media/ourtarget.png": "/quizsnap/static/media/ourtarget.7745c7da196c9cf54517.png",
     "static/media/totuser.jpg": "/quizsnap/static/media/totuser.a479d279543002031b42.jpg",
     "static/media/regpg.png": "/quizsnap/static/media/regpg.d1f1aeaffa98cf7b7acb.png",
@@ -41,8 +41,8 @@
     "static/media/get.jpg": "/quizsnap/static/media/get.ea809b590b011577ba81.jpg",
     "static/media/denied.jpg": "/quizsnap/static/media/denied.863dbca82e92f2cd5a30.jpg",
     "index.html": "/quizsnap/index.html",
-    "main.da06f6e7.css.map": "/quizsnap/static/css/main.da06f6e7.css.map",
-    "main.fd4cfc22.js.map": "/quizsnap/static/js/main.fd4cfc22.js.map",
+    "main.c03bf32f.css.map": "/quizsnap/static/css/main.c03bf32f.css.map",
+    "main.07a8ef7e.js.map": "/quizsnap/static/js/main.07a8ef7e.js.map",
     "748.69d41663.chunk.js.map": "/quizsnap/static/js/748.69d41663.chunk.js.map",
     "704.a2abf263.chunk.css.map": "/quizsnap/static/css/704.a2abf263.chunk.css.map",
     "704.ce75fd09.chunk.js.map": "/quizsnap/static/js/704.ce75fd09.chunk.js.map",
@@ -61,10 +61,10 @@
     "373.77d373ed.chunk.js.map": "/quizsnap/static/js/373.77d373ed.chunk.js.map",
     "873.191e0e26.chunk.js.map": "/quizsnap/static/js/873.191e0e26.chunk.js.map",
     "921.d3e9a847.chunk.js.map": "/quizsnap/static/js/921.d3e9a847.chunk.js.map",
-    "149.592c9884.chunk.js.map": "/quizsnap/static/js/149.592c9884.chunk.js.map"
+    "149.9c00df30.chunk.js.map": "/quizsnap/static/js/149.9c00df30.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.da06f6e7.css",
-    "static/js/main.fd4cfc22.js"
+    "static/css/main.c03bf32f.css",
+    "static/js/main.07a8ef7e.js"
   ]
 }
