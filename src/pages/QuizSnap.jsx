@@ -8,7 +8,7 @@ import ContactUs from '../components/ContactUs'
 import Footer from '../components/Footer'
 
 
-function QuizSnap() {
+function QShome() {
 
   useEffect(() => {
     console.log('welcome');
@@ -30,5 +30,7 @@ function QuizSnap() {
     
   )
 }
+
+const QuizSnap = React.memo(QShome);
 
 export default QuizSnap
