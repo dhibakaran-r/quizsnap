@@ -5,6 +5,7 @@ import { AiTwotoneEdit } from "react-icons/ai";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { TbLoader3 } from 'react-icons/tb';
+import { useSelector } from 'react-redux';
 
 
 function UserDetails() {
@@ -31,6 +32,25 @@ function UserDetails() {
     setUserDatas(users);
     setLoad(false);
  }
+
+  // search filter operation
+
+  const searchText = useSelector((state) => state.search.search)
+//  console.log("search"+searchText);
+ 
+  let filterDatas = [...userDatas];
+
+  if(searchText){
+    filterDatas = userDatas.filter((theuser)=>{
+      if( theuser.firstname.toLowerCase().includes(searchText) || theuser.lastname.toLowerCase().includes(searchText) || theuser.email.toLowerCase().includes(searchText) || theuser.id.includes(searchText) || theuser.joinedat?.toDate().toLocaleString().includes(searchText) ){
+        return theuser;
+      }
+    })
+  }
+
+  // console.log(filterDatas);
+  
+  // search operation end
 
   const showEditPopup = (data) => {
     setEditPopup(true);
@@ -97,7 +117,7 @@ function UserDetails() {
               </thead>
               <tbody className=''>
             {
-               userDatas.map((data, index) => {
+               filterDatas.map((data, index) => {
                 return (
 
                   <tr key={index} className={bgBlur ? 'th-p h-24 text-center bg-outlg border-[1rem] border-bluebg rounded-md':'th-p h-24 text-center bg-outlg border-[1rem] border-bluebg rounded-md duration-300 hover:scale-105'}>
