@@ -208,7 +208,26 @@ body{
           transform: rotate(360deg);
         }
       }
+
       @keyframes ani {
+        0% {
+          transform: translate(1px);
+        }
+        25% {
+          transform: translate(200px,150px);
+        }
+        50% {
+          transform: translate(400px,250px);
+        }
+        75% {
+          transform: translate(200px,150px);
+        }
+        100% {
+          transform: translate(1px);
+        }
+      }
+      
+      @keyframes eff {
         0% {
           transform: translate(1px);
         }
@@ -245,3 +264,8 @@ body{
         content: url(./assets/images/sky.jpg);
       }
       
+      /* .bgeff::before{
+        @apply block w-1/2 h-[20rem] absolute rounded-full -left-[200%] -top-[1000%] ;
+        animation: eff 2s linear infinite;
+        content: url(./assets/images/bgeff.jpg);
+      } */

@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+// import i from './src/assets/images/bgeff.jpg'
 module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
     colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
       primary : "#0144CB",
       secondary : "#3572EF",
       bluedk : "#3D50E0",
@@ -26,6 +29,9 @@ module.exports = {
     extend: {
       animation: {
         slowSpin: "spin 3s linear infinite",
+      },
+      backgroundImage: {
+        bgimg: "url('/src/assets/images/totmcq.jpg')"
       }
     }
   },
