@@ -1,4 +1,6 @@
 import React from 'react'
+import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import us1 from '../assets/images/ourtarget.png'
 import us2 from '../assets/images/ogteam.png'
 import us3 from '../assets/images/ogsworks.png'
@@ -37,7 +39,12 @@ function AboutUs() {
                         <div className='flex flex-col mt-24 justify-center items-center gap-8' key={index}>
                             <h1 className='text-xl text-[#FE7063] text-start z-10'>{us.title}</h1>
                             <div className='card '>
-                                <div className='flex justify-center items-center'><img className='w-[] rounded-[8px]' src={us.image}/></div>
+                                <div className='flex justify-center items-center'>
+                                    {/* <img className='w-[] rounded-[8px]' src={us.image}/> */}
+                                    <LazyLoadComponent>
+                                        <LazyLoadImage className='w-[] rounded-[8px]' src={us.image} effect='blur' placeholderSrc={us.image} />
+                                    </LazyLoadComponent>
+                                </div>
                                 <p className='leading-6 text-textlg p-4'>{us.detail}</p>
                             </div>
                         </div>

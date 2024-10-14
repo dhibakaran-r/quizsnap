@@ -9,6 +9,8 @@ import { TbLoader3 } from "react-icons/tb";
 import { loginAPI } from '../service/Api';
 import { storeData } from '../service/dataStorage';
 import { checkAdmin, isAuthenticated } from '../service/Auth';
+import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function Login() {
 
@@ -96,7 +98,10 @@ function Login() {
 					<div className="w-full xl:w-3/4 lg:w-11/12 flex">
 
 						<div className="w-full h-auto bg-gray-400  hidden md:block lg:w-1/2 bg-cover rounded-l-lg">
-							<img className='rounded-l-lg md:h-svh lg:h-auto' src={login} alt='register image' />
+							{/* <img className='rounded-l-lg md:h-svh lg:h-auto' src={login} alt='register image' /> */}
+							<LazyLoadComponent>
+								<LazyLoadImage className='rounded-l-lg md:h-svh lg:h-auto' effect='blur' placeholderSrc={login} src={login} alt='register image' />
+							</LazyLoadComponent>
 						</div>
 
 						<div className="w-full lg:w-1/2 bg-[#fff] flex flex-col justify-center p-5 rounded-lg md:rounded-l-none">

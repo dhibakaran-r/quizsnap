@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import signup from '../assets/images/regpg.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { emailValidator, nameValidator, passwordValidator} from '../components/regexValidator';
 import { TbLoader3 } from "react-icons/tb";
@@ -106,7 +108,10 @@ function Register() {
 			<div className="w-full xl:w-3/4 lg:w-11/12 flex">
 				
 				<div className="w-full h-auto bg-gray-400  hidden md:block lg:w-1/2 bg-cover rounded-l-lg">
-                    <img className='rounded-l-lg h-dvh md:h-[35.3rem] lg:h-auto' src={signup} alt='register image' />
+                    {/* <img className='rounded-l-lg h-dvh md:h-[35.3rem] lg:h-auto' src={signup} alt='register image' /> */}
+					<LazyLoadComponent>
+	                    <LazyLoadImage className='rounded-l-lg h-dvh md:h-[35.3rem] lg:h-auto' src={signup} alt='register image' effect='blur' placeholderSrc={signup} />
+					</LazyLoadComponent>
                 </div>
 			
 				<div className="w-full lg:w-1/2 bg-[#fff]  p-5 rounded-lg md:rounded-l-none flex flex-col justify-center">

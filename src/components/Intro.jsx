@@ -1,4 +1,6 @@
 import React from 'react'
+import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import img1 from '../assets/images/idea.png'
 import img2 from '../assets/images/prep.png'
 import img3 from '../assets/images/target.png'
@@ -65,7 +67,10 @@ function Intro() {
 
             <div className='flex flex-col border border-[#fff] justify-evenly items-center p-1 w-[300px] h-[450px] lg:w-[250px] md:w-[380px] xl:w-[400px] xl:h-[480px] bg-bluebg rounded-lg -rotate-12 group-hover:rotate-0 duration-300'>
             <div className='flex w-full lg:px-0 items-center justify-center'>
-                            <img src={card.image} className='w-[260px] lg:w-[260px] rounded-t-[8px] rounded-br-[10px] rounded-bl-[220px]'/>
+                            {/* <img src={card.image} className='w-[260px] lg:w-[260px] rounded-t-[8px] rounded-br-[10px] rounded-bl-[220px]'/> */}
+                            <LazyLoadComponent>
+                                <LazyLoadImage src={card.image} effect='blur' placeholderSrc={card.image} className='w-[260px] lg:w-[260px] rounded-t-[8px] rounded-br-[10px] rounded-bl-[220px]'/>
+                            </LazyLoadComponent>
                         </div>
                         <p className='text-2xl text-secondary text-center'>{card.title}</p>
                         <span className='p-5 text-bluetext tracking-wide'>{card.detail}</span>
@@ -97,7 +102,10 @@ function Intro() {
                     </div>
                     
                     <div className='flex w-full md:w-3/4 lg:w-[200rem] px-5 lg:px-0 items-center justify-center xl:w-1/3'>
-                        <img src={data.image} alt='banner' className='' />
+                        {/* <img src={data.image} alt='banner' className='' /> */}
+                        <LazyLoadComponent>
+                            <LazyLoadImage src={data.image} alt='banner' className='' effect='blur' placeholderSrc={data.image} />
+                        </LazyLoadComponent>
                     </div>
                 </div>
             )

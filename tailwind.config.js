@@ -23,7 +23,8 @@ module.exports = {
       redbg : "#ED5E68",
       bgno : "#7D8089",
       graylg : "#DEE2E6",
-      success : "#4CAF50"
+      success : "#4CAF50",
+      secbr : "#D8DFE3"
 
     },
     extend: {
@@ -31,7 +32,8 @@ module.exports = {
         slowSpin: "spin 3s linear infinite",
       },
       backgroundImage: {
-        bgimg: "url('/src/assets/images/totmcq.jpg')"
+        bgimg: "url('/src/assets/images/totmcq.jpg')",
+        bgimg2: "url('/src/assets/images/cardbg.jpg')"
       }
     }
   },

@@ -9,6 +9,7 @@ import { UserDataAPI } from '../service/Api'
 import { checkAdmin, isAuthenticated, logout } from '../service/Auth'
 import { AdminMenuData, UserMenuData } from '../service/MenuItems';
 import pro from '../assets/images/profilepic.jpg'
+import SearchBar from './SearchBar';
 
 function QSNav() {
 
@@ -68,21 +69,22 @@ function QSNav() {
                     </Link>
 
 
-                    <Link to='/' className='block text-secondary text-2xl font-semibold'>QuizSnap</Link>
+                    <Link to='/' className='hidden md:block text-secondary text-2xl font-semibold '>QuizSnap</Link>
 
 
                 </div>
 
+                <SearchBar />
 
-                <div className="relative inline-block text-left md:right-8">
+                <div className="relative inline-block text-left right-4 md:right-8">
                     {userData.name && userData.email && userData.uid ? (
                         <div>
                             <button
                                 type="button"
-                                className="inline-flex justify-center items-center gap-4 w-full rounded-md border border-bgno shadow-sm px-4 py-2 bg-bgwhite text-sm font-medium text-bluetext hover:bg-bluellg"
+                                className="inline-flex justify-center items-center gap-2 md:gap-4 w-full rounded-md border-2 border-graylg shadow-sm px-0 py-0 md:px-4 md:py-2 bg-bgwhite text-sm font-medium text-bluetext hover:bg-bluellg"
                                 onClick={showUser} // Toggle dropdown on click
                             >
-                                <img src={pro} className='w-8 rounded-3xl'/> <p className='hidden md:w-36 md:flex justify-start'>{userData.name}</p> {showDown ? <FaAngleDown className=' rotate-180 duration-300'/> : <FaAngleDown className='duration-300'/>}
+                                <img src={pro} className='w-12 rounded-3xl'/> <p className='hidden md:w-36 md:flex justify-start'>{userData.name}</p> {showDown ? <FaAngleDown className='hidden md:block rotate-180 duration-300'/> : <FaAngleDown className='hidden md:block duration-300'/>}
 
                             </button>
                         </div> )  :
@@ -91,7 +93,7 @@ function QSNav() {
 
 
                     {showDown && (
-                        <div className="origin-top-right absolute right-0 mt-2 w-40 md:w-full rounded-md shadow-lg bg-primary ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+                        <div className="origin-top-right absolute right-4 md:right-0 mt-2 w-48 md:w-full rounded-md shadow-lg bg-primary ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
                             <div className="py-1 text-bgwhite" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                 <p role='menuitem' className='px-4 py-2 flex gap-2 items-center'>Signed in as {userData.email}</p>
                             <Link role="menuitem" to={profile} className='px-4 py-2 flex gap-2 items-center duration-200 hover:translate-x-2' onClick={()=>setShowDown(false)}><PiUserListDuotone /> Profile</Link>
