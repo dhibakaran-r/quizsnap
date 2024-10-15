@@ -19,7 +19,7 @@ function Login() {
 	const [load, setLoad] = useState(false);
 	const [errorMessage, setErrorMessage] = useState({});
 	const [checkId, setCheckId] = useState();
-  
+
 
 	const [inputs, setInputs] = useState({
 		email: '',
@@ -61,16 +61,16 @@ function Login() {
 			loginAPI(inputs).then((res) => {
 				storeData(res.data.idToken);
 				setCheckId(res.data.email);
-                const isAdmin = res.data.email === "admin@quizsnap.com";
-                localStorage.setItem('role', isAdmin ? 'admin' : 'user');
+				const isAdmin = res.data.email === "admin@quizsnap.com";
+				localStorage.setItem('role', isAdmin ? 'admin' : 'user');
 
-                toast.success('You are Successfully Login!', { autoClose: 1500 });
-					// console.log(res);
-				}).catch((err) => {
-					if (err.code = 'ERR_BAD_REQUEST') {
+				toast.success('You are Successfully Login!', { autoClose: 1500 });
+				// console.log(res);
+			}).catch((err) => {
+				if (err.code = 'ERR_BAD_REQUEST') {
 					toast.error('Invalid Credentials', { autoClose: 4000 });
 				}
-				
+
 			}).finally(() => {
 				setLoad(false);
 			})
@@ -81,11 +81,11 @@ function Login() {
 		}
 
 	}
-	
+
 	if (isAuthenticated()) {
-		
+
 		checkAdmin() ? navigate('/qsadmin/admindashboard') : navigate('/qsuser/dashboard')
-		
+
 	}
 
 	return (

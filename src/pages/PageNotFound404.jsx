@@ -8,18 +8,18 @@ import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-componen
 function PageNotFound404() {
   return (
     <section>
-        <div className='w-full bg-bluebg flex flex-col md:flex-row justify-center items-center'>
-            <div className='w-1/2'>
-                {/* <img src={FNF} alt="404" /> */}
-                <LazyLoadComponent>
-                  <LazyLoadImage src={FNF} alt="404" effect='blur' placeholderSrc={FNF} />
-                </LazyLoadComponent>
-            </div>
-            <div className='bg-primary px-4 py-2 rounded-tr-full rounded-bl-full border border-secondary text-xl text-bluebg'>
-                <Link to={'/login' } className='flex justify-center items-center'><FaAngleDoubleLeft />Go Back</Link>
-                {/* <Link to={checkAdmin ? '/qsadmin/admindashboard' : '/qsuser/dashboard' } className='flex justify-center items-center'><FaAngleDoubleLeft />Go Back</Link> */}
-            </div>
+      <div className='w-full bg-bluebg flex flex-col md:flex-row justify-center items-center'>
+        <div className='w-1/2'>
+          {/* <img src={FNF} alt="404" /> */}
+          <LazyLoadComponent>
+            <LazyLoadImage src={FNF} alt="404" effect='blur' placeholderSrc={FNF} />
+          </LazyLoadComponent>
         </div>
+        <div className='bg-primary px-4 py-2 rounded-tr-full rounded-bl-full border border-secondary text-xl text-bluebg'>
+          <Link to={'/login'} className='flex justify-center items-center'><FaAngleDoubleLeft />Go Back</Link>
+          {/* <Link to={checkAdmin ? '/qsadmin/admindashboard' : '/qsuser/dashboard' } className='flex justify-center items-center'><FaAngleDoubleLeft />Go Back</Link> */}
+        </div>
+      </div>
     </section>
   )
 }

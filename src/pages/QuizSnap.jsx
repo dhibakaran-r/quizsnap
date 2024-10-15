@@ -12,22 +12,22 @@ function QShome() {
 
   useEffect(() => {
     console.log('welcome');
-    
+
   })
 
   return (
-     
-        <div className='w-full flex flex-col justify-center items-center'>
 
-            <Navbar />
-            <Home />
-            <Intro />
-            <AboutUs />
-            <ContactUs />
-            <Footer />
-          
-        </div>
-    
+    <div className='w-full flex flex-col justify-center items-center'>
+
+      <Navbar />
+      <Home />
+      <Intro />
+      <AboutUs />
+      <ContactUs />
+      <Footer />
+
+    </div>
+
   )
 }
 

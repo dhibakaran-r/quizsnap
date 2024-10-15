@@ -3,10 +3,10 @@ import { checkAdmin, isAuthenticated } from '../service/Auth'
 import { Navigate, Outlet } from 'react-router-dom'
 
 function AccessRoute() {
-  if(isAuthenticated){
- 
+  if (isAuthenticated) {
+
     return checkAdmin() ? <Outlet /> : <Navigate to={'/unauthorized'} />
-  
+
   }
 }
 

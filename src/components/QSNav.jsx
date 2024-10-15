@@ -58,7 +58,7 @@ function QSNav() {
         <>
             <div className='w-full bg-bluebg border-b-2 border-b-graylg flex justify-between items-center h-16 fixed z-10'>
 
-                <div className={sidebar ? "flex justify-center items-center gap-20 md:gap-40 ms-8 md:ms-72 duration-500" : "flex justify-center items-center gap-20 md:gap-40 ms-8 md:ms-28 duration-500"}>
+                <div className={`flex justify-center items-center gap-20 md:gap-40 ms-8 duration-500 ${sidebar ? "md:ms-72" : "md:ms-28"}`}>
 
                     {/* <div className="flex items-center justify-around"> */}
 
@@ -78,16 +78,19 @@ function QSNav() {
 
                 <div className="relative inline-block text-left right-4 md:right-8">
                     {userData.name && userData.email && userData.uid ? (
-                        <div>
+                        // <div>
                             <button
                                 type="button"
-                                className="inline-flex justify-center items-center gap-2 md:gap-4 w-full rounded-md border-2 border-graylg shadow-sm px-0 py-0 md:px-4 md:py-2 bg-bgwhite text-sm font-medium text-bluetext hover:bg-bluellg"
+                                className="inline-flex justify-center items-center gap-2 w-full rounded-md border-2 border-graylg shadow-sm px-0 py-0 md:px-4 md:py-2 bg-bgwhite text-sm font-medium text-bluetext"
                                 onClick={showUser} // Toggle dropdown on click
                             >
-                                <img src={pro} className='w-12 rounded-3xl'/> <p className='hidden md:w-36 md:flex justify-start'>{userData.name}</p> {showDown ? <FaAngleDown className='hidden md:block rotate-180 duration-300'/> : <FaAngleDown className='hidden md:block duration-300'/>}
+                                <img src={pro} className='w-12 md:w-8 rounded-3xl'/> 
+                                {/* <p className='hidden md:w-36 md:flex justify-start overflow-hidden'>{userData.name}</p>  */}
+                                <FaAngleDown className={`hidden md:block ${showDown ? 'rotate-180' : 'rotate-0'} duration-300`}/>
 
                             </button>
-                        </div> )  :
+                        // </div> 
+                    )  :
                     <div> <p className='w-96 flex justify-center items-center gap-2 text-bluetext animate-pulse'><TbLoaderQuarter className='animate-spin' /> Loading data...</p> </div>
                     }
 
@@ -121,7 +124,7 @@ function QSNav() {
                             <li key={index} className='item-name'>
                                 <Link to={navData.path} className='flex flex-row justify-center items-center gap-4 text-xl' onClick={() => { setSidebar(false) }}>
                                     <span className='text-xl' >{navData.icon}</span>
-                                    <span className={sidebar ? 'w-40 inline !text-[1rem]' : 'w-40 hidden'}>{navData.title}</span>
+                                    <span className={`w-40 !text-[1rem] ${sidebar ? 'inline' : 'hidden'}`}>{navData.title}</span>
                                 </Link>
                             </li>
                         )
