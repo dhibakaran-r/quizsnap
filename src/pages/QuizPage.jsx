@@ -5,7 +5,7 @@ import McqInstructions from '../components/McqInstructions'
 
 function QuizPage() {
   return (
-    <section className='flex flex-col gap-24 ms-8 relative top-24'>
+    <section className='flex flex-col gap-24 mx-8 relative top-8'>
         <Routes>
           <Route path='/testpage' element={<McqTest />} />
           <Route path='/instructions/:mcqid' element={<McqInstructions />} />
