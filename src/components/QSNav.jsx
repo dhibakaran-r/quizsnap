@@ -96,7 +96,7 @@ function QSNav() {
 
 
                     {showDown && (
-                        <div className="origin-top-right absolute right-4 md:right-0 mt-2 w-48 md:w-full rounded-md shadow-lg bg-primary ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+                        <div className="origin-top-right absolute right-4  mt-2 w-48  rounded-md shadow-lg bg-primary ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
                             <div className="py-1 text-bgwhite" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                 <p role='menuitem' className='px-4 py-2 flex gap-2 items-center'>Signed in as {userData.email}</p>
                             <Link role="menuitem" to={profile} className='px-4 py-2 flex gap-2 items-center duration-200 hover:translate-x-2' onClick={()=>setShowDown(false)}><PiUserListDuotone /> Profile</Link>

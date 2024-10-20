@@ -109,7 +109,7 @@ function UserLists() {
           filterDatas.map((data, index) => {
             return (
 
-              <div key={index} className={'bg-bgimg2 bg-cover border-2 border-secbr  lg:w-[47%] w-11/12 h-60 p-4 flex flex-col md:flex-row justify-evenly items-center rounded-md duration-150 hover:scale-[1.02]'}>
+              <div key={index} className={'bg-bgimg2 bg-cover border-2 border-secbr  lg:w-[46%] w-11/12 h-60 p-4 flex flex-col md:flex-row justify-evenly items-center rounded-md duration-150 hover:scale-[1.02]'}>
 
                 <div className='flex flex-row md:flex-col justify-center items-center gap-2'>
                   <LazyLoadImage className='block w-12 md:w-40' src={useric} effect='blur' placeholderSrc={useric} />
@@ -127,7 +127,7 @@ function UserLists() {
 
                 <div className='flex flex-col gap-4'>
 
-                  <p className='text-[12px] text-textgray relative hidden md:block md:left-24 lg:left-16 2xl:left-32 -top-2 md:-top-4 lg:-top-2'>joined@{data.joinedat?.toDate().toLocaleString()}</p>
+                  <p className='text-[12px] text-textgray relative hidden md:block md:left-24 lg:left-11 2xl:left-32 -top-2 md:-top-4 lg:-top-2'>joined@{data.joinedat?.toDate().toLocaleString()}</p>
 
                   <div className='flex justify-startcenter items-center gap-6'>
                     <p className='text-textgray text-start'>User ID </p>

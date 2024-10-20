@@ -66,11 +66,11 @@ function Register() {
 
 			RegisterAPI(inputs).then(async (res) => {
 				toast.success('You are Successfully Sign up!', { autoClose: 1500 });
-				let id = (res.data.idToken);
+				let id = await (res.data.idToken);
 				let doj = new Date();
 				const users = { id, firstname: inputs.name, lastname: inputs.lastname, email: inputs.email, password: inputs.confirmPassword, joinedat: doj }
 				await addDoc(collection(db, "users"), users);
-				Navigate('/login');
+				Navigate('login');
 				console.log(res)
 			}).catch((err) => {
 				if (err.response.data.error.message === "EMAIL_EXISTS") {
