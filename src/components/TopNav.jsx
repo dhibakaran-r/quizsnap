@@ -53,35 +53,63 @@ function TopNav() {
     }
 
     return (
-        <div className='w-full bg-bluebg border-b-2 border-b-graylg flex justify-between items-center h-16 fixed z-10'>
+        <div className='w-full bg-bluebg border-b-2 border-b-graylg flex justify-between items-center h-16 fixed z-50'>
 
             <div className={`flex justify-center items-center gap-20 md:gap-40 ms-8`}>
 
+                <Link to='#' className='lg:hidden w-full text-primary text-xl'>
+
+                    {sidebar ? <RiCloseLargeLine onClick={showSidebar} /> : <FaBars onClick={showSidebar} />}
+
+                </Link>
                 <Link to='/' className='hidden md:block text-secondary text-2xl font-semibold '>QuizSnap</Link>
 
-            <nav>
 
-                <ul className='flex justify-center items-center gap-16'>
-                    {
-                        UserMenuData.map((navData, index) => {
+                <nav className={`bg-primary w-[16.1rem] h-dvh flex flex-col fixed top-16 ${sidebar ? 'left-0' : '-left-96'} duration-500 z-10 lg:hidden`} >
+
+
+
+                    <ul className='nav-items'>
+
+                        {/* <li className='flex text-bgwhite mb-8 relative right-8 md:hidden'><RiCloseLargeLine className='w-40 inline' size={35} onClick={showSidebar} /></li> */}
+                        {MenuData.map((navData, index) => {
                             return (
-                                <Link to={navData.path} className='tline'>
-                                    <li key={index} className=' flex flex-row justify-center items-center gap-2 text-[1rem]'>
-                                        {navData.icon}
-                                        {navData.title}
-                                    </li>
-                                </Link>
+                                <li key={index} className='item-name'>
+                                    <Link to={navData.path} className='flex flex-row justify-center items-center gap-4 text-xl' onClick={() => { setSidebar(false) }}>
+                                        <span className='text-xl' >{navData.icon}</span>
+                                        <span className={`w-40 !text-[1rem] inline`}>{navData.title}</span>
+                                    </Link>
+                                </li>
                             )
-                        })
-                    }
-                </ul>
+                        })}
+                        
+                    </ul>
+                </nav>
 
-            </nav>
+
+                <nav className='hidden lg:block'>
+
+                    <ul className='flex justify-center items-center gap-16'>
+                        {
+                            UserMenuData.map((navData, index) => {
+                                return (
+                                    <Link to={navData.path} className='tline'>
+                                        <li key={index} className=' flex flex-row justify-center items-center gap-2 text-[1rem]'>
+                                            {navData.icon}
+                                            {navData.title}
+                                        </li>
+                                    </Link>
+                                )
+                            })
+                        }
+                    </ul>
+
+                </nav>
 
             </div>
 
 
-                    <SearchBar />
+            <SearchBar />
             <div className="relative inline-block text-left right-4 md:right-8">
                 {userData.name && userData.email && userData.uid ? (
                     // <div>
@@ -90,7 +118,7 @@ function TopNav() {
                         className="inline-flex justify-center items-center gap-2 w-full rounded-md border-2 border-graylg shadow-sm px-0 py-0 md:px-4 md:py-2 bg-bgwhite text-sm font-medium text-bluetext"
                         onClick={showUser} // Toggle dropdown on click
                     >
-                        <img src={pro} className='w-12 md:w-8 rounded-3xl' /> 
+                        <img src={pro} className='w-12 md:w-8 rounded-3xl' />
                         {/* <p className='hidden md:w-36 md:flex justify-start overflow-hidden'>{userData.name}</p>  */}
                         <FaAngleDown className={`hidden md:block ${showDown ? 'rotate-180' : 'rotate-0'} duration-300`} />
 

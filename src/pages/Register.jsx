@@ -70,7 +70,7 @@ function Register() {
 				let doj = new Date();
 				const users = { id, firstname: inputs.name, lastname: inputs.lastname, email: inputs.email, password: inputs.confirmPassword, joinedat: doj }
 				await addDoc(collection(db, "users"), users);
-				Navigate('login');
+				navigate('/login');
 				console.log(res)
 			}).catch((err) => {
 				if (err.response.data.error.message === "EMAIL_EXISTS") {

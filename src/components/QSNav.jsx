@@ -56,7 +56,7 @@ function QSNav() {
     }
     return (
         <>
-            <div className='w-full bg-bluebg border-b-2 border-b-graylg flex justify-between items-center h-16 fixed z-10'>
+            <div className='w-full bg-bluebg border-b-2 border-b-graylg flex justify-between items-center h-16 fixed z-50'>
 
                 <div className={`flex justify-center items-center gap-20 md:gap-40 ms-8 duration-500 ${sidebar ? "md:ms-72" : "md:ms-28"}`}>
 
