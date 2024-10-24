@@ -126,14 +126,14 @@ body{
 
 
 
-.nav-bar-1{
+/* .nav-bar-1{
   @apply bg-primary w-[16.1rem] h-dvh flex flex-col fixed top-0 duration-500 z-10;
   
 }
 .nav-bar-2{
   @apply bg-primary hidden w-20 pe-2 h-dvh md:flex flex-col fixed top-0 duration-500 z-10;
   
-}
+} */
 
 .nav-bar.active{
   @apply left-0 duration-200;
@@ -181,10 +181,10 @@ body{
     
   }
   
-  .nav-items{
+  /* .nav-items{
     @apply w-full relative top-12;
     
-  }
+  } */
   
   .item-name span{
     margin-left: 16px;

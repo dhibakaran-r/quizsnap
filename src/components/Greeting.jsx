@@ -36,27 +36,27 @@ const Greeting = () => {
   });
 
   const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
   ];
   const months = [
-    "January",
-    "February",
+    "Jan",
+    "Feb",
     "March",
     "April",
     "May",
     "June",
     "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const day = daysOfWeek[currentTime.getDay()];
@@ -70,13 +70,13 @@ const Greeting = () => {
     let greeting;
 
     if (hours >= 5 && hours < 12) {
-      greeting = <p className="flex items-center gap-4"><FiSunrise className="" />Good Morning !</p>;
+      greeting = <p className="flex items-center gap-2 md:gap-4"><FiSunrise className="" />Good Morning</p>;
     } else if (hours >= 12 && hours < 17) {
-      greeting = <p className="flex items-center gap-4"><FiSun className="slowSpin" />Good Afternoon !</p>;
+      greeting = <p className="flex items-center gap-2 md:gap-4"><FiSun className="slowSpin" />Good Afternoon</p>;
     } else if (hours >= 17 && hours < 20) {
-      greeting = <p className="flex items-center gap-4"><FiSunset />Good Evening !</p>;
+      greeting = <p className="flex items-center gap-2 md:gap-4"><FiSunset />Good Evening</p>;
     } else {
-      greeting = <p className="flex items-center gap-4"><FiMoon />Good Night !</p>;
+      greeting = <p className="flex items-center gap-2 md:gap-4"><FiMoon />Good Night</p>;
     }
 
     return greeting;
@@ -84,21 +84,25 @@ const Greeting = () => {
   // console.log(userName);
 
   return (
-    <div className=" w-full flex flex-col p-16 md:flex-row md:justify-between">
-      <div>
-        <p className="text-3xl text-primlight">Welcome {userData.name}!</p>
+    <div className=" w-full flex justify-around items-center md:px-16 flex-row md:justify-between">
+      
+      <div className="w-60 md:w-auto">
+        <p className=" text-lg md:text-3xl text-primlight">Welcome {userData.name}!</p>
       </div>
-      <div className="flex flex-col items-center justify-center gap-4">
+      {/* <div className=""> */}
 
-        <div className=" px-4 py-2 text-2xl text-primlight bg-bgwhite border-t border-l border-r border-shadbg rounded-3xl shadow-lg shadow-shadbg ">{getGreeting()}</div>
-        <div className=" flex gap-12 mr-4 text-textgray">
-          <div className="flex flex-col">
-            <p>{day}, {month} {date}, {year}</p>
-            <p>{formattedTime}</p>
+        <div className=" w-80 lg:w-96 flex flex-col items-center justify-center gap-4 px-4 py-2  text-primlight bg-bgwhite border-t border-l border-r border-shadbg rounded-3xl shadow-lg shadow-shadbg ">
+          <div className="text-sm md:text-2xl">
+            {getGreeting()}
+          </div>
+          <div className="flex flex-col text-[12px] md:text-lg text-lggray">
+            <span>{day} - {month} {date} - {year}</span>
+            <span>{formattedTime}</span>
           </div>
         </div>
 
-      </div>
+      {/* </div> */}
+
     </div>
   );
 };

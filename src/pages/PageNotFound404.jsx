@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 import { FaAngleDoubleLeft } from 'react-icons/fa'
 import { checkAdmin } from '../service/Auth'
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component'
+import { Helmet } from 'react-helmet-async'
 
 function PageNotFound404() {
   return (
     <section>
+      <Helmet><title>404 PageNotFound</title></Helmet>
       <div className='w-full bg-bluebg flex flex-col md:flex-row justify-center items-center'>
         <div className='w-1/2'>
           {/* <img src={FNF} alt="404" /> */}

@@ -8,6 +8,7 @@ import { TbLoader3 } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component';
 import useric from '../assets/images/useric.png'
+import { Helmet } from 'react-helmet-async';
 
 function UserLists() {
 
@@ -96,13 +97,14 @@ function UserLists() {
   }
 
   useEffect(() => {
+    document.title = "QuizSnap Users"
     getUserData()
   }, [])
 
   return (
 
-    <div className='w-full flex lg:flex-row flex-col lg:flex-wrap gap-8 xl:justify-evenly md:items-baseline items-center relative mb-8'>
-
+    <div className='w-full flex lg:flex-row flex-col lg:flex-wrap gap-8 xl:justify-evenly justify-center items-center relative mb-8'>
+      <Helmet><title>QuizSnap Userslist</title></Helmet>
       {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
 
         {
@@ -111,9 +113,9 @@ function UserLists() {
 
               <div key={index} className={'bg-bgimg2 bg-cover border-2 border-secbr  lg:w-[46%] w-11/12 h-60 p-4 flex flex-col md:flex-row justify-evenly items-center rounded-md duration-150 hover:scale-[1.02]'}>
 
-                <div className='flex flex-row md:flex-col justify-center items-center gap-2'>
+                <div className='flex flex-row gap-16 md:flex-col justify-around items-center md:gap-2'>
                   <LazyLoadImage className='block w-12 md:w-40' src={useric} effect='blur' placeholderSrc={useric} />
-                  <p className='text-[12px] text-textgray relative block md:hidden '>joined@{data.joinedat?.toDate().toLocaleString()}</p>
+                  {/* <p className='text-[12px] text-textgray relative block md:hidden '>joined@{data.joinedat?.toDate().toLocaleString()}</p> */}
                   <div className='flex flex-row items-center justify-center gap-2 md:gap-6'>
 
                     <button className={"p-2 flex justify-center items-center gap-2 bg-outlg text-primary duration-300 hover:bg-primary hover:text-bluebg rounded-full"}
@@ -129,22 +131,22 @@ function UserLists() {
 
                   <p className='text-[12px] text-textgray relative hidden md:block md:left-24 lg:left-11 2xl:left-32 -top-2 md:-top-4 lg:-top-2'>joined@{data.joinedat?.toDate().toLocaleString()}</p>
 
-                  <div className='flex justify-startcenter items-center gap-6'>
+                  <div className='flex justify-start items-center text-sm md:text-xl gap-6'>
                     <p className='text-textgray text-start'>User ID </p>
                     <p className='text-center text-secondary'> {data.id}</p>
                   </div>
 
-                  <div className='flex justify-startcenter items-center gap-6'>
+                  <div className='flex justify-start items-center text-sm md:text-xl gap-6'>
                     <p className='text-textgray text-start'>First Name </p>
                     <p className='text-center text-secondary'> {data.firstname}</p>
                   </div>
 
-                  <div className='flex justify-startcenter items-center gap-6'>
+                  <div className='flex justify-start items-center text-sm md:text-xl gap-6'>
                     <p className='text-textgray text-start'>Last Name </p>
                     <p className='text-center text-secondary'> {data.lastname}</p>
                   </div>
 
-                  <div className='flex justify-startcenter items-center gap-6'>
+                  <div className='flex justify-start items-center text-sm md:text-xl gap-6'>
                     <p className='text-textgray text-start'>Email ID </p>
                     <p className='text-center text-secondary'> {data.email}</p>
                   </div>

@@ -4,7 +4,7 @@ import bg from '../assets/images/bgeff.jpg'
 
 function Welcome() {
   return (
-    <div className='bg-bgimg bg-cover bg-center relative overflow-hidden w-full md:w-11/12 h-96 p-4 flex  justify-center items-center border-2 border-x-primary border-y-bluelg hover:border-x-bluelg hover:border-y-primary shadow-[0_1px_8px_2px] shadow-shadbg duration-300 hover:shadow-none rounded-md'>
+    <div className='bg-bgimg bg-cover bg-center relative overflow-hidden w-full md:w-11/12 h-64 lg:h-96 p-4 flex  justify-center items-center border border-secondary shadow-[0_1px_8px_2px] shadow-shadbg duration-300 hover:shadow-none rounded-md'>
 
 
 

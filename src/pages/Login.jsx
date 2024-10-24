@@ -11,6 +11,7 @@ import { storeData } from '../service/dataStorage';
 import { checkAdmin, isAuthenticated } from '../service/Auth';
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { Helmet } from 'react-helmet-async';
 
 function Login() {
 
@@ -91,7 +92,7 @@ function Login() {
 	return (
 
 		<section className="h-full bg-gray-400">
-
+			<Helmet><title>QuizSnap Login</title></Helmet>
 			<div className="mx-auto">
 				<div className="flex justify-center items-center">
 

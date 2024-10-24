@@ -11,6 +11,7 @@ import { RegisterAPI } from '../service/Api';
 import { checkAdmin, isAuthenticated } from '../service/Auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../service/firebase/firebaseConfig';
+import { Helmet } from 'react-helmet-async';
 
 function Register() {
 
@@ -101,7 +102,7 @@ function Register() {
 	return (
 
 		<section className="h-full bg-gray-400">
-
+			<Helmet><title>QuizSnap Register</title></Helmet>
 			<div className="mx-auto">
 				<div className="flex justify-center items-center px-6 py-12">
 

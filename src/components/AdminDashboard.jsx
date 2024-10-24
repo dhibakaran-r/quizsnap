@@ -2,13 +2,17 @@ import React from 'react'
 import Greeting from './Greeting'
 import AdminCard from './AdminCard'
 import Welcome from './Welcome'
+import FooterIn from './FooterIn'
+import { Helmet } from 'react-helmet-async'
 
 function AdminDashboard() {
   return (
     <>
-        <Greeting />
-        <Welcome />
-        <AdminCard />
+      <Helmet><title>QuizSnap Dashboard</title></Helmet>
+      <Greeting />
+      <Welcome />
+      <AdminCard />
+      <FooterIn />
     </>
   )
 }

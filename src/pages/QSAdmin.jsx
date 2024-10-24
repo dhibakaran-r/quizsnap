@@ -10,14 +10,18 @@ import UserProfile from '../components/UserProfile'
 import AccessRoute from './AccessRoute'
 import McqInstructions from '../components/McqInstructions'
 import McqTest from '../components/McqTest'
+import { Helmet } from 'react-helmet-async'
 
 
 function QSAdmin() {
 
   return (
     <div>
+      <Helmet>
+        <title>QuizSnap Admin</title>
+      </Helmet>
       <QSNav />
-      <section className='flex flex-col gap-24 md:ms-40 2xl:ms-60 relative top-24'>
+      <section className='flex flex-col justify-center items-center gap-24 mx-4 relative top-24 lg:ms-40'>
         <Routes>
           <Route element={<AccessRoute />}>
             <Route path='/admindashboard' element={<AdminDashboard />} />
