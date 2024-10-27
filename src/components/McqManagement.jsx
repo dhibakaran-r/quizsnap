@@ -9,8 +9,8 @@ const McqManagement = () => {
   return (
     <>
       <h1 className='flex justify-center items-center text-3xl text-textlg tracking-widest'>MCQ Management</h1>
-      <McqUpload />
-      <SelectedMCQ fileName = "HTMLBasic.json" msg = "hi"/>
+      {/* <McqUpload />
+      <SelectedMCQ fileName = "HTMLBasic.json" msg = "hi"/> */}
     </>
   );
 };
