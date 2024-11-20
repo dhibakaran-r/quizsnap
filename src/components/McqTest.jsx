@@ -5,9 +5,11 @@ import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode } from "react-icons/fa"
 import { GrDocumentVerified } from "react-icons/gr";
 import { toast, ToastContainer } from 'react-toastify';
 import { shuffleArray } from '../utils/shuffle';
+import { useNavigate } from 'react-router-dom';
 
 function McqTest() {
 
+    const navigate = useNavigate();
     const [timeLeft, setTimeLeft] = useState(30 * 60);
     const [isSubmit, setIsSubmit] = useState(false);
     const [shuffledQuestions, setShuffledQuestions] = useState([]);
@@ -74,6 +76,12 @@ function McqTest() {
             theme: "light",
         });
     }
+
+    const testRes = () =>{
+        alert("Result feature under development.")
+        navigate('/qsuser/mcqs')
+    }
+
     return (
         <div className='w-4/5 ms-16 p-16 flex flex-col gap-40 '>
             {!isSubmit ? (<>
@@ -128,7 +136,7 @@ function McqTest() {
                 </div>
                 <div className='flex justify-center items-center'>
                     <button className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-                        onClick={""}
+                        onClick={()=>testRes()}
                     >Show Result</button>
                 </div>
 
