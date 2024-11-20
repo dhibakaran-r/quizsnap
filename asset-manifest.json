@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/quizsnap/static/css/main.7d5e6f8d.css",
-    "main.js": "/quizsnap/static/js/main.5ceca5c5.js",
+    "main.js": "/quizsnap/static/js/main.823f0ee8.js",
     "static/js/748.efe103dd.chunk.js": "/quizsnap/static/js/748.efe103dd.chunk.js",
     "static/css/704.a2abf263.chunk.css": "/quizsnap/static/css/704.a2abf263.chunk.css",
     "static/js/704.678b8fac.chunk.js": "/quizsnap/static/js/704.678b8fac.chunk.js",
@@ -42,7 +42,7 @@
     "static/media/denied.jpg": "/quizsnap/static/media/denied.863dbca82e92f2cd5a30.jpg",
     "index.html": "/quizsnap/index.html",
     "main.7d5e6f8d.css.map": "/quizsnap/static/css/main.7d5e6f8d.css.map",
-    "main.5ceca5c5.js.map": "/quizsnap/static/js/main.5ceca5c5.js.map",
+    "main.823f0ee8.js.map": "/quizsnap/static/js/main.823f0ee8.js.map",
     "748.efe103dd.chunk.js.map": "/quizsnap/static/js/748.efe103dd.chunk.js.map",
     "704.a2abf263.chunk.css.map": "/quizsnap/static/css/704.a2abf263.chunk.css.map",
     "704.678b8fac.chunk.js.map": "/quizsnap/static/js/704.678b8fac.chunk.js.map",
@@ -61,6 +61,6 @@
   },
   "entrypoints": [
     "static/css/main.7d5e6f8d.css",
-    "static/js/main.5ceca5c5.js"
+    "static/js/main.823f0ee8.js"
   ]
 }
