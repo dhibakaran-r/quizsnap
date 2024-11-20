@@ -1,21 +1,22 @@
 {
   "files": {
     "main.css": "/quizsnap/static/css/main.7d5e6f8d.css",
-    "main.js": "/quizsnap/static/js/main.5c51a789.js",
+    "main.js": "/quizsnap/static/js/main.32ffef34.js",
     "static/js/748.efe103dd.chunk.js": "/quizsnap/static/js/748.efe103dd.chunk.js",
     "static/css/704.a2abf263.chunk.css": "/quizsnap/static/css/704.a2abf263.chunk.css",
     "static/js/704.678b8fac.chunk.js": "/quizsnap/static/js/704.678b8fac.chunk.js",
     "static/css/768.a2abf263.chunk.css": "/quizsnap/static/css/768.a2abf263.chunk.css",
     "static/js/768.bb250d9b.chunk.js": "/quizsnap/static/js/768.bb250d9b.chunk.js",
-    "static/js/124.4a8b8093.chunk.js": "/quizsnap/static/js/124.4a8b8093.chunk.js",
-    "static/js/335.0abd3ce7.chunk.js": "/quizsnap/static/js/335.0abd3ce7.chunk.js",
+    "static/js/508.8edc6e05.chunk.js": "/quizsnap/static/js/508.8edc6e05.chunk.js",
+    "static/js/919.772c0b1a.chunk.js": "/quizsnap/static/js/919.772c0b1a.chunk.js",
     "static/js/11.e24f47b6.chunk.js": "/quizsnap/static/js/11.e24f47b6.chunk.js",
     "static/js/182.25c0ef15.chunk.js": "/quizsnap/static/js/182.25c0ef15.chunk.js",
     "static/js/492.cfcfae2f.chunk.js": "/quizsnap/static/js/492.cfcfae2f.chunk.js",
     "static/js/765.70c3fdef.chunk.js": "/quizsnap/static/js/765.70c3fdef.chunk.js",
     "static/js/239.63f52ab3.chunk.js": "/quizsnap/static/js/239.63f52ab3.chunk.js",
-    "static/js/921.d3e9a847.chunk.js": "/quizsnap/static/js/921.d3e9a847.chunk.js",
+    "static/js/921.5b62be14.chunk.js": "/quizsnap/static/js/921.5b62be14.chunk.js",
     "static/js/973.da7e015e.chunk.js": "/quizsnap/static/js/973.da7e015e.chunk.js",
+    "static/js/298.41896392.chunk.js": "/quizsnap/static/js/298.41896392.chunk.js",
     "static/media/ourtarget.png": "/quizsnap/static/media/ourtarget.7745c7da196c9cf54517.png",
     "static/media/bgeff.jpg": "/quizsnap/static/media/bgeff.e1e257d8d80af69323ce.jpg",
     "static/media/totuser.jpg": "/quizsnap/static/media/totuser.a479d279543002031b42.jpg",
@@ -41,24 +42,25 @@
     "static/media/denied.jpg": "/quizsnap/static/media/denied.863dbca82e92f2cd5a30.jpg",
     "index.html": "/quizsnap/index.html",
     "main.7d5e6f8d.css.map": "/quizsnap/static/css/main.7d5e6f8d.css.map",
-    "main.5c51a789.js.map": "/quizsnap/static/js/main.5c51a789.js.map",
+    "main.32ffef34.js.map": "/quizsnap/static/js/main.32ffef34.js.map",
     "748.efe103dd.chunk.js.map": "/quizsnap/static/js/748.efe103dd.chunk.js.map",
     "704.a2abf263.chunk.css.map": "/quizsnap/static/css/704.a2abf263.chunk.css.map",
     "704.678b8fac.chunk.js.map": "/quizsnap/static/js/704.678b8fac.chunk.js.map",
     "768.a2abf263.chunk.css.map": "/quizsnap/static/css/768.a2abf263.chunk.css.map",
     "768.bb250d9b.chunk.js.map": "/quizsnap/static/js/768.bb250d9b.chunk.js.map",
-    "124.4a8b8093.chunk.js.map": "/quizsnap/static/js/124.4a8b8093.chunk.js.map",
-    "335.0abd3ce7.chunk.js.map": "/quizsnap/static/js/335.0abd3ce7.chunk.js.map",
+    "508.8edc6e05.chunk.js.map": "/quizsnap/static/js/508.8edc6e05.chunk.js.map",
+    "919.772c0b1a.chunk.js.map": "/quizsnap/static/js/919.772c0b1a.chunk.js.map",
     "11.e24f47b6.chunk.js.map": "/quizsnap/static/js/11.e24f47b6.chunk.js.map",
     "182.25c0ef15.chunk.js.map": "/quizsnap/static/js/182.25c0ef15.chunk.js.map",
     "492.cfcfae2f.chunk.js.map": "/quizsnap/static/js/492.cfcfae2f.chunk.js.map",
     "765.70c3fdef.chunk.js.map": "/quizsnap/static/js/765.70c3fdef.chunk.js.map",
     "239.63f52ab3.chunk.js.map": "/quizsnap/static/js/239.63f52ab3.chunk.js.map",
-    "921.d3e9a847.chunk.js.map": "/quizsnap/static/js/921.d3e9a847.chunk.js.map",
-    "973.da7e015e.chunk.js.map": "/quizsnap/static/js/973.da7e015e.chunk.js.map"
+    "921.5b62be14.chunk.js.map": "/quizsnap/static/js/921.5b62be14.chunk.js.map",
+    "973.da7e015e.chunk.js.map": "/quizsnap/static/js/973.da7e015e.chunk.js.map",
+    "298.41896392.chunk.js.map": "/quizsnap/static/js/298.41896392.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7d5e6f8d.css",
-    "static/js/main.5c51a789.js"
+    "static/js/main.32ffef34.js"
   ]
 }
