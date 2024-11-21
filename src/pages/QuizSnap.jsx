@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect } from 'react'
 import { BallTriangle, Circles, Triangle } from 'react-loader-spinner';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar'
 import Home from '../components/Home'
 import Intro from '../components/Intro'
@@ -18,7 +19,7 @@ function QShome() {
   return (
 
     <div className='w-full flex flex-col justify-center items-center'>
-
+      <Helmet><title>QuizSnap</title></Helmet>
       <Navbar />
       <Home />
       <Intro />
