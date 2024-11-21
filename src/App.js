@@ -26,7 +26,7 @@ function App() {
         <HelmetProvider>
 
           <BrowserRouter 
-          basename='/quizsnap'
+          // basename='/quizsnap'
           >
             <Routes>
               <Route path='/' element={<QuizSnap />} />
