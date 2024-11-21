@@ -160,7 +160,7 @@ function McqInstructions() {
           </div>
           <div className='w-full flex items-center justify-center'>
             <button className='px-10 py-2 text-bluebg bg-primary flex justify-center items-center gap-2 rounded-full text-xl hover:bg-secondary tracking-widest'><Link to="/quiz/testpage" 
-            // target='_blank'
+            target='_blank'
             >Start</Link> <GiArrowScope className='' size={40} /></button>
           </div>
         </div>
