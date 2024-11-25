@@ -134,7 +134,7 @@ function Login() {
 										name='password'
 										id="password"
 										type={showPassword ? 'text' : 'password'}
-										placeholder="******************"
+										placeholder="Password"
 										onChange={handleInput}
 										required
 									/>

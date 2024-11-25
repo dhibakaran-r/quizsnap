@@ -181,7 +181,7 @@ function Register() {
 										name='password'
 										id="password"
 										type="password"
-										placeholder="******************"
+										placeholder="Password"
 										onChange={handleInput}
 										required
 									/>
@@ -199,7 +199,7 @@ function Register() {
 										name='confirmPassword'
 										id="repass"
 										type="password"
-										placeholder="******************"
+										placeholder="Confirm Password"
 										onChange={handleInput}
 										required
 									/>

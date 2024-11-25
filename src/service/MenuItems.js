@@ -19,12 +19,12 @@ export const AdminMenuData = [
     class: "item-name",
   },
 
-  {
-    title: "Content Management",
-    path: "/qsadmin/qscontent",
-    icon: <RiLinksLine />,
-    class: "item-name",
-  },
+  // {
+  //   title: "Content Management",
+  //   path: "/qsadmin/qscontent",
+  //   icon: <RiLinksLine />,
+  //   class: "item-name",
+  // },
 
   {
     title: "User Management",

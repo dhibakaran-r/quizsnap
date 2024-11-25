@@ -14,13 +14,13 @@ function McqTest() {
     const [isSubmit, setIsSubmit] = useState(false);
     const [shuffledQuestions, setShuffledQuestions] = useState([]);
 
-        const icons = {
-            HTML: <FaHtml5 size={50} />,
-            CSS: <FaCss3Alt size={50} />,
-            JavaScript: <FaJsSquare size={50} />,
-            React: <FaReact size={50} />,
-    
-        }
+    const icons = {
+        HTML: <FaHtml5 size={50} />,
+        CSS: <FaCss3Alt size={50} />,
+        JavaScript: <FaJsSquare size={50} />,
+        React: <FaReact size={50} />,
+
+    }
 
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
@@ -77,7 +77,7 @@ function McqTest() {
         });
     }
 
-    const testRes = () =>{
+    const testRes = () => {
         alert("Result feature under development.")
         navigate('/qsuser/mcqs')
     }
@@ -87,39 +87,42 @@ function McqTest() {
             {!isSubmit ? (<>
                 {/* {qes.categories.map((que, i) => {
                     return ( */}
-                        <div className='flex flex-col gap-8'>
-                            <div className='w-full flex justify-between items-center bg-outlg p-8'>
-                                <div className='w-40 flex flex-row justify-center items-center gap-2'>{icons[qes.category] || <FaCode size={50} />} <span className='font-bold'>{qes.category}</span></div>
-                                <div className='w-40 flex flex-row justify-center items-center gap-2 p-4 bg-secondary rounded-full text-redbg'><LuClock12 size={50} className='clockSpin' /> <span className='text-2xl font-bold'>{formatTime(timeLeft)}</span></div>
-                            </div>
-                            <div className='flex flex-col justify-around gap-16'>
-                                {/* if({que.levels === "easy"})  */}
-                                {
-
-                                    shuffledQuestions.map((q, i) => {
-                                        return (
-
-                                            <div key={i} className='flex flex-col justify-around gap-4'>
-                                                <p className='text-xl'><span className='me-4'>{i + 1}.</span>{q.question}</p>
-                                                <div className=' flex flex-wrap'>
-                                                    {q.options.map((opt, id) => {
-                                                        return (
-                                                            <div className=' h-8 flex justify-center items-center gap-2 ms-8'>
-                                                                <input type='radio' key={id} id={opt} name={q.id} value={opt} />
-                                                                <label htmlFor={opt}>{opt}</label>
-                                                            </div>
-
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-
-                                        )
-                                    })
-                                }
-                            </div>
+                <div className='flex flex-col gap-8'>
+                    <div className='w-full flex justify-between items-center bg-outlg p-8'>
+                        <div className='w-40 flex flex-row justify-center items-center gap-2'>{icons[qes.category] || <FaCode size={50} />} <span className='font-bold'>{qes.category}</span></div>
+                        <div className='w-40 flex flex-row justify-center items-center gap-2 p-4  rounded-full '>
+                            <LuClock12 size={50} className='clockSpin' />
+                            <span className='text-2xl font-bold text-textsec'>{formatTime(timeLeft)}</span>
                         </div>
-                    {/* )
+                    </div>
+                    <div className='flex flex-col justify-around gap-16'>
+                        {/* if({que.levels === "easy"})  */}
+                        {
+
+                            shuffledQuestions.map((q, i) => {
+                                return (
+
+                                    <div key={i} className='flex flex-col justify-around gap-4'>
+                                        <p className='text-xl'><span className='me-4'>{i + 1}.</span>{q.question}</p>
+                                        <div className=' flex flex-wrap'>
+                                            {q.options.map((opt, id) => {
+                                                return (
+                                                    <div className=' h-8 flex justify-center items-center gap-2 ms-8'>
+                                                        <input type='radio' key={id} id={opt} name={q.id} value={opt} />
+                                                        <label htmlFor={opt}>{opt}</label>
+                                                    </div>
+
+                                                )
+                                            })}
+                                        </div>
+                                    </div>
+
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+                {/* )
                 })} */}
 
                 <div className='flex justify-center items-center'>
@@ -136,7 +139,7 @@ function McqTest() {
                 </div>
                 <div className='flex justify-center items-center'>
                     <button className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-                        onClick={()=>testRes()}
+                        onClick={() => testRes()}
                     >Show Result</button>
                 </div>
 
