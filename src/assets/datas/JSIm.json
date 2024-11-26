@@ -1,0 +1,337 @@
+{
+    "category": "JavaScript",
+    "level": "intermediate",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What will be the output of the following code? console.log(2 + '2');",
+        "options": [
+          "22",
+          "4",
+          "NaN",
+          "undefined"
+        ],
+        "correct_answer": "22"
+      },
+      {
+        "id": 2,
+        "question": "Which of the following is the correct way to declare a variable in JavaScript?",
+        "options": [
+          "var myVar;",
+          "let myVar;",
+          "const myVar;",
+          "All of the above"
+        ],
+        "correct_answer": "All of the above"
+      },
+      {
+        "id": 3,
+        "question": "What is the result of '5' == 5 in JavaScript?",
+        "options": [
+          "true",
+          "false",
+          "undefined",
+          "NaN"
+        ],
+        "correct_answer": "true"
+      },
+      {
+        "id": 4,
+        "question": "What is the purpose of the 'this' keyword in JavaScript?",
+        "options": [
+          "Refers to the current function",
+          "Refers to the current object",
+          "Refers to the global scope",
+          "Refers to the previous object"
+        ],
+        "correct_answer": "Refers to the current object"
+      },
+      {
+        "id": 5,
+        "question": "Which of the following methods is used to add a new item to the end of an array?",
+        "options": [
+          "push()",
+          "pop()",
+          "unshift()",
+          "shift()"
+        ],
+        "correct_answer": "push()"
+      },
+      {
+        "id": 6,
+        "question": "What will be the output of the following code? console.log([] == []);",
+        "options": [
+          "true",
+          "false",
+          "undefined",
+          "ReferenceError"
+        ],
+        "correct_answer": "false"
+      },
+      {
+        "id": 7,
+        "question": "Which method is used to remove the last item from an array?",
+        "options": [
+          "pop()",
+          "shift()",
+          "unshift()",
+          "push()"
+        ],
+        "correct_answer": "pop()"
+      },
+      {
+        "id": 8,
+        "question": "What does the 'typeof' operator do?",
+        "options": [
+          "Returns the type of a variable",
+          "Checks if a variable is defined",
+          "Returns the value of a variable",
+          "Returns the length of a variable"
+        ],
+        "correct_answer": "Returns the type of a variable"
+      },
+      {
+        "id": 9,
+        "question": "Which of the following is a closure in JavaScript?",
+        "options": [
+          "A function that references variables from its outer scope",
+          "A function that defines its own variables",
+          "A function that calls itself",
+          "A function that takes other functions as arguments"
+        ],
+        "correct_answer": "A function that references variables from its outer scope"
+      },
+      {
+        "id": 10,
+        "question": "Which of the following is the correct way to create an object in JavaScript?",
+        "options": [
+          "var obj = {};",
+          "var obj = [];",
+          "var obj = Object();",
+          "All of the above"
+        ],
+        "correct_answer": "var obj = {};"
+      },
+      {
+        "id": 11,
+        "question": "What will be the result of the following code? console.log(0 == false);",
+        "options": [
+          "true",
+          "false",
+          "undefined",
+          "NaN"
+        ],
+        "correct_answer": "true"
+      },
+      {
+        "id": 12,
+        "question": "What is the purpose of the 'bind()' method in JavaScript?",
+        "options": [
+          "Creates a new function with a specific 'this' value",
+          "Returns the current function",
+          "Binds two functions together",
+          "Executes a function immediately"
+        ],
+        "correct_answer": "Creates a new function with a specific 'this' value"
+      },
+      {
+        "id": 13,
+        "question": "Which of the following is the correct way to declare a constant in JavaScript?",
+        "options": [
+          "const myConstant;",
+          "let myConstant = 10;",
+          "const myConstant = 10;",
+          "var myConstant = 10;"
+        ],
+        "correct_answer": "const myConstant = 10;"
+      },
+      {
+        "id": 14,
+        "question": "What will be the result of the following code? console.log(5 + '5');",
+        "options": [
+          "55",
+          "10",
+          "NaN",
+          "undefined"
+        ],
+        "correct_answer": "55"
+      },
+      {
+        "id": 15,
+        "question": "Which of the following is the correct syntax for defining an arrow function in JavaScript?",
+        "options": [
+          "const myFunc = function() => {};",
+          "const myFunc = () => {};",
+          "const myFunc = function() {};",
+          "const myFunc = function => {};"
+        ],
+        "correct_answer": "const myFunc = () => {};"
+      },
+      {
+        "id": 16,
+        "question": "Which of the following methods is used to convert a string to an array?",
+        "options": [
+          "split()",
+          "join()",
+          "reverse()",
+          "slice()"
+        ],
+        "correct_answer": "split()"
+      },
+      {
+        "id": 17,
+        "question": "What will be the output of the following code? console.log('2' + 2);",
+        "options": [
+          "22",
+          "4",
+          "NaN",
+          "undefined"
+        ],
+        "correct_answer": "22"
+      },
+      {
+        "id": 18,
+        "question": "Which of the following is used to declare a block of code that can be executed repeatedly in JavaScript?",
+        "options": [
+          "while loop",
+          "for loop",
+          "do-while loop",
+          "All of the above"
+        ],
+        "correct_answer": "All of the above"
+      },
+      {
+        "id": 19,
+        "question": "What is the purpose of the 'async' keyword in JavaScript?",
+        "options": [
+          "Defines a function that returns a promise",
+          "Defines a function that runs asynchronously",
+          "Defines a promise",
+          "Marks a function as synchronous"
+        ],
+        "correct_answer": "Defines a function that returns a promise"
+      },
+      {
+        "id": 20,
+        "question": "Which method is used to add an event listener to an element in JavaScript?",
+        "options": [
+          "addEventListener()",
+          "onEvent()",
+          "attachEvent()",
+          "bindEvent()"
+        ],
+        "correct_answer": "addEventListener()"
+      },
+      {
+        "id": 21,
+        "question": "What does the 'localStorage' object do in JavaScript?",
+        "options": [
+          "Stores data on the client-side permanently",
+          "Stores data temporarily",
+          "Stores data on the server-side",
+          "Stores data in cookies"
+        ],
+        "correct_answer": "Stores data on the client-side permanently"
+      },
+      {
+        "id": 22,
+        "question": "What is the purpose of the 'setTimeout()' method in JavaScript?",
+        "options": [
+          "Executes a function after a specified delay",
+          "Executes a function immediately",
+          "Sets a timer to stop the script",
+          "Sets a time interval for the function to execute"
+        ],
+        "correct_answer": "Executes a function after a specified delay"
+      },
+      {
+        "id": 23,
+        "question": "Which of the following is the correct way to declare a function in JavaScript?",
+        "options": [
+          "function myFunction() {}",
+          "let myFunction() {}",
+          "const myFunction() {}",
+          "function = myFunction() {}"
+        ],
+        "correct_answer": "function myFunction() {}"
+      },
+      {
+        "id": 24,
+        "question": "What is the purpose of the 'apply()' method in JavaScript?",
+        "options": [
+          "Calls a function with a given 'this' value and arguments",
+          "Defines a function with a specific 'this' value",
+          "Creates a new array from arguments",
+          "Adds arguments to an array"
+        ],
+        "correct_answer": "Calls a function with a given 'this' value and arguments"
+      },
+      {
+        "id": 25,
+        "question": "What does the 'NaN' value represent in JavaScript?",
+        "options": [
+          "Not a number",
+          "Not a valid string",
+          "Not available now",
+          "Negative absolute number"
+        ],
+        "correct_answer": "Not a number"
+      },
+      {
+        "id": 26,
+        "question": "Which of the following is the correct way to define a promise in JavaScript?",
+        "options": [
+          "const myPromise = new Promise(function(resolve, reject) {});",
+          "const myPromise = new Promise(() => {});",
+          "const myPromise = new function(resolve, reject) {};",
+          "const myPromise = Promise();"
+        ],
+        "correct_answer": "const myPromise = new Promise(function(resolve, reject) {});"
+      },
+      {
+        "id": 27,
+        "question": "What is the output of the following code? console.log([1,2] == [1,2]);",
+        "options": [
+          "true",
+          "false",
+          "undefined",
+          "ReferenceError"
+        ],
+        "correct_answer": "false"
+      },
+      {
+        "id": 28,
+        "question": "Which method is used to remove the first item from an array in JavaScript?",
+        "options": [
+          "shift()",
+          "unshift()",
+          "pop()",
+          "slice()"
+        ],
+        "correct_answer": "shift()"
+      },
+      {
+        "id": 29,
+        "question": "What is the result of 2 + 3 + '5' in JavaScript?",
+        "options": [
+          "55",
+          "15",
+          "23",
+          "NaN"
+        ],
+        "correct_answer": "23"
+      },
+      {
+        "id": 30,
+        "question": "Which of the following methods is used to parse a string to an integer in JavaScript?",
+        "options": [
+          "parseInt()",
+          "parseFloat()",
+          "Number()",
+          "String()"
+        ],
+        "correct_answer": "parseInt()"
+      }
+    ]
+  }
+  

@@ -1,0 +1,337 @@
+{
+    "category": "CSS",
+    "level": "intermediate",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What does the flex property do in a flex container?",
+        "options": [
+          "Defines the flexibility of a flex item",
+          "Sets the direction of flex items",
+          "Aligns flex items",
+          "Changes the size of the flex container"
+        ],
+        "correct_answer": "Defines the flexibility of a flex item"
+      },
+      {
+        "id": 2,
+        "question": "Which CSS property controls the vertical alignment of an element?",
+        "options": [
+          "vertical-align",
+          "align",
+          "text-align",
+          "float"
+        ],
+        "correct_answer": "vertical-align"
+      },
+      {
+        "id": 3,
+        "question": "What does the CSS Grid property 'grid-template-columns' do?",
+        "options": [
+          "Defines the number of columns in a grid layout",
+          "Sets the column widths",
+          "Controls the alignment of grid items",
+          "Specifies the total width of the grid"
+        ],
+        "correct_answer": "Defines the number of columns in a grid layout"
+      },
+      {
+        "id": 4,
+        "question": "How do you center an element horizontally in CSS?",
+        "options": [
+          "margin: auto;",
+          "text-align: center;",
+          "align: center;",
+          "position: center;"
+        ],
+        "correct_answer": "margin: auto;"
+      },
+      {
+        "id": 5,
+        "question": "Which property is used to control the opacity of an element?",
+        "options": [
+          "opacity",
+          "visibility",
+          "filter",
+          "transparency"
+        ],
+        "correct_answer": "opacity"
+      },
+      {
+        "id": 6,
+        "question": "What is the purpose of the CSS property 'overflow'?",
+        "options": [
+          "Specifies what happens when content overflows an element's box",
+          "Controls the visibility of an element",
+          "Sets the position of an element",
+          "Defines the size of an element"
+        ],
+        "correct_answer": "Specifies what happens when content overflows an element's box"
+      },
+      {
+        "id": 7,
+        "question": "What does the 'position: absolute;' property do?",
+        "options": [
+          "Positions an element relative to its nearest positioned ancestor",
+          "Positions an element relative to the viewport",
+          "Defines a static position",
+          "Positions an element relative to its parent"
+        ],
+        "correct_answer": "Positions an element relative to its nearest positioned ancestor"
+      },
+      {
+        "id": 8,
+        "question": "How do you create a CSS animation?",
+        "options": [
+          "Using the @keyframes rule",
+          "Using the @animation rule",
+          "Using the @transitions rule",
+          "Using the @style rule"
+        ],
+        "correct_answer": "Using the @keyframes rule"
+      },
+      {
+        "id": 9,
+        "question": "Which property is used to change the order of flex items?",
+        "options": [
+          "order",
+          "flex-order",
+          "flex-item",
+          "item-order"
+        ],
+        "correct_answer": "order"
+      },
+      {
+        "id": 10,
+        "question": "What is the default value of the 'display' property for a <div> element?",
+        "options": [
+          "block",
+          "inline",
+          "flex",
+          "grid"
+        ],
+        "correct_answer": "block"
+      },
+      {
+        "id": 11,
+        "question": "Which CSS property is used to create space between elements?",
+        "options": [
+          "margin",
+          "padding",
+          "spacing",
+          "border"
+        ],
+        "correct_answer": "margin"
+      },
+      {
+        "id": 12,
+        "question": "What does the 'float' property do?",
+        "options": [
+          "Allows elements to be positioned to the left or right of their container",
+          "Controls the visibility of an element",
+          "Sets the position of an element",
+          "Defines the stacking order of elements"
+        ],
+        "correct_answer": "Allows elements to be positioned to the left or right of their container"
+      },
+      {
+        "id": 13,
+        "question": "How can you make a list appear horizontally?",
+        "options": [
+          "By using display: inline;",
+          "By using float: left;",
+          "By using flexbox",
+          "All of the above"
+        ],
+        "correct_answer": "All of the above"
+      },
+      {
+        "id": 14,
+        "question": "What does the 'calc()' function do in CSS?",
+        "options": [
+          "Performs calculations to set CSS property values",
+          "Calculates the width of an element",
+          "Defines the height of an element",
+          "Sets the margin values"
+        ],
+        "correct_answer": "Performs calculations to set CSS property values"
+      },
+      {
+        "id": 15,
+        "question": "What is the purpose of the 'transition' property?",
+        "options": [
+          "Defines how property changes should be animated over time",
+          "Sets the duration of animations",
+          "Controls the visibility of an element",
+          "Specifies the size of an element"
+        ],
+        "correct_answer": "Defines how property changes should be animated over time"
+      },
+      {
+        "id": 16,
+        "question": "Which property is used to style a list with images?",
+        "options": [
+          "list-style-image",
+          "background-image",
+          "image-list",
+          "list-image"
+        ],
+        "correct_answer": "list-style-image"
+      },
+      {
+        "id": 17,
+        "question": "What does the 'nth-child()' selector do?",
+        "options": [
+          "Selects elements based on their order in a parent",
+          "Selects every child element",
+          "Selects elements based on class",
+          "Selects elements based on their type"
+        ],
+        "correct_answer": "Selects elements based on their order in a parent"
+      },
+      {
+        "id": 18,
+        "question": "What is the use of the 'box-shadow' property?",
+        "options": [
+          "Applies shadow effects around an element's frame",
+          "Sets the border of an element",
+          "Defines the background color of an element",
+          "Controls the visibility of an element"
+        ],
+        "correct_answer": "Applies shadow effects around an element's frame"
+      },
+      {
+        "id": 19,
+        "question": "Which CSS property is used to set the text shadow?",
+        "options": [
+          "text-shadow",
+          "shadow",
+          "font-shadow",
+          "text-effect"
+        ],
+        "correct_answer": "text-shadow"
+      },
+      {
+        "id": 20,
+        "question": "What is the purpose of the 'background-size' property?",
+        "options": [
+          "Specifies the size of background images",
+          "Sets the size of the container",
+          "Defines the width of the background",
+          "Controls the alignment of background images"
+        ],
+        "correct_answer": "Specifies the size of background images"
+      },
+      {
+        "id": 21,
+        "question": "What does the 'pointer-events' property control?",
+        "options": [
+          "Defines how an element reacts to mouse events",
+          "Controls the visibility of an element",
+          "Sets the cursor style",
+          "Specifies the size of an element"
+        ],
+        "correct_answer": "Defines how an element reacts to mouse events"
+      },
+      {
+        "id": 22,
+        "question": "Which CSS property is used to set the font variant?",
+        "options": [
+          "font-variant",
+          "font-style",
+          "text-variant",
+          "text-style"
+        ],
+        "correct_answer": "font-variant"
+      },
+      {
+        "id": 23,
+        "question": "What does the 'align-items' property do in a flex container?",
+        "options": [
+          "Aligns flex items along the cross axis",
+          "Aligns flex items along the main axis",
+          "Sets the direction of flex items",
+          "Defines the spacing between flex items"
+        ],
+        "correct_answer": "Aligns flex items along the cross axis"
+      },
+      {
+        "id": 24,
+        "question": "Which property is used to create a 3D transformation effect?",
+        "options": [
+          "transform",
+          "3d-transform",
+          "transform3d",
+          "perspective"
+        ],
+        "correct_answer": "transform"
+      },
+      {
+        "id": 25,
+        "question": "What does the 'white-space' property do?",
+        "options": [
+          "Controls how whitespace is handled within an element",
+          "Sets the visibility of an element",
+          "Defines the spacing between words",
+          "Specifies the alignment of text"
+        ],
+        "correct_answer": "Controls how whitespace is handled within an element"
+      },
+      {
+        "id": 26,
+        "question": "Which property is used to create a responsive image in CSS?",
+        "options": [
+          "max-width",
+          "width",
+          "height",
+          "resize"
+        ],
+        "correct_answer": "max-width"
+      },
+      {
+        "id": 27,
+        "question": "What does the 'grid-template-rows' property do?",
+        "options": [
+          "Defines the number of rows in a grid layout",
+          "Sets the row heights",
+          "Controls the alignment of grid items",
+          "Specifies the total height of the grid"
+        ],
+        "correct_answer": "Defines the number of rows in a grid layout"
+      },
+      {
+        "id": 28,
+        "question": "How do you make a flex container wrap its items?",
+        "options": [
+          "flex-wrap: wrap;",
+          "wrap: true;",
+          "flex-flow: wrap;",
+          "flex-items: wrap;"
+        ],
+        "correct_answer": "flex-wrap: wrap;"
+      },
+      {
+        "id": 29,
+        "question": "Which property is used to specify the space between columns in a grid layout?",
+        "options": [
+          "column-gap",
+          "grid-gap",
+          "gap",
+          "spacing"
+        ],
+        "correct_answer": "column-gap"
+      },
+      {
+        "id": 30,
+        "question": "What does the 'object-fit' property do?",
+        "options": [
+          "Defines how an element's content should be resized to fit its box",
+          "Controls the alignment of objects",
+          "Sets the size of an object",
+          "Defines the border of an object"
+        ],
+        "correct_answer": "Defines how an element's content should be resized to fit its box"
+      }
+    ]
+  }
+  

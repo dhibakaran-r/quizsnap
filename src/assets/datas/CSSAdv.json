@@ -1,0 +1,337 @@
+{
+    "category": "CSS",
+    "level": "advanced",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Which CSS property can you use to control the z-index stacking order of flex items?",
+        "options": [
+          "order",
+          "z-index",
+          "flex-order",
+          "align-items"
+        ],
+        "correct_answer": "z-index"
+      },
+      {
+        "id": 2,
+        "question": "Which CSS property is used to control the scrolling behavior of an element?",
+        "options": [
+          "overflow",
+          "scroll-behavior",
+          "scrolling",
+          "overflow-x"
+        ],
+        "correct_answer": "scroll-behavior"
+      },
+      {
+        "id": 3,
+        "question": "Which CSS property can you use to create a responsive container that adapts to its content?",
+        "options": [
+          "min-width",
+          "flex-grow",
+          "max-width",
+          "auto"
+        ],
+        "correct_answer": "flex-grow"
+      },
+      {
+        "id": 4,
+        "question": "Which CSS property can you use to define the amount of space between lines of text?",
+        "options": [
+          "line-height",
+          "letter-spacing",
+          "word-spacing",
+          "text-spacing"
+        ],
+        "correct_answer": "line-height"
+      },
+      {
+        "id": 5,
+        "question": "What does the 'clip-path' property do?",
+        "options": [
+          "Creates a clipping region to hide portions of an element",
+          "Controls the layout of flex items",
+          "Specifies the shape of an element",
+          "Changes the border-radius of an element"
+        ],
+        "correct_answer": "Creates a clipping region to hide portions of an element"
+      },
+      {
+        "id": 6,
+        "question": "Which CSS function allows you to perform mathematical operations for setting property values?",
+        "options": [
+          "calc()",
+          "min()",
+          "max()",
+          "clamp()"
+        ],
+        "correct_answer": "calc()"
+      },
+      {
+        "id": 7,
+        "question": "How can you apply multiple shadows to an element using the 'box-shadow' property?",
+        "options": [
+          "Separate each shadow with a comma",
+          "Use the 'multiple' keyword",
+          "Separate shadows with a space",
+          "Use semicolons between each shadow"
+        ],
+        "correct_answer": "Separate each shadow with a comma"
+      },
+      {
+        "id": 8,
+        "question": "Which of the following is used to create a grid with both fixed and flexible columns?",
+        "options": [
+          "grid-template-columns",
+          "grid-auto-columns",
+          "grid-template-rows",
+          "grid-column-gap"
+        ],
+        "correct_answer": "grid-template-columns"
+      },
+      {
+        "id": 9,
+        "question": "What does the '@supports' rule allow in CSS?",
+        "options": [
+          "Checks if a browser supports a specific CSS feature",
+          "Declares the use of CSS variables",
+          "Defines a CSS media query",
+          "Applies styles based on a condition"
+        ],
+        "correct_answer": "Checks if a browser supports a specific CSS feature"
+      },
+      {
+        "id": 10,
+        "question": "What does the 'backface-visibility' property control?",
+        "options": [
+          "Controls the visibility of an element's back side during a transformation",
+          "Hides the backface of a 3D element",
+          "Shows the backface of an element while rotated",
+          "Prevents elements from flipping"
+        ],
+        "correct_answer": "Controls the visibility of an element's back side during a transformation"
+      },
+      {
+        "id": 11,
+        "question": "Which CSS property allows you to change the shape of the cursor when hovering over an element?",
+        "options": [
+          "cursor",
+          "pointer-events",
+          "cursor-type",
+          "mouse-shape"
+        ],
+        "correct_answer": "cursor"
+      },
+      {
+        "id": 12,
+        "question": "Which of the following properties is used for creating animations with keyframes?",
+        "options": [
+          "animation",
+          "keyframes",
+          "animation-timing",
+          "transition"
+        ],
+        "correct_answer": "animation"
+      },
+      {
+        "id": 13,
+        "question": "What is the purpose of the 'contain' property in CSS?",
+        "options": [
+          "Limits the scope of an element's styling and layout",
+          "Specifies how elements are contained within their parent",
+          "Sets the size of the content area",
+          "Ensures elements fit within their bounding box"
+        ],
+        "correct_answer": "Limits the scope of an element's styling and layout"
+      },
+      {
+        "id": 14,
+        "question": "Which CSS property can be used to control how text is broken and wrapped in a block?",
+        "options": [
+          "word-wrap",
+          "text-break",
+          "hyphens",
+          "word-break"
+        ],
+        "correct_answer": "word-wrap"
+      },
+      {
+        "id": 15,
+        "question": "Which of the following is true about CSS Grid?",
+        "options": [
+          "Grid items can be aligned in both axes",
+          "CSS Grid layout only works with fixed items",
+          "You must specify a number of columns and rows for CSS Grid to work",
+          "Grid layouts require a minimum of three columns"
+        ],
+        "correct_answer": "Grid items can be aligned in both axes"
+      },
+      {
+        "id": 16,
+        "question": "What is the purpose of the 'aspect-ratio' property in CSS?",
+        "options": [
+          "Maintains a fixed width-to-height ratio for an element",
+          "Controls the size of an element",
+          "Specifies the background ratio of an image",
+          "Adjusts the text ratio for readability"
+        ],
+        "correct_answer": "Maintains a fixed width-to-height ratio for an element"
+      },
+      {
+        "id": 17,
+        "question": "What does the 'filter' property in CSS allow you to do?",
+        "options": [
+          "Apply graphical effects like blur or brightness to elements",
+          "Filter elements based on conditions",
+          "Apply styles to specific filters in an image",
+          "Control the color scheme of an image"
+        ],
+        "correct_answer": "Apply graphical effects like blur or brightness to elements"
+      },
+      {
+        "id": 18,
+        "question": "Which CSS property can be used to create a scrolling effect for the background?",
+        "options": [
+          "background-attachment",
+          "background-scroll",
+          "scroll-effect",
+          "scrolling-background"
+        ],
+        "correct_answer": "background-attachment"
+      },
+      {
+        "id": 19,
+        "question": "Which property is used to set the gap between rows and columns in a CSS Grid?",
+        "options": [
+          "gap",
+          "grid-gap",
+          "row-gap",
+          "column-gap"
+        ],
+        "correct_answer": "gap"
+      },
+      {
+        "id": 20,
+        "question": "How can you apply a 3D transformation to an element in CSS?",
+        "options": [
+          "Using the transform property with perspective",
+          "Using the transform3d property",
+          "By defining a new coordinate system",
+          "Applying the 3d-transform function"
+        ],
+        "correct_answer": "Using the transform property with perspective"
+      },
+      {
+        "id": 21,
+        "question": "Which property is used to control the visibility of an element?",
+        "options": [
+          "visibility",
+          "display",
+          "opacity",
+          "visibility-state"
+        ],
+        "correct_answer": "visibility"
+      },
+      {
+        "id": 22,
+        "question": "Which CSS property allows you to control the alignment of flex items along the main axis?",
+        "options": [
+          "justify-content",
+          "align-items",
+          "align-self",
+          "flex-direction"
+        ],
+        "correct_answer": "justify-content"
+      },
+      {
+        "id": 23,
+        "question": "How can you make a background image repeat both horizontally and vertically?",
+        "options": [
+          "background-repeat: repeat;",
+          "background-repeat: both;",
+          "background-repeat: x y;",
+          "background: repeat;"
+        ],
+        "correct_answer": "background-repeat: repeat;"
+      },
+      {
+        "id": 24,
+        "question": "What does the 'grid-template-areas' property in CSS Grid allow you to do?",
+        "options": [
+          "Defines named grid areas for layout",
+          "Controls the width of grid items",
+          "Specifies the position of grid items",
+          "Defines the total area of the grid"
+        ],
+        "correct_answer": "Defines named grid areas for layout"
+      },
+      {
+        "id": 25,
+        "question": "Which property is used to specify how elements are positioned in a grid container?",
+        "options": [
+          "grid-template",
+          "grid-position",
+          "grid-layout",
+          "grid-template-areas"
+        ],
+        "correct_answer": "grid-template"
+      },
+      {
+        "id": 26,
+        "question": "What does the 'transform' property do?",
+        "options": [
+          "Applies 2D or 3D transformations to an element",
+          "Changes the position of an element",
+          "Controls the size of an element",
+          "Animates elements between states"
+        ],
+        "correct_answer": "Applies 2D or 3D transformations to an element"
+      },
+      {
+        "id": 27,
+        "question": "What does the 'object-position' property control?",
+        "options": [
+          "The alignment of an object within its box",
+          "The position of an image inside an object",
+          "The size of an object",
+          "The display position of an element"
+        ],
+        "correct_answer": "The alignment of an object within its box"
+      },
+      {
+        "id": 28,
+        "question": "Which property defines the space between elements in a flex container?",
+        "options": [
+          "gap",
+          "space-between",
+          "justify-content",
+          "margin"
+        ],
+        "correct_answer": "gap"
+      },
+      {
+        "id": 29,
+        "question": "Which CSS property is used to add shadow effects to text?",
+        "options": [
+          "text-shadow",
+          "box-shadow",
+          "shadow-text",
+          "shadow-box"
+        ],
+        "correct_answer": "text-shadow"
+      },
+      {
+        "id": 30,
+        "question": "Which CSS function is used to specify a color in terms of RGB values?",
+        "options": [
+          "rgb()",
+          "rgba()",
+          "hsl()",
+          "hsla()"
+        ],
+        "correct_answer": "rgb()"
+      }
+    ]
+  }
+  

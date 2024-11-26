@@ -1,0 +1,337 @@
+{
+    "category": "React",
+    "level": "advanced",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What is the purpose of React's 'React.memo()' function?",
+        "options": [
+          "It optimizes the performance of functional components by memoizing their results",
+          "It allows you to memoize the state of a class component",
+          "It makes a component rerender on every state change",
+          "It automatically handles component lifecycle methods"
+        ],
+        "correct_answer": "It optimizes the performance of functional components by memoizing their results"
+      },
+      {
+        "id": 2,
+        "question": "What is 'useEffect' primarily used for in React?",
+        "options": [
+          "To manage side effects in functional components",
+          "To access and modify the component's state",
+          "To handle user events like clicks",
+          "To optimize the rendering process"
+        ],
+        "correct_answer": "To manage side effects in functional components"
+      },
+      {
+        "id": 3,
+        "question": "Which method is used to update the state of a component in React?",
+        "options": [
+          "setState()",
+          "updateState()",
+          "changeState()",
+          "modifyState()"
+        ],
+        "correct_answer": "setState()"
+      },
+      {
+        "id": 4,
+        "question": "What is the 'key' prop in React used for?",
+        "options": [
+          "To uniquely identify components in a list",
+          "To define the style of a component",
+          "To bind event handlers to a component",
+          "To pass data to a component"
+        ],
+        "correct_answer": "To uniquely identify components in a list"
+      },
+      {
+        "id": 5,
+        "question": "What is the purpose of 'useCallback' in React?",
+        "options": [
+          "To memoize functions and prevent unnecessary re-renders",
+          "To manage component lifecycle methods in functional components",
+          "To handle side effects in functional components",
+          "To store values in a state variable"
+        ],
+        "correct_answer": "To memoize functions and prevent unnecessary re-renders"
+      },
+      {
+        "id": 6,
+        "question": "What is the 'context' in React used for?",
+        "options": [
+          "To share state and values across the component tree without passing props manually",
+          "To manage local state within a component",
+          "To handle component lifecycle methods",
+          "To interact with third-party libraries"
+        ],
+        "correct_answer": "To share state and values across the component tree without passing props manually"
+      },
+      {
+        "id": 7,
+        "question": "Which lifecycle method is called only once, when the component is mounted for the first time?",
+        "options": [
+          "componentDidMount()",
+          "componentDidUpdate()",
+          "componentWillUnmount()",
+          "render()"
+        ],
+        "correct_answer": "componentDidMount()"
+      },
+      {
+        "id": 8,
+        "question": "Which of the following hooks is used to manage state in functional components?",
+        "options": [
+          "useState()",
+          "useEffect()",
+          "useReducer()",
+          "useContext()"
+        ],
+        "correct_answer": "useState()"
+      },
+      {
+        "id": 9,
+        "question": "What is 'useRef' used for in React?",
+        "options": [
+          "To persist values across renders without causing re-renders",
+          "To store the previous state of a component",
+          "To update the state directly",
+          "To handle events in functional components"
+        ],
+        "correct_answer": "To persist values across renders without causing re-renders"
+      },
+      {
+        "id": 10,
+        "question": "Which of the following methods is used for lazy loading in React?",
+        "options": [
+          "React.lazy()",
+          "useLazy()",
+          "loadComponent()",
+          "Suspense()"
+        ],
+        "correct_answer": "React.lazy()"
+      },
+      {
+        "id": 11,
+        "question": "What does 'React.Fragment' allow you to do in React?",
+        "options": [
+          "Return multiple elements without adding extra nodes to the DOM",
+          "Create a wrapper for state management",
+          "Define reusable components",
+          "Bind event handlers to elements"
+        ],
+        "correct_answer": "Return multiple elements without adding extra nodes to the DOM"
+      },
+      {
+        "id": 12,
+        "question": "How can you prevent unnecessary re-renders of a React component?",
+        "options": [
+          "By using React.memo()",
+          "By using componentWillReceiveProps()",
+          "By adding shouldComponentUpdate()",
+          "Both a and c"
+        ],
+        "correct_answer": "Both a and c"
+      },
+      {
+        "id": 13,
+        "question": "What does 'useReducer' hook help with in React?",
+        "options": [
+          "Managing complex state logic in functional components",
+          "Handling lifecycle methods",
+          "Updating state with a single function",
+          "Creating context for global state"
+        ],
+        "correct_answer": "Managing complex state logic in functional components"
+      },
+      {
+        "id": 14,
+        "question": "What is the correct way to create a controlled component in React?",
+        "options": [
+          "By binding the input value to the component's state",
+          "By setting the value attribute directly in the input element",
+          "By using defaultValue attribute in the input",
+          "By using ref to get the value of the input"
+        ],
+        "correct_answer": "By binding the input value to the component's state"
+      },
+      {
+        "id": 15,
+        "question": "What is the purpose of 'Suspense' in React?",
+        "options": [
+          "To display a fallback component while waiting for an async operation",
+          "To manage error boundaries",
+          "To create higher-order components",
+          "To prevent re-renders in lazy-loaded components"
+        ],
+        "correct_answer": "To display a fallback component while waiting for an async operation"
+      },
+      {
+        "id": 16,
+        "question": "Which of the following hooks is used to subscribe to context in a React component?",
+        "options": [
+          "useContext()",
+          "useState()",
+          "useEffect()",
+          "useReducer()"
+        ],
+        "correct_answer": "useContext()"
+      },
+      {
+        "id": 17,
+        "question": "What is the purpose of 'PropTypes' in React?",
+        "options": [
+          "To validate props passed to a component",
+          "To create dynamic prop keys",
+          "To add default props to a component",
+          "To bind event handlers to props"
+        ],
+        "correct_answer": "To validate props passed to a component"
+      },
+      {
+        "id": 18,
+        "question": "What is the correct way to pass props to a child component in React?",
+        "options": [
+          "By including them in the component's JSX tag",
+          "By using the setState method",
+          "By directly modifying the state in the child component",
+          "By using the 'props' keyword in the parent component"
+        ],
+        "correct_answer": "By including them in the component's JSX tag"
+      },
+      {
+        "id": 19,
+        "question": "How can you prevent React from re-rendering a component?",
+        "options": [
+          "By using shouldComponentUpdate()",
+          "By using PureComponent",
+          "By using React.memo()",
+          "All of the above"
+        ],
+        "correct_answer": "All of the above"
+      },
+      {
+        "id": 20,
+        "question": "What is the 'useLayoutEffect' hook in React?",
+        "options": [
+          "It runs synchronously after the DOM has been updated, but before painting",
+          "It runs after the component mounts",
+          "It is identical to useEffect, but it runs asynchronously",
+          "It is used for side effects in class components"
+        ],
+        "correct_answer": "It runs synchronously after the DOM has been updated, but before painting"
+      },
+      {
+        "id": 21,
+        "question": "What is 'React.StrictMode' used for in React?",
+        "options": [
+          "To highlight potential problems in an application during development",
+          "To enforce strict type checking",
+          "To optimize the application for production",
+          "To manage state changes more efficiently"
+        ],
+        "correct_answer": "To highlight potential problems in an application during development"
+      },
+      {
+        "id": 22,
+        "question": "Which hook in React allows you to perform cleanup operations in a functional component?",
+        "options": [
+          "useEffect()",
+          "useLayoutEffect()",
+          "useState()",
+          "useReducer()"
+        ],
+        "correct_answer": "useEffect()"
+      },
+      {
+        "id": 23,
+        "question": "What is the purpose of 'React.PureComponent'?",
+        "options": [
+          "It prevents re-renders if the props and state are the same",
+          "It helps manage state in a component",
+          "It optimizes the performance of functional components",
+          "It triggers re-renders when state changes"
+        ],
+        "correct_answer": "It prevents re-renders if the props and state are the same"
+      },
+      {
+        "id": 24,
+        "question": "What is the default value of a component's state before it is set?",
+        "options": [
+          "undefined",
+          "null",
+          "false",
+          "empty string"
+        ],
+        "correct_answer": "undefined"
+      },
+      {
+        "id": 25,
+        "question": "What is the result of calling 'ReactDOM.render()' multiple times for the same element?",
+        "options": [
+          "The component will re-render each time",
+          "The element will be updated with new content",
+          "It will cause an error",
+          "The application will crash"
+        ],
+        "correct_answer": "The component will re-render each time"
+      },
+      {
+        "id": 26,
+        "question": "How do you add CSS to a React component?",
+        "options": [
+          "By using inline styles or external CSS files",
+          "By using the 'style' prop only",
+          "By modifying the DOM directly",
+          "By creating a global stylesheet"
+        ],
+        "correct_answer": "By using inline styles or external CSS files"
+      },
+      {
+        "id": 27,
+        "question": "What is the purpose of 'React.createContext()'?",
+        "options": [
+          "To create a context that can be shared across the component tree",
+          "To create a new component",
+          "To pass data from one component to another directly",
+          "To manage global state in a class component"
+        ],
+        "correct_answer": "To create a context that can be shared across the component tree"
+      },
+      {
+        "id": 28,
+        "question": "What is the purpose of 'useImperativeHandle' in React?",
+        "options": [
+          "It allows a parent component to directly access a child component's instance methods",
+          "It manages the layout of a component",
+          "It tracks changes in state",
+          "It triggers a component lifecycle method"
+        ],
+        "correct_answer": "It allows a parent component to directly access a child component's instance methods"
+      },
+      {
+        "id": 29,
+        "question": "How does 'React Router' manage navigation between different components?",
+        "options": [
+          "By using 'Route' components and linking paths to them",
+          "By using 'redirect' components",
+          "By calling component methods directly",
+          "By updating the state of the components"
+        ],
+        "correct_answer": "By using 'Route' components and linking paths to them"
+      },
+      {
+        "id": 30,
+        "question": "Which of the following is true about React components?",
+        "options": [
+          "Components can return only a single root element",
+          "Components can return multiple root elements",
+          "Components always return JSX only",
+          "Components can only be created using classes"
+        ],
+        "correct_answer": "Components can return only a single root element"
+      }
+    ]
+  }
+  

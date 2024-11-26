@@ -1,0 +1,337 @@
+{
+    "category": "React",
+    "level": "basic",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What is React?",
+        "options": [
+          "A library for building user interfaces",
+          "A programming language",
+          "A database management system",
+          "A web browser"
+        ],
+        "correct_answer": "A library for building user interfaces"
+      },
+      {
+        "id": 2,
+        "question": "Which company developed React?",
+        "options": [
+          "Google",
+          "Facebook",
+          "Microsoft",
+          "Apple"
+        ],
+        "correct_answer": "Facebook"
+      },
+      {
+        "id": 3,
+        "question": "What is JSX in React?",
+        "options": [
+          "JavaScript XML",
+          "JavaScript Extra",
+          "JavaScript Execution",
+          "JavaScript Extension"
+        ],
+        "correct_answer": "JavaScript XML"
+      },
+      {
+        "id": 4,
+        "question": "What is the virtual DOM in React?",
+        "options": [
+          "An in-memory representation of the real DOM",
+          "The real DOM",
+          "A database system",
+          "A browser-based virtual environment"
+        ],
+        "correct_answer": "An in-memory representation of the real DOM"
+      },
+      {
+        "id": 5,
+        "question": "What is the default method to update the state in React?",
+        "options": [
+          "setState()",
+          "updateState()",
+          "changeState()",
+          "alterState()"
+        ],
+        "correct_answer": "setState()"
+      },
+      {
+        "id": 6,
+        "question": "Which of the following is used to pass data to components in React?",
+        "options": [
+          "Props",
+          "State",
+          "Callbacks",
+          "Event Handlers"
+        ],
+        "correct_answer": "Props"
+      },
+      {
+        "id": 7,
+        "question": "What is a functional component in React?",
+        "options": [
+          "A component defined as a function",
+          "A component with multiple methods",
+          "A component with lifecycle methods",
+          "A class component"
+        ],
+        "correct_answer": "A component defined as a function"
+      },
+      {
+        "id": 8,
+        "question": "What does the 'render' method in React do?",
+        "options": [
+          "It returns the JSX to be displayed",
+          "It defines the logic for data fetching",
+          "It sets up the initial state",
+          "It updates the DOM"
+        ],
+        "correct_answer": "It returns the JSX to be displayed"
+      },
+      {
+        "id": 9,
+        "question": "What is a state in React?",
+        "options": [
+          "A plain JavaScript object used to store data",
+          "A method to manage components",
+          "A function to handle events",
+          "An external variable used for styling"
+        ],
+        "correct_answer": "A plain JavaScript object used to store data"
+      },
+      {
+        "id": 10,
+        "question": "Which of the following is used to manage side effects in React functional components?",
+        "options": [
+          "useEffect()",
+          "useState()",
+          "useContext()",
+          "useReducer()"
+        ],
+        "correct_answer": "useEffect()"
+      },
+      {
+        "id": 11,
+        "question": "Which hook is used to manage local component state in React?",
+        "options": [
+          "useState()",
+          "useReducer()",
+          "useContext()",
+          "useEffect()"
+        ],
+        "correct_answer": "useState()"
+      },
+      {
+        "id": 12,
+        "question": "What is the purpose of the 'key' prop in React?",
+        "options": [
+          "To uniquely identify elements in a list",
+          "To define component styles",
+          "To manage component state",
+          "To track component updates"
+        ],
+        "correct_answer": "To uniquely identify elements in a list"
+      },
+      {
+        "id": 13,
+        "question": "Which of the following is true about React components?",
+        "options": [
+          "Components can be either class-based or function-based",
+          "Components can only be function-based",
+          "Components can only be class-based",
+          "Components cannot have state"
+        ],
+        "correct_answer": "Components can be either class-based or function-based"
+      },
+      {
+        "id": 14,
+        "question": "How do you create a class component in React?",
+        "options": [
+          "By extending React.Component",
+          "By using a function",
+          "By using hooks",
+          "By extending React.FunctionComponent"
+        ],
+        "correct_answer": "By extending React.Component"
+      },
+      {
+        "id": 15,
+        "question": "What is the purpose of 'useEffect' in React?",
+        "options": [
+          "It runs side effects in functional components",
+          "It is used to update state",
+          "It passes props to child components",
+          "It renders the component"
+        ],
+        "correct_answer": "It runs side effects in functional components"
+      },
+      {
+        "id": 16,
+        "question": "What is the purpose of 'useRef' in React?",
+        "options": [
+          "It allows access to DOM elements and persists values across renders",
+          "It manages the component state",
+          "It creates a stateful variable",
+          "It is used to trigger re-renders"
+        ],
+        "correct_answer": "It allows access to DOM elements and persists values across renders"
+      },
+      {
+        "id": 17,
+        "question": "What is a controlled component in React?",
+        "options": [
+          "A component whose value is controlled by React state",
+          "A component that doesn't render JSX",
+          "A component that is not re-rendered",
+          "A component that manages its own state"
+        ],
+        "correct_answer": "A component whose value is controlled by React state"
+      },
+      {
+        "id": 18,
+        "question": "What is the 'useContext' hook used for in React?",
+        "options": [
+          "It allows access to the context in functional components",
+          "It allows the use of props in class components",
+          "It manages the state of the application",
+          "It handles side effects"
+        ],
+        "correct_answer": "It allows access to the context in functional components"
+      },
+      {
+        "id": 19,
+        "question": "What is the default value of 'props' in a React component?",
+        "options": [
+          "Props are passed from the parent component",
+          "Props are always empty",
+          "Props are undefined",
+          "Props are mutable"
+        ],
+        "correct_answer": "Props are passed from the parent component"
+      },
+      {
+        "id": 20,
+        "question": "What is the purpose of the 'render' method in a class component?",
+        "options": [
+          "It returns JSX to be rendered",
+          "It initializes state",
+          "It handles component lifecycle",
+          "It triggers re-renders"
+        ],
+        "correct_answer": "It returns JSX to be rendered"
+      },
+      {
+        "id": 21,
+        "question": "What does the 'ReactDOM.render' method do?",
+        "options": [
+          "It renders a React component into the DOM",
+          "It updates the component state",
+          "It creates a new component",
+          "It deletes a component"
+        ],
+        "correct_answer": "It renders a React component into the DOM"
+      },
+      {
+        "id": 22,
+        "question": "Which method is used to force a component to re-render in React?",
+        "options": [
+          "forceUpdate()",
+          "setState()",
+          "render()",
+          "triggerUpdate()"
+        ],
+        "correct_answer": "forceUpdate()"
+      },
+      {
+        "id": 23,
+        "question": "Which of the following is a React lifecycle method?",
+        "options": [
+          "componentDidMount()",
+          "componentUpdate()",
+          "componentDestroy()",
+          "componentInitialize()"
+        ],
+        "correct_answer": "componentDidMount()"
+      },
+      {
+        "id": 24,
+        "question": "What is the purpose of 'componentDidMount' in React?",
+        "options": [
+          "It is called after the component has been mounted",
+          "It is called before the component is mounted",
+          "It initializes state",
+          "It updates the state"
+        ],
+        "correct_answer": "It is called after the component has been mounted"
+      },
+      {
+        "id": 25,
+        "question": "How do you pass data between components in React?",
+        "options": [
+          "Using props",
+          "Using state",
+          "Using useState() hook",
+          "Using useEffect() hook"
+        ],
+        "correct_answer": "Using props"
+      },
+      {
+        "id": 26,
+        "question": "What is a higher-order component (HOC) in React?",
+        "options": [
+          "A function that takes a component and returns a new component",
+          "A component that renders multiple other components",
+          "A function that updates the state",
+          "A component that doesn't re-render"
+        ],
+        "correct_answer": "A function that takes a component and returns a new component"
+      },
+      {
+        "id": 27,
+        "question": "Which of the following is used to define a new React app?",
+        "options": [
+          "create-react-app",
+          "react-create",
+          "react-start",
+          "create-app"
+        ],
+        "correct_answer": "create-react-app"
+      },
+      {
+        "id": 28,
+        "question": "What is the purpose of React Router?",
+        "options": [
+          "To handle routing in a React app",
+          "To manage the state of components",
+          "To trigger re-renders",
+          "To optimize performance"
+        ],
+        "correct_answer": "To handle routing in a React app"
+      },
+      {
+        "id": 29,
+        "question": "What does the 'useReducer' hook do in React?",
+        "options": [
+          "It manages complex state logic in functional components",
+          "It manages state updates",
+          "It defines lifecycle methods",
+          "It stores component data"
+        ],
+        "correct_answer": "It manages complex state logic in functional components"
+      },
+      {
+        "id": 30,
+        "question": "What is the purpose of the 'Context' API in React?",
+        "options": [
+          "It allows for state sharing across components",
+          "It manages lifecycle methods",
+          "It controls component rendering",
+          "It handles network requests"
+        ],
+        "correct_answer": "It allows for state sharing across components"
+      }
+    ]
+  }
+  

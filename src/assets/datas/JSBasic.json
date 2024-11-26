@@ -1,0 +1,337 @@
+{
+    "category": "JavaScript",
+    "level": "basic",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What is the correct syntax to output 'Hello World' in JavaScript?",
+        "options": [
+          "echo('Hello World');",
+          "console.log('Hello World');",
+          "print('Hello World');",
+          "document.write('Hello World');"
+        ],
+        "correct_answer": "console.log('Hello World');"
+      },
+      {
+        "id": 2,
+        "question": "Which of the following is a JavaScript data type?",
+        "options": [
+          "String",
+          "Integer",
+          "Character",
+          "Double"
+        ],
+        "correct_answer": "String"
+      },
+      {
+        "id": 3,
+        "question": "What does 'var' do in JavaScript?",
+        "options": [
+          "Declares a new variable",
+          "Declares a function",
+          "Declares a constant",
+          "Declares an object"
+        ],
+        "correct_answer": "Declares a new variable"
+      },
+      {
+        "id": 4,
+        "question": "Which of the following is used to comment a single line in JavaScript?",
+        "options": [
+          "// This is a comment",
+          "/* This is a comment */",
+          "' This is a comment",
+          "# This is a comment"
+        ],
+        "correct_answer": "// This is a comment"
+      },
+      {
+        "id": 5,
+        "question": "Which of the following methods can be used to parse a string into a number in JavaScript?",
+        "options": [
+          "parseFloat()",
+          "toString()",
+          "parseInt()",
+          "Both parseFloat() and parseInt()"
+        ],
+        "correct_answer": "Both parseFloat() and parseInt()"
+      },
+      {
+        "id": 6,
+        "question": "What is the output of the following code: console.log(2 + '2');",
+        "options": [
+          "4",
+          "'22'",
+          "NaN",
+          "Error"
+        ],
+        "correct_answer": "'22'"
+      },
+      {
+        "id": 7,
+        "question": "Which keyword is used to declare a constant in JavaScript?",
+        "options": [
+          "const",
+          "let",
+          "var",
+          "static"
+        ],
+        "correct_answer": "const"
+      },
+      {
+        "id": 8,
+        "question": "What is the correct syntax for a JavaScript array?",
+        "options": [
+          "var arr = [1, 2, 3];",
+          "var arr = (1, 2, 3);",
+          "var arr = 1, 2, 3;",
+          "var arr = {1, 2, 3};"
+        ],
+        "correct_answer": "var arr = [1, 2, 3];"
+      },
+      {
+        "id": 9,
+        "question": "What is the result of '5' + 3 in JavaScript?",
+        "options": [
+          "53",
+          "8",
+          "Error",
+          "NaN"
+        ],
+        "correct_answer": "53"
+      },
+      {
+        "id": 10,
+        "question": "Which operator is used to assign a value to a variable in JavaScript?",
+        "options": [
+          "=",
+          "==",
+          "===",
+          ":"
+        ],
+        "correct_answer": "="
+      },
+      {
+        "id": 11,
+        "question": "What is the correct way to write a JavaScript function?",
+        "options": [
+          "function myFunction() {}",
+          "function:myFunction() {}",
+          "function = myFunction() {}",
+          "myFunction function() {}"
+        ],
+        "correct_answer": "function myFunction() {}"
+      },
+      {
+        "id": 12,
+        "question": "Which of the following is a correct syntax to create an object in JavaScript?",
+        "options": [
+          "var obj = {};",
+          "var obj = []",
+          "var obj = ''",
+          "var obj = ()"
+        ],
+        "correct_answer": "var obj = {};"
+      },
+      {
+        "id": 13,
+        "question": "Which method is used to remove the last element from an array in JavaScript?",
+        "options": [
+          "pop()",
+          "shift()",
+          "push()",
+          "unshift()"
+        ],
+        "correct_answer": "pop()"
+      },
+      {
+        "id": 14,
+        "question": "What is the purpose of the 'typeof' operator in JavaScript?",
+        "options": [
+          "Checks the type of a variable",
+          "Converts a variable into a type",
+          "Declares the type of a variable",
+          "Assigns a type to a variable"
+        ],
+        "correct_answer": "Checks the type of a variable"
+      },
+      {
+        "id": 15,
+        "question": "What will the following JavaScript code return: Boolean(10 > 9);",
+        "options": [
+          "true",
+          "false",
+          "undefined",
+          "NaN"
+        ],
+        "correct_answer": "true"
+      },
+      {
+        "id": 16,
+        "question": "What does 'NaN' represent in JavaScript?",
+        "options": [
+          "Not a Number",
+          "Negative a Number",
+          "Null a Number",
+          "Not a Null"
+        ],
+        "correct_answer": "Not a Number"
+      },
+      {
+        "id": 17,
+        "question": "How do you write a JavaScript array?",
+        "options": [
+          "var arr = []",
+          "var arr = {}",
+          "var arr = ()",
+          "var arr = ''"
+        ],
+        "correct_answer": "var arr = []"
+      },
+      {
+        "id": 18,
+        "question": "Which method is used to add one or more elements to the end of an array in JavaScript?",
+        "options": [
+          "push()",
+          "pop()",
+          "shift()",
+          "unshift()"
+        ],
+        "correct_answer": "push()"
+      },
+      {
+        "id": 19,
+        "question": "What is the result of '10' - 5 in JavaScript?",
+        "options": [
+          "5",
+          "'5'",
+          "15",
+          "Error"
+        ],
+        "correct_answer": "5"
+      },
+      {
+        "id": 20,
+        "question": "Which of the following is a JavaScript loop statement?",
+        "options": [
+          "for",
+          "foreach",
+          "loop",
+          "repeat"
+        ],
+        "correct_answer": "for"
+      },
+      {
+        "id": 21,
+        "question": "What does the 'this' keyword refer to in JavaScript?",
+        "options": [
+          "The current object",
+          "The parent object",
+          "The previous function",
+          "The global object"
+        ],
+        "correct_answer": "The current object"
+      },
+      {
+        "id": 22,
+        "question": "Which of the following is a correct way to declare a JavaScript variable with block scope?",
+        "options": [
+          "let",
+          "var",
+          "const",
+          "All of the above"
+        ],
+        "correct_answer": "let"
+      },
+      {
+        "id": 23,
+        "question": "Which operator is used for strict equality comparison in JavaScript?",
+        "options": [
+          "===",
+          "==",
+          "=",
+          "!=="
+        ],
+        "correct_answer": "==="
+      },
+      {
+        "id": 24,
+        "question": "Which function is used to parse a string as an integer in JavaScript?",
+        "options": [
+          "parseInt()",
+          "parseFloat()",
+          "toInteger()",
+          "convertToInt()"
+        ],
+        "correct_answer": "parseInt()"
+      },
+      {
+        "id": 25,
+        "question": "Which method can be used to find the index of an element in an array in JavaScript?",
+        "options": [
+          "indexOf()",
+          "findIndex()",
+          "getIndex()",
+          "searchIndex()"
+        ],
+        "correct_answer": "indexOf()"
+      },
+      {
+        "id": 26,
+        "question": "What is the correct way to check if an object is an array in JavaScript?",
+        "options": [
+          "Array.isArray()",
+          "isArray()",
+          "array()",
+          "checkArray()"
+        ],
+        "correct_answer": "Array.isArray()"
+      },
+      {
+        "id": 27,
+        "question": "Which of the following is used to stop a loop in JavaScript?",
+        "options": [
+          "break",
+          "continue",
+          "stop",
+          "exit"
+        ],
+        "correct_answer": "break"
+      },
+      {
+        "id": 28,
+        "question": "How do you define a function that does not return a value in JavaScript?",
+        "options": [
+          "function myFunction() {}",
+          "function myFunction() {return;} ",
+          "function myFunction() {void 0;} ",
+          "function myFunction() {return undefined;}"
+        ],
+        "correct_answer": "function myFunction() {}"
+      },
+      {
+        "id": 29,
+        "question": "What will the following code output: console.log(2 + '2' - 1);",
+        "options": [
+          "21",
+          "3",
+          "22",
+          "Error"
+        ],
+        "correct_answer": "21"
+      },
+      {
+        "id": 30,
+        "question": "Which of the following is a primitive data type in JavaScript?",
+        "options": [
+          "Array",
+          "Object",
+          "String",
+          "Function"
+        ],
+        "correct_answer": "String"
+      }
+    ]
+  }
+  

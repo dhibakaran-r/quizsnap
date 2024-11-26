@@ -1,0 +1,337 @@
+{
+    "category": "CSS",
+    "level": "basic",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What does CSS stand for?",
+        "options": [
+          "Cascading Style Sheets",
+          "Computer Style Sheets",
+          "Creative Style Sheets",
+          "Colorful Style Sheets"
+        ],
+        "correct_answer": "Cascading Style Sheets"
+      },
+      {
+        "id": 2,
+        "question": "Which property is used to change the background color?",
+        "options": [
+          "color",
+          "bgcolor",
+          "background-color",
+          "background"
+        ],
+        "correct_answer": "background-color"
+      },
+      {
+        "id": 3,
+        "question": "How do you select an element with the id 'header'?",
+        "options": [
+          "#header",
+          ".header",
+          "header",
+          "*header"
+        ],
+        "correct_answer": "#header"
+      },
+      {
+        "id": 4,
+        "question": "Which CSS property controls the text size?",
+        "options": [
+          "font-size",
+          "text-size",
+          "font-style",
+          "text-style"
+        ],
+        "correct_answer": "font-size"
+      },
+      {
+        "id": 5,
+        "question": "How do you apply a style to all <p> elements?",
+        "options": [
+          "p { }",
+          ".p { }",
+          "#p { }",
+          "p[] { }"
+        ],
+        "correct_answer": "p { }"
+      },
+      {
+        "id": 6,
+        "question": "Which property is used to change the font of an element?",
+        "options": [
+          "font-family",
+          "font-weight",
+          "font-style",
+          "text-font"
+        ],
+        "correct_answer": "font-family"
+      },
+      {
+        "id": 7,
+        "question": "What is the correct CSS syntax to change the text color of all <h1> elements to blue?",
+        "options": [
+          "h1 {color: blue;}",
+          "h1 {text-color: blue;}",
+          "h1 {color: 'blue';}",
+          "h1 {text-color: 'blue';}"
+        ],
+        "correct_answer": "h1 {color: blue;}"
+      },
+      {
+        "id": 8,
+        "question": "Which property is used to change the spacing between words?",
+        "options": [
+          "word-spacing",
+          "letter-spacing",
+          "spacing",
+          "text-spacing"
+        ],
+        "correct_answer": "word-spacing"
+      },
+      {
+        "id": 9,
+        "question": "How do you make a list that lists its items with squares?",
+        "options": [
+          "list-style-type: square;",
+          "list-type: square;",
+          "list-style: square;",
+          "list-style-type: 'square';"
+        ],
+        "correct_answer": "list-style-type: square;"
+      },
+      {
+        "id": 10,
+        "question": "Which property is used to control the text alignment?",
+        "options": [
+          "text-align",
+          "align",
+          "text-aligning",
+          "text-position"
+        ],
+        "correct_answer": "text-align"
+      },
+      {
+        "id": 11,
+        "question": "How do you create a class selector?",
+        "options": [
+          ".classname { }",
+          "#classname { }",
+          "classname { }",
+          "*classname { }"
+        ],
+        "correct_answer": ".classname { }"
+      },
+      {
+        "id": 12,
+        "question": "Which property is used to change the width of an element?",
+        "options": [
+          "width",
+          "height",
+          "size",
+          "element-width"
+        ],
+        "correct_answer": "width"
+      },
+      {
+        "id": 13,
+        "question": "What does the z-index property do?",
+        "options": [
+          "Sets the stack order of elements",
+          "Defines the zoom level",
+          "Changes the position of an element",
+          "Sets the opacity of an element"
+        ],
+        "correct_answer": "Sets the stack order of elements"
+      },
+      {
+        "id": 14,
+        "question": "Which CSS property is used to set the space between the content and the border of an element?",
+        "options": [
+          "margin",
+          "padding",
+          "border-spacing",
+          "spacing"
+        ],
+        "correct_answer": "padding"
+      },
+      {
+        "id": 15,
+        "question": "What does the display property do?",
+        "options": [
+          "Specifies how an element is displayed",
+          "Sets the visibility of an element",
+          "Controls the layout of elements",
+          "Sets the background of an element"
+        ],
+        "correct_answer": "Specifies how an element is displayed"
+      },
+      {
+        "id": 16,
+        "question": "Which value of the display property hides an element?",
+        "options": [
+          "hidden",
+          "none",
+          "invisible",
+          "block"
+        ],
+        "correct_answer": "none"
+      },
+      {
+        "id": 17,
+        "question": "How do you apply a CSS style to multiple elements?",
+        "options": [
+          "element1, element2 { }",
+          "element1; element2 { }",
+          "element1 & element2 { }",
+          "element1 | element2 { }"
+        ],
+        "correct_answer": "element1, element2 { }"
+      },
+      {
+        "id": 18,
+        "question": "What is the purpose of the overflow property?",
+        "options": [
+          "Controls the behavior of content that overflows an element's box",
+          "Defines the visibility of an element",
+          "Sets the position of an element",
+          "Defines the size of an element"
+        ],
+        "correct_answer": "Controls the behavior of content that overflows an element's box"
+      },
+      {
+        "id": 19,
+        "question": "Which property is used to set the font weight?",
+        "options": [
+          "font-weight",
+          "font-style",
+          "font-size",
+          "text-weight"
+        ],
+        "correct_answer": "font-weight"
+      },
+      {
+        "id": 20,
+        "question": "How do you add a comment in CSS?",
+        "options": [
+          "// this is a comment",
+          "/* this is a comment */",
+          "<!-- this is a comment -->",
+          "# this is a comment"
+        ],
+        "correct_answer": "/* this is a comment */"
+      },
+      {
+        "id": 21,
+        "question": "What does the opacity property do?",
+        "options": [
+          "Sets the transparency level of an element",
+          "Controls the visibility of an element",
+          "Defines the size of an element",
+          "Sets the background color"
+        ],
+        "correct_answer": "Sets the transparency level of an element"
+      },
+      {
+        "id": 22,
+        "question": "Which CSS property is used to change the font style?",
+        "options": [
+          "font-style",
+          "font-family",
+          "font-variant",
+          "text-style"
+        ],
+        "correct_answer": "font-style"
+      },
+      {
+        "id": 23,
+        "question": "How do you set a background image in CSS?",
+        "options": [
+          "background-image: url('image.jpg');",
+          "background: url('image.jpg');",
+          "bg: url('image.jpg');",
+          "background-image: 'image.jpg';"
+        ],
+        "correct_answer": "background-image: url('image.jpg');"
+      },
+      {
+        "id": 24,
+        "question": "Which CSS property is used to change the cursor type?",
+        "options": [
+          "cursor",
+          "mouse",
+          "pointer",
+          "type"
+        ],
+        "correct_answer": "cursor"
+      },
+      {
+        "id": 25,
+        "question": "Which property is used to change the text decoration?",
+        "options": [
+          "text-decoration",
+          "text-style",
+          "font-decoration",
+          "text-effect"
+        ],
+        "correct_answer": "text-decoration"
+      },
+      {
+        "id": 26,
+        "question": "What is the correct way to use a CSS class in HTML?",
+        "options": [
+          "<div class='classname'></div>",
+          "<div name='classname'></div>",
+          "<div id='classname'></div>",
+          "<div style='classname'></div>"
+        ],
+        "correct_answer": "<div class='classname'></div>"
+      },
+      {
+        "id": 27,
+        "question": "Which property is used to set the height of an element?",
+        "options": [
+          "height",
+          "size",
+          "width",
+          "length"
+        ],
+        "correct_answer": "height"
+      },
+      {
+        "id": 28,
+        "question": "What is the default value of the position property?",
+        "options": [
+          "static",
+          "relative",
+          "absolute",
+          "fixed"
+        ],
+        "correct_answer": "static"
+      },
+      {
+        "id": 29,
+        "question": "Which property is used to add space between the border and the content?",
+        "options": [
+          "margin",
+          "padding",
+          "border-spacing",
+          "spacing"
+        ],
+        "correct_answer": "padding"
+      },
+      {
+        "id": 30,
+        "question": "How do you create a CSS rule for all <a> elements?",
+        "options": [
+          "a { }",
+          "a[] { }",
+          ".a { }",
+          "#a { }"
+        ],
+        "correct_answer": "a { }"
+      }
+    ]
+  }
+  

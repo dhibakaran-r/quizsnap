@@ -1,0 +1,337 @@
+{
+    "category": "JavaScript",
+    "level": "advanced",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What will be the output of the following code?\n\nconsole.log([] + []);",
+        "options": [
+          "undefined",
+          "null",
+          "'' (Empty String)",
+          "[]"
+        ],
+        "correct_answer": "'' (Empty String)"
+      },
+      {
+        "id": 2,
+        "question": "What is the purpose of the 'bind' method in JavaScript?",
+        "options": [
+          "It creates a new function with a specific 'this' value",
+          "It allows you to modify the original function",
+          "It automatically invokes the function",
+          "It prevents the function from being called"
+        ],
+        "correct_answer": "It creates a new function with a specific 'this' value"
+      },
+      {
+        "id": 3,
+        "question": "Which of the following is a method used to create a deep clone of an object in JavaScript?",
+        "options": [
+          "Object.assign()",
+          "JSON.parse(JSON.stringify())",
+          "Object.clone()",
+          "clone()"
+        ],
+        "correct_answer": "JSON.parse(JSON.stringify())"
+      },
+      {
+        "id": 4,
+        "question": "What is the output of the following code?\n\nconsole.log(typeof NaN);",
+        "options": [
+          "number",
+          "NaN",
+          "undefined",
+          "object"
+        ],
+        "correct_answer": "number"
+      },
+      {
+        "id": 5,
+        "question": "What is the 'this' keyword in JavaScript?",
+        "options": [
+          "A reference to the global object",
+          "A reference to the current function",
+          "A reference to the object calling the function",
+          "A reference to the function being called"
+        ],
+        "correct_answer": "A reference to the object calling the function"
+      },
+      {
+        "id": 6,
+        "question": "Which of the following methods is used to prevent a JavaScript object from being modified?",
+        "options": [
+          "Object.freeze()",
+          "Object.seal()",
+          "Object.preventExtensions()",
+          "Object.lock()"
+        ],
+        "correct_answer": "Object.freeze()"
+      },
+      {
+        "id": 7,
+        "question": "What is the result of the following code?\n\nconsole.log(0.1 + 0.2 === 0.3);",
+        "options": [
+          "true",
+          "false",
+          "undefined",
+          "NaN"
+        ],
+        "correct_answer": "false"
+      },
+      {
+        "id": 8,
+        "question": "Which of the following statements is true regarding closures in JavaScript?",
+        "options": [
+          "A closure is created every time a function is invoked",
+          "A closure is a function that has access to variables from its own scope, outer function's scope, and the global scope",
+          "A closure is created only for anonymous functions",
+          "Closures cannot access variables from the global scope"
+        ],
+        "correct_answer": "A closure is a function that has access to variables from its own scope, outer function's scope, and the global scope"
+      },
+      {
+        "id": 9,
+        "question": "What will be the output of the following code?\n\nconsole.log(1 + '1');",
+        "options": [
+          "11",
+          "2",
+          "undefined",
+          "NaN"
+        ],
+        "correct_answer": "11"
+      },
+      {
+        "id": 10,
+        "question": "What is the difference between '==' and '===' in JavaScript?",
+        "options": [
+          "'==' compares values and '===' compares values and types",
+          "'==' compares values and '===' compares only types",
+          "'==' is used for equality comparison and '===' for strict equality",
+          "'==' is for loose equality and '===' is for value comparison"
+        ],
+        "correct_answer": "'==' compares values and '===' compares values and types"
+      },
+      {
+        "id": 11,
+        "question": "Which of the following is used to handle asynchronous operations in JavaScript?",
+        "options": [
+          "Promises",
+          "Events",
+          "Callbacks",
+          "All of the above"
+        ],
+        "correct_answer": "All of the above"
+      },
+      {
+        "id": 12,
+        "question": "What is the purpose of the 'call()' method in JavaScript?",
+        "options": [
+          "It calls a function with a specific 'this' value and arguments",
+          "It calls a function at a later time",
+          "It is used for creating new objects",
+          "It invokes a function multiple times"
+        ],
+        "correct_answer": "It calls a function with a specific 'this' value and arguments"
+      },
+      {
+        "id": 13,
+        "question": "Which of the following is true about JavaScript's 'setTimeout()' function?",
+        "options": [
+          "It runs a function after a specified delay in milliseconds",
+          "It executes a function immediately",
+          "It waits for the function to finish before executing next code",
+          "It only runs once"
+        ],
+        "correct_answer": "It runs a function after a specified delay in milliseconds"
+      },
+      {
+        "id": 14,
+        "question": "What will be the output of the following code?\n\nconsole.log([2] == [2]);",
+        "options": [
+          "true",
+          "false",
+          "undefined",
+          "NaN"
+        ],
+        "correct_answer": "false"
+      },
+      {
+        "id": 15,
+        "question": "What is the purpose of the 'super' keyword in JavaScript?",
+        "options": [
+          "It refers to the parent class in a subclass",
+          "It defines a superclass",
+          "It creates a new object",
+          "It returns a function"
+        ],
+        "correct_answer": "It refers to the parent class in a subclass"
+      },
+      {
+        "id": 16,
+        "question": "Which of the following is a method used to bind events in JavaScript?",
+        "options": [
+          "addEventListener()",
+          "bindEvent()",
+          "onEvent()",
+          "addEvent()"
+        ],
+        "correct_answer": "addEventListener()"
+      },
+      {
+        "id": 17,
+        "question": "What is the purpose of the 'new' keyword in JavaScript?",
+        "options": [
+          "It creates a new instance of an object",
+          "It invokes a function",
+          "It modifies the existing object",
+          "It declares a variable"
+        ],
+        "correct_answer": "It creates a new instance of an object"
+      },
+      {
+        "id": 18,
+        "question": "What will be the output of the following code?\n\nconsole.log([1] + [2]);",
+        "options": [
+          "12",
+          "NaN",
+          "undefined",
+          "3"
+        ],
+        "correct_answer": "12"
+      },
+      {
+        "id": 19,
+        "question": "What does the 'this' keyword refer to in a setTimeout() callback function?",
+        "options": [
+          "It refers to the global object",
+          "It refers to the setTimeout function",
+          "It refers to the setTimeout callback function",
+          "It refers to the 'this' object passed into setTimeout"
+        ],
+        "correct_answer": "It refers to the global object"
+      },
+      {
+        "id": 20,
+        "question": "What does the 'spread' operator (...) do in JavaScript?",
+        "options": [
+          "It expands an array or object into individual elements",
+          "It combines multiple arrays into one",
+          "It creates a copy of an array",
+          "It groups elements in an array"
+        ],
+        "correct_answer": "It expands an array or object into individual elements"
+      },
+      {
+        "id": 21,
+        "question": "Which of the following is true about JavaScript promises?",
+        "options": [
+          "A promise is an object representing the eventual completion or failure of an asynchronous operation",
+          "A promise only handles synchronous operations",
+          "Promises can only be used for network requests",
+          "Promises do not handle errors"
+        ],
+        "correct_answer": "A promise is an object representing the eventual completion or failure of an asynchronous operation"
+      },
+      {
+        "id": 22,
+        "question": "What is the purpose of the 'Object.create()' method in JavaScript?",
+        "options": [
+          "It creates a new object with a specified prototype",
+          "It creates a new array",
+          "It creates a clone of an object",
+          "It initializes an object with properties"
+        ],
+        "correct_answer": "It creates a new object with a specified prototype"
+      },
+      {
+        "id": 23,
+        "question": "What will be the result of the following code?\n\nconsole.log(1 < 2 < 3);",
+        "options": [
+          "true",
+          "false",
+          "NaN",
+          "undefined"
+        ],
+        "correct_answer": "true"
+      },
+      {
+        "id": 24,
+        "question": "What is the difference between 'null' and 'undefined' in JavaScript?",
+        "options": [
+          "'null' is a value that represents no value, 'undefined' is a type",
+          "'null' is a type, 'undefined' is a value",
+          "'null' is only used for objects, 'undefined' for other data types",
+          "'null' and 'undefined' are interchangeable"
+        ],
+        "correct_answer": "'null' is a value that represents no value, 'undefined' is a type"
+      },
+      {
+        "id": 25,
+        "question": "Which of the following is used to define an asynchronous function in JavaScript?",
+        "options": [
+          "async function",
+          "setTimeout()",
+          "promise()",
+          "defer function"
+        ],
+        "correct_answer": "async function"
+      },
+      {
+        "id": 26,
+        "question": "What is the purpose of 'destructuring' in JavaScript?",
+        "options": [
+          "It allows you to extract values from arrays or objects into variables",
+          "It breaks a function into smaller pieces",
+          "It converts arrays into objects",
+          "It creates a copy of an array"
+        ],
+        "correct_answer": "It allows you to extract values from arrays or objects into variables"
+      },
+      {
+        "id": 27,
+        "question": "Which method is used to remove the last element from an array in JavaScript?",
+        "options": [
+          "pop()",
+          "shift()",
+          "push()",
+          "unshift()"
+        ],
+        "correct_answer": "pop()"
+      },
+      {
+        "id": 28,
+        "question": "What is a 'service worker' in JavaScript?",
+        "options": [
+          "A script that runs in the background to handle caching and network requests",
+          "A background task manager",
+          "A module for web workers",
+          "A script that runs only in offline mode"
+        ],
+        "correct_answer": "A script that runs in the background to handle caching and network requests"
+      },
+      {
+        "id": 29,
+        "question": "Which method is used to combine two or more arrays into a new array in JavaScript?",
+        "options": [
+          "concat()",
+          "merge()",
+          "append()",
+          "combine()"
+        ],
+        "correct_answer": "concat()"
+      },
+      {
+        "id": 30,
+        "question": "What is the result of the following code?\n\nconsole.log([] == ![]);",
+        "options": [
+          "true",
+          "false",
+          "undefined",
+          "NaN"
+        ],
+        "correct_answer": "true"
+      }
+    ]
+  }
+  
