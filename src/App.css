@@ -291,3 +291,17 @@ body{
         animation: eff 2s linear infinite;
         content: url(./assets/images/bgeff.jpg);
       } */
+
+/* mcq update */
+
+.upbox{
+  @apply p-4 border border-lggray rounded;
+}
+
+.upbox .head{
+  @apply text-bluetext font-bold;
+}
+
+.upbox .list{
+  @apply mt-2 ms-4 p-0 text-secgray;
+}

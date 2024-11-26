@@ -6,13 +6,15 @@ import { SiDatabricks } from "react-icons/si";
 import { LiaUsersSolid } from "react-icons/lia";
 import { VscLayersActive } from "react-icons/vsc";
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
-import { app } from '../service/firebase/firebaseConfig';
+import { app, storage } from '../service/firebase/firebaseConfig';
 import { TbLoader3 } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+import { ref, listAll } from "firebase/storage";
 
 function AdminCard() {
 
     const [usersCount, setUsersCount] = useState(0);
+    const [mcqCount, setMcqCount] = useState(0);
     const firestore = getFirestore(app);
     const fetchCount = async () => {
 
@@ -22,6 +24,17 @@ function AdminCard() {
             setUsersCount(totalCounts.size);
         } catch (err) {
             setUsersCount(err);
+        }
+
+        const folderRef = ref(storage, 'questions'); // Replace 'your-folder-name' with the folder path you want to count.
+
+        try {
+            const folderContents = await listAll(folderRef);
+            const totalFiles = folderContents.items.length; // `items` contains the list of files.
+            // console.log(`Total files: ${totalFiles}`);
+            setMcqCount(totalFiles);
+        } catch (error) {
+            console.error("Error counting files in storage:", error);
         }
 
     }
@@ -34,7 +47,7 @@ function AdminCard() {
         {
             "title": "Total MCQ's",
             "pic": tumb1,
-            "data": "",
+            "data": mcqCount,
             "icon": <SiDatabricks />,
         },
         {

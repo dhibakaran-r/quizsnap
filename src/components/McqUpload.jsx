@@ -1,122 +1,176 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-// import { storage } from "./firebase-config";
 import { storage } from "../service/firebase/firebaseConfig";
+import { BsFiletypeJson } from "react-icons/bs";
+import { MdOutlineCloudUpload } from "react-icons/md";
+import { LuFileJson2 } from "react-icons/lu";
 
-const McqUpload = () => {
-  const [file, setFile] = useState(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [downloadURL, setDownloadURL] = useState("");
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+function McqUpload() {
+
+  const [dragging, setDragging] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [invalidFiles, setInvalidFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [uploadProgress, setUploadProgress] = useState({});
+  const fileInputRef = useRef();
+
+  // Validate and add files
+  const validateFiles = (files) => {
+    const validFiles = [];
+    const invalidFilesList = [];
+
+    files.forEach((file) => {
+      if (file.type === "application/json") {
+        validFiles.push(file);
+      } else {
+        invalidFilesList.push(file.name);
+      }
+    });
+
+    setSelectedFiles((prev) => [...prev, ...validFiles]);
+    setInvalidFiles(invalidFilesList);
   };
 
-  const handleUpload = () => {
-    if (!file) {
-      alert("Please select a file to upload.");
-      return;
-    }
+  // Handle file drop
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setDragging(false);
 
-    const storageRef = ref(storage, `questions/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    const files = Array.from(event.dataTransfer.files);
+    validateFiles(files);
+  };
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setUploadProgress(progress);
-      },
-      (error) => {
-        console.error("Error uploading file:", error);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setDownloadURL(url);
-          alert("File uploaded successfully!");
-        });
-      }
-    );
+  // Handle file selection
+  const handleFileSelection = (event) => {
+    const files = Array.from(event.target.files);
+    validateFiles(files);
+  };
+
+  // Upload files to Firebase
+  const uploadFiles = () => {
+    selectedFiles.forEach((file) => {
+      const storageRef = ref(storage, `questions/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setUploadProgress((prev) => ({
+            ...prev,
+            [file.name]: progress,
+          }));
+        },
+        (error) => {
+          console.error("Upload failed:", error);
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          setUploadedFiles((prev) => [...prev, { name: file.name, url: downloadURL }]);
+          setSelectedFiles((prev) => prev.filter((f) => f.name !== file.name));
+        }
+      );
+    });
   };
 
   return (
-    <div>
-      <h2>Upload JSON File</h2>
-      <input type="file" accept=".json" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
-      {uploadProgress > 0 && <p>Upload Progress: {uploadProgress.toFixed(2)}%</p>}
-      {downloadURL && <p>Download URL: <a href={downloadURL} target="_blank" rel="noopener noreferrer">View File</a></p>}
-    </div>
-  );
-};
+    <div className="w-full flex flex-col gap-4">
+      <div className="flex w-full justify-center items-center gap-4 p-4">
+        <div className={`w-1/2 h-96 flex flex-col items-center justify-evenly border border-dashed rounded-lg ${dragging ? "bg-stgray" : "bg-secbr"} cursor-pointer duration-75`}
+          onDragOver={(e) => {
+            e.preventDefault();
+            setDragging(true);
+          }}
+          onDragLeave={() => setDragging(false)}
+          onDrop={handleDrop}
+          onClick={() => fileInputRef.current.click()}
+        >
+          <p className="flex flex-row gap-2">
+            <input
+              type="file"
+              ref={fileInputRef}
+              multiple
+              accept=".json" // Restrict file selection to JSON files
+              onChange={handleFileSelection}
+              className="hidden"
+            />
+            <BsFiletypeJson size={100} />
+          </p>
+          <p>Drag and drop JSON files here or click to select files</p>
 
-export default McqUpload;
+        </div>
 
-// import React, { useState } from "react";
-// import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-// import { storage } from "../service/firebase/firebaseConfig";
+        <div className="w-1/2 h-96 overflow-y-auto box-border flex flex-col p-4 gap-4 border border-primlight rounded-lg">
 
-// const McqUpload = () => {
-//   const [file, setFile] = useState(null); 
-//   const [statusMessage, setStatusMessage] = useState(""); 
+          <div className="upbox">
+            <h3 className="head">Selected Files</h3>
+            {selectedFiles.length > 0 ? (
+              <ul className="list">
+                {selectedFiles.map((file, index) => (
+                  <li key={index}>
+                    {file.name} ({(file.size / 1024).toFixed(2)} KB)
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="list">No valid JSON files selected</p>
+            )}
+          </div>
 
-  
-//   const handleFileChange = (e) => {
-//     setFile(e.target.files[0]);
-//   };
+          {/* Display Invalid Files */}
+          {invalidFiles.length > 0 && (
+            <div className="upbox">
+              <h3 className="head">Invalid Files</h3>
+              <ul className="list">
+                {invalidFiles.map((fileName, index) => (
+                  <li key={index} style={{ color: "red" }}>
+                    {fileName} (Not a JSON file)
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-  
-//   const handleUpload = (e) => {
-//     e.preventDefault();
+          {/* Uploaded Files */}
+          <div className="upbox">
+            <h3 className="head">Uploaded Files</h3>
+            <ul className="list">
+              {uploadedFiles.map((file, index) => (
+                <li key={index}>
+                  <a href={file.url} target="_blank" className="flex flex-row gap-2 items-center" rel="noopener noreferrer">
+                    <LuFileJson2 className="text-bluelg" /> {file.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-//     if (!file) {
-//       setStatusMessage("Please select a JSON file to upload.");
-//       return;
-//     }
-
-   
-//     const fileExtension = file.name.split('.').pop().toLowerCase();
-//     if (fileExtension !== "json") {
-//       setStatusMessage("Only .json files are allowed.");
-//       return;
-//     }
-
-    
-//     const storageRef = ref(storage, `questions/${file.name}`);
-
-  
-//     const uploadTask = uploadBytesResumable(storageRef, file);
-
-    
-//     uploadTask.on(
-//       "state_changed",
-//       (snapshot) => {
-//         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-//         setStatusMessage(`Upload is ${progress}% done.`);
-//       },
-//       (error) => {
+          {/* Upload Progress */}
+          <div className="upbox">
+            <h3 className="head">Upload Progress</h3>
+            <ul className="list">
+              {Object.keys(uploadProgress).map((fileName) => (
+                <div key={fileName}>
+                  <p>
+                    {fileName}: {Math.round(uploadProgress[fileName])}%
+                  </p>
+                </div>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
       
-//         setStatusMessage(`Error during upload: ${error.message}`);
-//       },
-//       () => {
-     
-//         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-//           setStatusMessage(`File uploaded successfully! Download URL: ${downloadURL}`);
-//         });
-//       }
-//     );
-//   };
+      <div className='flex justify-center items-center'>
+        {/* {selectedFiles.length > 0 && ( */}
+        <button className="px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+          onClick={uploadFiles}
+        ><MdOutlineCloudUpload size={30} /> Upload Files </button>
+        {/* )} */}
+      </div>
+    </div>
+  )
+}
 
-//   return (
-//     <div className="upload-container">
-//       <h2>Upload Quiz JSON File</h2>
-//       <form onSubmit={handleUpload}>
-//         <input type="file" accept=".json" onChange={handleFileChange} />
-//         <button type="submit">Upload File</button>
-//       </form>
-//       {statusMessage && <p>{statusMessage}</p>}
-//     </div>
-//   );
-// };
-
-// export default McqUpload;
+export default McqUpload
