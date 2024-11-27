@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import { LineWave } from 'react-loader-spinner';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import PrivateRoute from './pages/PrivateRoute';

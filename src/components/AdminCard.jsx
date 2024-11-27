@@ -26,12 +26,11 @@ function AdminCard() {
             setUsersCount(err);
         }
 
-        const folderRef = ref(storage, 'questions'); // Replace 'your-folder-name' with the folder path you want to count.
+        const folderRef = ref(storage, 'mcqFiles'); 
 
         try {
             const folderContents = await listAll(folderRef);
-            const totalFiles = folderContents.items.length; // `items` contains the list of files.
-            // console.log(`Total files: ${totalFiles}`);
+            const totalFiles = folderContents.items.length; 
             setMcqCount(totalFiles);
         } catch (error) {
             console.error("Error counting files in storage:", error);
