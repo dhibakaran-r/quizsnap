@@ -10,12 +10,16 @@ import { app, storage } from '../service/firebase/firebaseConfig';
 import { TbLoader3 } from "react-icons/tb";
 import { Link } from 'react-router-dom';
 import { ref, listAll } from "firebase/storage";
+import { MdOutlineCategory } from 'react-icons/md';
 
 function AdminCard() {
 
     const [usersCount, setUsersCount] = useState(0);
     const [mcqCount, setMcqCount] = useState(0);
+    const [catCount, setCatCount] = useState(0);
+    
     const firestore = getFirestore(app);
+    
     const fetchCount = async () => {
 
         try {
@@ -25,15 +29,23 @@ function AdminCard() {
         } catch (err) {
             setUsersCount(err);
         }
-
+        
         const folderRef = ref(storage, 'mcqFiles'); 
-
+        
         try {
             const folderContents = await listAll(folderRef);
             const totalFiles = folderContents.items.length; 
             setMcqCount(totalFiles);
         } catch (error) {
             console.error("Error counting files in storage:", error);
+        }
+        
+        try {
+            const categoryCounts = collection(firestore, 'mcqCategory');
+            const totalCategory = await getDocs(categoryCounts);
+            setCatCount(totalCategory.size);
+        } catch (err) {
+            setCatCount(err);
         }
 
     }
@@ -47,6 +59,7 @@ function AdminCard() {
             "title": "Total MCQ's",
             "pic": tumb1,
             "data": mcqCount,
+            "link": "/qsadmin/qsmcq",
             "icon": <SiDatabricks />,
         },
         {
@@ -57,10 +70,11 @@ function AdminCard() {
             "icon": <LiaUsersSolid />
         },
         {
-            "title": "Active MCQ's",
+            "title": "Total Categories",
             "pic": tumb3,
-            "data": "",
-            "icon": <VscLayersActive />
+            "data": catCount,
+            "link": "/qsadmin/qsmcq",
+            "icon": <MdOutlineCategory />
         }
     ]
 

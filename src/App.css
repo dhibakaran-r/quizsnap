@@ -278,7 +278,7 @@ body{
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(7.3px);
         -webkit-backdrop-filter: blur(7.3px);
-        border: 1px solid rgba(255, 255, 255, 0.63);
+        border: 1px solid rgba(100, 100, 100, 0.63);
       }
       .testcard::before {
         @apply block w-[200px] h-[200px] md:w-[260px] md:h-[240px] lg:w-[200px] lg:h-[200px] absolute rounded-full -left-[200%] -top-[1000%] ;
@@ -295,7 +295,7 @@ body{
 /* mcq update */
 
 .upbox{
-  @apply p-4 border border-lggray rounded;
+  @apply p-4 border border-lggray rounded-lg;
 }
 
 .upbox .head{

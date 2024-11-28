@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { isAuthenticated } from '../service/Auth';
 import { UserDataAPI } from '../service/Api';
+import CryptoJS from "crypto-js";
 import { TbTimeDuration30 } from "react-icons/tb";
 import { MdFormatListNumbered } from "react-icons/md";
 import FooterIn from './FooterIn'
 import { GiArrowScope } from 'react-icons/gi';
 import { Helmet } from 'react-helmet-async';
-// import { collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc } from 'firebase/firestore';
-// import { db } from '../service/firebase/firebaseConfig';
 
 
 function McqInstructions() {
@@ -31,41 +30,13 @@ function McqInstructions() {
 
   }, []);
 
-  // const [userDatas, setUserDatas] = useState([]);
-  // const getUserData = async () => {
-  //   let users = [];
-  //   const qry = query(collection(db, "users"));
-  //   const datasnapshot = await getDocs(qry);
-  //   datasnapshot.forEach((ele) => {
-  //     users.push({ ...ele.data(), id: ele.id })
-  //   });
-  //   setUserDatas(users);
-  // }
-  const { mcqid } = useParams();
+  
+  const { mcqid, mcqlevel } = useParams();
+  const location = useLocation();
+  const fileName = location.state;
 
-  // let uid = localStorage.getItem("idToken")
-  // let filterDatas = "";
-
-  // if (uid) {
-  //   filterDatas = userDatas.filter((theuser) => {
-  //     if (theuser.id.includes(uid)) {
-  //       return theuser;
-  //     }
-  //   })
-  // }
-  // if (uid) {
-  //   userDatas.map((user) => {
-  //     if (user.id == uid) {
-  //       console.log("in");
-
-  //       filterDatas = user.firstname + user.lastname
-  //     }
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   getUserData()
-  // })
+  const secKey = 'getMCQfileName@76';
+  const encName = CryptoJS.AES.encrypt(fileName, secKey).toString();
 
   const quickIn = [
     {
@@ -74,7 +45,7 @@ function McqInstructions() {
       icon: <TbTimeDuration30 size={30} />
     },
     {
-      title: "Test Duration",
+      title: "Total Questions",
       dtl: "30 Questions",
       icon: <MdFormatListNumbered size={30} />
     },
@@ -121,7 +92,7 @@ function McqInstructions() {
           <div className='flex flex-col gap-8'>
 
             <p className='flex text-xl text-textlg tracking-widest'>Hay {userData.name},</p>
-            <p className='w-full lg:w-11/12 tracking-wide text-4xl leading-[3rem] md:text-5xl md:leading-[4rem] font-bold p-4 capitalize'>welcome to quizsnap {mcqid} skill test</p>
+            <p className='w-full lg:w-11/12 tracking-wide text-4xl leading-[3rem] md:text-5xl md:leading-[4rem] font-bold p-4 capitalize'>welcome to quizsnap {mcqid} ( {mcqlevel} ) skill test</p>
             <div className='flex flex-row gap-10 md:gap-16'>
               {
                 quickIn.map((inc, index) => {
@@ -159,7 +130,7 @@ function McqInstructions() {
             <p className='text-[16px] text-secgray ms-4 md:ms-0'>These instructions will ensure clarity and a smooth user experience during the quiz, for more details <Link to='/detailinfo' className='underline text-secondary hover:text-primary italic'>click here</Link>.</p>
           </div>
           <div className='w-full flex items-center justify-center'>
-            <button className='px-10 py-2 text-bluebg bg-primary flex justify-center items-center gap-2 rounded-full text-xl hover:bg-secondary tracking-widest'><Link to="/quiz/testpage" 
+            <button className='px-10 py-2 text-bluebg bg-primary flex justify-center items-center gap-2 rounded-full text-xl hover:bg-secondary tracking-widest'><Link to={`/quiz/testpage/${mcqid}/${mcqlevel}/${encodeURIComponent(encName)}`} 
             target='_blank'
             >Start</Link> <GiArrowScope className='' size={40} /></button>
           </div>

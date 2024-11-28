@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import SearchBar from './SearchBar';
+// import SearchBar from './SearchBar';
 import UserLists from './UserLists';
 import FooterIn from './FooterIn';
 // import { IoMdSearch } from 'react-icons/io';

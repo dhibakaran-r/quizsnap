@@ -11,8 +11,8 @@ function QuizPage() {
         <title>QuizSnap MCQ page</title>
       </Helmet>
         <Routes>
-          <Route path='/testpage' element={<McqTest />} />
-          <Route path='/instructions/:mcqid' element={<McqInstructions />} />
+          <Route path='/testpage/:mcqid/:mcqlevel/:encName' element={<McqTest />} />
+          <Route path='/instructions/:mcqid/:mcqlevel' element={<McqInstructions />} />
         </Routes>
       </section>
   )

@@ -7,17 +7,17 @@ function SearchBar() {
 
   const [input, setInput] = useState('');
   const dispatch = useDispatch();
-  useEffect(() => {
-    console.log("h");
+  // useEffect(() => {
+  //   console.log("h");
 
-  })
+  // })
 
   const handleChange = (e) => {
     setInput(e);
   }
 
   const setFind = () => {
-    dispatch(searchData(input));
+    dispatch(searchData(input.toLowerCase()));
   }
 
   const handleKeyPress = (event) => {

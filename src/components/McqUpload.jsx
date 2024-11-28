@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import levels from '../service/Levels.json'
 import { ref, uploadBytesResumable, deleteObject, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { db, storage } from "../service/firebase/firebaseConfig";
@@ -10,6 +11,8 @@ import { GrDocumentUpdate } from "react-icons/gr";
 import { RxCross2 } from "react-icons/rx";
 import { PiPlus } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { Helmet } from 'react-helmet-async';
 
 
 function McqUpload() {
@@ -22,11 +25,30 @@ function McqUpload() {
   const [delData, setDelData] = useState({ fileID: '', fileName: '' });
   const [deletePopup, setDeletePopup] = useState(false);
   const [categoryName, setCategoryName] = useState('');
+  const [allCategories, setAllCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState('');
+
+
+    // search filter operation
+
+    const searchText = useSelector((state) => state.search.search)
+    //  console.log("search"+searchText);
+    
+    let filterDatas = [...uploadedFiles];
+  
+    if (searchText) {
+      filterDatas = uploadedFiles.filter((files) => {
+        if (files.name.toLowerCase().includes(searchText) || files.category.toLowerCase().includes(searchText) || files.level.toLowerCase().includes(searchText)) {
+          return files;
+        }
+      })
+    }
 
   const fileInputRef = useRef();
 
   const filesCollectionRef = collection(db, "mcqFiles");
-  const categoryRef = collection(db, "mcqCatergory");
+  const categoryRef = collection(db, "mcqCategory");
 
   // Fetch uploaded files from Firestore
   useEffect(() => {
@@ -46,20 +68,48 @@ function McqUpload() {
     fetchUploadedFiles();
   }, []);
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const querySnapshot = await getDocs(categoryRef);
+        const cats = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setAllCategories(cats);
+      } catch (error) {
+        console.error("Error fetching files:", error);
+      }
+    };
+
+    fetchCategories();
+  }, [categoryName]);
+
   //Add category
 
-  const newCategory = (newCat) =>{
-    setCategoryName( newCat );
+  const newCategory = (newCat) => {
+    setCategoryName(newCat);
   }
 
-  const addCategory = async(catData) =>{
+  const addCategory = async (catData) => {
 
     const catRef = await addDoc(categoryRef, {
-      id : catData,
-      category : catData,
-      addDT : new Date()
+      id: catData,
+      category: catData,
+      addDT: new Date()
     })
+    setCategoryName('');
+    toast.success('Category Added Successfully!');
 
+  }
+
+  // select setCategory & level
+  const setCategory = (value) => {
+    setSelectedCategory(value);
+  }
+
+  const setLevel = (value) => {
+    setSelectedLevel(value);
   }
 
   // Validate and add files
@@ -124,6 +174,8 @@ function McqUpload() {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
           const docRef = await addDoc(filesCollectionRef, {
             name: file.name,
+            category: selectedCategory,
+            level: selectedLevel,
             url: downloadURL,
             uploadedAt: new Date(),
           });
@@ -207,6 +259,7 @@ function McqUpload() {
 
   return (
     <div className="w-full flex flex-col items-center gap-24">
+      <Helmet><title>QuizSnap MCQ Management</title></Helmet>
 
       <div className="flex flex-col w-full justify-center items-center gap-12 p-4 shadow-shadbg shadow-lg">
         <div className="flex w-full justify-center items-center gap-12">
@@ -237,6 +290,8 @@ function McqUpload() {
                       {file.name} ({(file.size / 1024).toFixed(2)} KB)
                     </li>
                   ))}
+                  <li>category: {selectedCategory}</li>
+                  <li>level: {selectedLevel}</li>
                 </ul>
               ) : (
                 <p className="list">No valid JSON files selected</p>
@@ -245,28 +300,43 @@ function McqUpload() {
             <p>Drag and drop JSON files here or click to select files</p>
           </div>
 
-          <div className="w-1/2 h-96 flex flex-col gap-12 upbox">
-            
+          <div className="w-1/2 h-96 flex flex-col gap-8 upbox">
+
             <div className="flex flex-col justify-center items-center gap-8">
-              <h1 className="text-2xl text-bluetext text-center">Select Category</h1>
-              <form className="">
-                <select id="large" class="block w-[30rem] px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  <option selected>Choose a country</option>
-                  <option value="US">United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="FR">France</option>
-                  <option value="DE">Germany</option>
+              <h1 className="text-2xl text-bluetext text-center">Select Category & Level</h1>
+              <form className="flex flex-col justify-center items-center gap-4">
+                <select onChange={(e) => { setCategory(e.target.value) }} id="cats" class="block w-[30rem] px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>Choose a category</option>
+                  {
+                    allCategories.map((cat, i) => {
+                      return (
+                        <option key={i} value={cat.category}>{cat.category}</option>
+                      )
+                    })
+                  }
+                </select>
+                <select onChange={(e) => { setLevel(e.target.value) }} id="levels" class="block w-[30rem] px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>Choose a level</option>
+                  {
+                    levels.map((level, i) => {
+                      return (
+                        <option key={i} value={level.level}>{level.level}</option>
+                      )
+                    })
+                  }
                 </select>
               </form>
             </div>
 
             <div className="flex flex-col justify-center items-center gap-8">
               <label htmlFor="addcat" className="text-2xl text-bluetext text-center">Add Category</label>
-              <input type="text" placeholder="Enter a Category" id="addcat" onChange={(e) => newCategory(e.target.value)} className="w-1/2 px-6 py-3 text-xl border outline-none rounded-md" />
-              <button className="flex gap-2 justify-center items-center px-4 py-2 text-sm bg-bluedk text-bluebg border border-bluedk duration-200 hover:bg-bluebg hover:text-bluedk rounded"
-                onClick={()=> addCategory(categoryName) }
-              >
-                <FiPlus size={20} /> Add</button>
+              <div className="flex justify-center items-center gap-4">
+                <input type="text" placeholder="Enter a Category" id="addcat" onChange={(e) => newCategory(e.target.value)} value={categoryName} className=" px-6 py-3 text-xl border outline-none rounded-md" />
+                <button className="flex gap-2 justify-center items-center px-4 py-2 text-sm bg-bluedk text-bluebg border border-bluedk duration-200 hover:bg-bluebg hover:text-bluedk rounded"
+                  onClick={() => addCategory(categoryName)}
+                >
+                  <FiPlus size={20} /> Add</button>
+              </div>
             </div>
           </div>
         </div>
@@ -281,7 +351,7 @@ function McqUpload() {
       <div className="w-4/5 flex flex-col p-8 gap-8 border border-primlight rounded-lg">
         <h1 className="text-2xl">Uploaded MCQ Files</h1>
         <ul className=" mx-16 p-0 text-secgray">
-          {uploadedFiles.map((file) => (
+          {filterDatas.map((file) => (
             <li key={file.id} className="my-4 flex justify-between items-center">
               <a
                 href={file.url}
@@ -291,6 +361,8 @@ function McqUpload() {
               >
                 <LuFileJson2 className="text-bluelg" /> {file.name}
               </a>
+              <span>Category: {file.category}</span>
+              <span>Level: {file.level}</span>
               <div className="flex w-1/5 justify-between">
                 <button
                   onClick={() => updateFile(file.id, file.name)}
@@ -312,7 +384,7 @@ function McqUpload() {
       {deletePopup && (
         <div className="popup-card fixed top-48  w-[40rem] h-[20rem] flex flex-col justify-around items-center">
           <div className="w-11/12 flex justify-between items-center">
-            <p className='text-xl font-bold'>Delete User Record</p>
+            <p className='text-xl font-bold'>Delete MCQ File</p>
             <p className="bg-redbg rounded-full p-1 cursor-pointer" onClick={closePopup}>
               <RxCross2 />
             </p>
@@ -320,7 +392,7 @@ function McqUpload() {
 
           <div className="w-full flex flex-col justify-center items-center gap-4">
             <p id='ID' className='font-semibold'>File ID: {delData.fileID}</p>
-            <p className='text-xl font-bold'>Are You sure, you want to delete this file {delData.fileName}!</p>
+            <p className='text-xl font-bold'>Are You sure, you want to delete this file <span className="text-textsec font-bold">{delData.fileName}</span>!</p>
             <button className="px-4 py-2 flex justify-center items-center gap-2 border bg-redbg text-bluebg rounded-md duration-200 hover:text-redbg hover:bg-bluebg hover:border-redbg" onClick={() => deleteFile(delData.fileID, delData.fileName)}><span><MdOutlineDeleteOutline /></span><span>Delete</span></button>
           </div>
         </div>

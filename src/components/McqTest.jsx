@@ -1,23 +1,51 @@
 import React, { useEffect, useState } from 'react'
-import qes from '../assets/datas/HTMLBasic.json'
+// import qes from '../assets/datas/HTMLBasic.json'
+import CryptoJS from 'crypto-js';
+import { ref, uploadBytesResumable, deleteObject, getDownloadURL } from "firebase/storage";
+import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
+import { db, storage } from "../service/firebase/firebaseConfig";
 import { LuClock12 } from "react-icons/lu";
 import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode } from "react-icons/fa";
 import { GrDocumentVerified } from "react-icons/gr";
 import { toast, ToastContainer } from 'react-toastify';
 import { shuffleArray } from '../utils/shuffle';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { TbLoader3 } from 'react-icons/tb';
 
 function McqTest() {
-
-    const navigate = useNavigate();
+    
     const [timeLeft, setTimeLeft] = useState(30 * 60);
     const [isSubmit, setIsSubmit] = useState(false);
     const [shuffledQuestions, setShuffledQuestions] = useState([]);
+    const [fileName, setFileName] = useState('');
+    const [qes, setQuestions] = useState([]);
+    const [error, setError] = useState("");
+    const [load, setLoad] = useState(true);
+
+    const navigate = useNavigate();
+
+    const { mcqid, mcqlevel, encName } = useParams();
+
+    const secKey = 'getMCQfileName@76';
+    // let decName = '';
+    useEffect(()=>{
+
+        try{
+            const byte = CryptoJS.AES.decrypt(decodeURIComponent(encName), secKey);
+            setFileName(byte.toString(CryptoJS.enc.Utf8));
+        } catch(error){
+            console.error("Decryption fail:", error);
+        }
+    },[])
+// console.log(encName);
+// console.log(fileName);
+
+
 
     const icons = {
         HTML: <FaHtml5 size={50} />,
         CSS: <FaCss3Alt size={50} />,
-        JavaScript: <FaJsSquare size={50} />,
+        Javascript: <FaJsSquare size={50} />,
         React: <FaReact size={50} />,
 
     }
@@ -28,16 +56,6 @@ function McqTest() {
         return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
     };
 
-    // shuffle
-    useEffect(() => {
-        if (qes.questions) {
-            const shuffled = shuffleArray(qes.questions).map((question) => ({
-                ...question,
-                options: shuffleArray(question.options),
-            }));
-            setShuffledQuestions(shuffled);
-        }
-    }, []);
 
     // time display
     useEffect(() => {
@@ -49,6 +67,44 @@ function McqTest() {
         }
     }, [timeLeft, isSubmit]);
 
+
+    // select mcq file
+
+    useEffect(() => {
+        const fetchQuestions = async () => {
+            try {
+                const fileRef = ref(storage, `mcqFiles/${fileName}`);
+                const url = await getDownloadURL(fileRef);
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                 
+                setQuestions(data);
+                setLoad(false);
+                console.log(data);
+                console.log(fileName);
+
+                // setError("");
+            } catch (err) {
+                console.error("Error fetching questions:", err);
+                setError("Failed to fetch questions. Please check the file name or upload a valid file.");
+            }
+        };
+
+        fetchQuestions();
+    }, []);
+
+    // shuffle
+    // useEffect(() => {
+    //     if (qes.questions) {
+    //         const shuffled = shuffleArray(qes.questions).map((question) => ({
+    //             ...question,
+    //             options: shuffleArray(question.options),
+    //         }));
+    //         setShuffledQuestions(shuffled);
+    //         }
+    // }, []);
+    // console.log(qes);
 
     const autoSubmit = () => {
         setIsSubmit(true);
@@ -82,24 +138,29 @@ function McqTest() {
         navigate('/qsuser/mcqs')
     }
 
+    // if (error) {
+    //     return <p style={{ color: "red" }}>{error}</p>;
+    // } 
+
     return (
         <div className='w-4/5 ms-16 p-16 flex flex-col gap-40 '>
+            {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
             {!isSubmit ? (<>
                 {/* {qes.categories.map((que, i) => {
                     return ( */}
                 <div className='flex flex-col gap-8'>
                     <div className='w-full flex justify-between items-center bg-outlg p-8'>
-                        <div className='w-40 flex flex-row justify-center items-center gap-2'>{icons[qes.category] || <FaCode size={50} />} <span className='font-bold'>{qes.category}</span></div>
+                        <div className=' flex flex-row justify-center items-center gap-2'>{icons[mcqid] || <FaCode size={50} />} <span className='font-bold'>{mcqid} ( {mcqlevel} {fileName})</span></div>
                         <div className='w-40 flex flex-row justify-center items-center gap-2 p-4  rounded-full '>
                             <LuClock12 size={50} className='clockSpin' />
                             <span className='text-2xl font-bold text-textsec'>{formatTime(timeLeft)}</span>
                         </div>
                     </div>
                     <div className='flex flex-col justify-around gap-16'>
-                        {/* if({que.levels === "easy"})  */}
-                        {
 
-                            shuffledQuestions.map((q, i) => {
+                        {
+                            // shuffledQuestions && shuffledQuestions.
+                            qes.questions.map((q, i) => {
                                 return (
 
                                     <div key={i} className='flex flex-col justify-around gap-4'>
@@ -144,7 +205,7 @@ function McqTest() {
                 </div>
 
             </div>)}
-
+            </>}
         </div>
     )
 }
