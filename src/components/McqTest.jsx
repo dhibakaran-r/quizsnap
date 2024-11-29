@@ -175,13 +175,16 @@ function McqTest() {
         res: totalScores,
 
     }
-
+    const handleOpenInNewTab = () => {
+        localStorage.setItem("objectData", JSON.stringify(results));
+        window.open("/quiz/resultpage", "_blank");
+      };
     if (error) {
         return <p style={{ color: "red" }}>{error}</p>;
     }
 
     return (
-        <div className='w-4/5 ms-16 p-16 flex flex-col gap-20 '>
+        <div className='w-4/5 flex flex-col gap-20 '>
             {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
                 {!isSubmit ? (<>
 
@@ -193,7 +196,7 @@ function McqTest() {
                                 <span className='text-2xl font-bold text-textsec'>{formatTime(timeLeft)}</span>
                             </div>
                         </div>
-                        <div className='flex flex-col justify-around gap-16'>
+                        <div className='flex flex-col ms-2 justify-around gap-16'>
 
                             {
                                 // shuffledQuestions && shuffledQuestions
@@ -228,14 +231,14 @@ function McqTest() {
                     </div>
 
 
-                    <div className='flex justify-between items-center'>
-                        <button className="px-40 py-2 flex justify-center items-center gap-2 bg-lggray text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                    <div className='w-full flex justify-between items-center'>
+                        <button className="px-20 py-2 flex justify-center items-center gap-2 bg-lggray text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
                             onClick={prevPage} disabled={currentPage === 1}
                         ><BiChevronsLeft /> Previous page</button>
-                        <button className="px-40 py-2 bg-bgwhite text-stgray border rounded-md" disabled>
+                        <button className="px-20 py-2 bg-bgwhite text-stgray border rounded-md" disabled>
                             Page {currentPage} of {Math.ceil(shuffledQuestions.length / quePerPage)}
                         </button>
-                        <button className="px-40 py-2 flex justify-center items-center gap-2 bg-lggray text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                        <button className="px-20 py-2 flex justify-center items-center gap-2 bg-lggray text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
                             onClick={nextPage} disabled={currentPage === Math.ceil(shuffledQuestions.length / quePerPage)}
                         ><BiChevronsRight /> Next page</button>
                     </div>
@@ -249,17 +252,19 @@ function McqTest() {
 
                     }
 
-                </>) : (<div className='bg-graylg w-full h-60 flex flex-col justify-around items-center rounded-md'>
+                </>) : (<div className='bg-graylg w-full h-60 mb-80 flex flex-col justify-around items-center rounded-md'>
                     <div className='flex justify-center items-center gap-4 text-success'>
                         <GrDocumentVerified size={80} />
                         <span className='font-bold text-2xl'>Test Submitted!</span>
                     </div>
                     
                     <div className='flex justify-center items-center'>
-                        <Link className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-                        to={'/quiz/resultpage'}
-                        state={results}
-                        >Show Result</Link>
+                        <button className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                        // to={'/quiz/resultpage'}
+                        // target='_blank'
+                        // state={results}
+                        onClick={()=> handleOpenInNewTab()}
+                        >Show Result</button>
                         </div>
 
                 </div>)}

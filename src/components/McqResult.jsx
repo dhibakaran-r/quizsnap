@@ -1,17 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GrScorecard } from 'react-icons/gr';
-import { TbScoreboard } from 'react-icons/tb';
+import { TbLoader3, TbScoreboard } from 'react-icons/tb';
 import { useLocation } from 'react-router-dom';
 import FooterIn from './FooterIn';
 
 function McqResult() {
 
-    const location = useLocation();
-    const result = location.state;
+    // const location = useLocation();
+    // const result = location.state;
+    const [result, setResult] = useState(null);
+    const [load, setLoad] = useState(true);
+
+    useEffect(() => {
+        const retrievedData = localStorage.getItem("objectData");
+        if (retrievedData) {
+            setResult(JSON.parse(retrievedData));
+            setLoad(false);
+            localStorage.removeItem("objectData");
+        }
+    }, []);
+    console.log(result);
 
     return (
         // <section className='flex flex-col justify-between items-center gap-40'>
-            <div className='flex flex-col justify-center items-center gap-20'>
+        <div className='flex flex-col justify-center items-center gap-20'>
+            {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
                 <div className='flex justify-center items-center'>
                     <h1 className='text-3xl'>{result.mcq} ( {result.level} ) MCQ Result</h1>
                 </div>
@@ -45,7 +58,7 @@ function McqResult() {
                                                     <input type='radio' key={id} id={`${q.id}+${opt}`}
                                                         name={`question-${q.id}`}
                                                         value={opt}
-                                                        checked={result.ans[q.id]===opt}
+                                                        checked={result.ans[q.id] === opt}
                                                         className='accent-primary'
                                                         disabled
 
@@ -66,9 +79,10 @@ function McqResult() {
                     }
                 </div>
 
-            {/* <FooterIn /> */}
-        {/* </section> */}
-            </div>
+                {/* <FooterIn /> */}
+                {/* </section> */}
+            </>}
+        </div>
     )
 }
 
