@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 import McqTest from '../components/McqTest'
 import McqInstructions from '../components/McqInstructions'
 import { Helmet } from 'react-helmet-async'
+import McqResult from '../components/McqResult'
+import FooterIn from '../components/FooterIn'
 
 function QuizPage() {
   return (
@@ -11,9 +13,11 @@ function QuizPage() {
         <title>QuizSnap MCQ page</title>
       </Helmet>
         <Routes>
-          <Route path='/testpage/:mcqid/:mcqlevel/:encName' element={<McqTest />} />
           <Route path='/instructions/:mcqid/:mcqlevel' element={<McqInstructions />} />
+          <Route path='/testpage/:mcqid/:mcqlevel/:encName' element={<McqTest />} />
+          <Route path='/resultpage' element={<McqResult />} />
         </Routes>
+        <FooterIn />
       </section>
   )
 }

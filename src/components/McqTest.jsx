@@ -9,27 +9,29 @@ import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode } from "react-icons/fa"
 import { GrDocumentVerified } from "react-icons/gr";
 import { toast, ToastContainer } from 'react-toastify';
 import { shuffleArray } from '../utils/shuffle';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { TbLoader3 } from 'react-icons/tb';
+import { BiChevronsLeft, BiChevronsRight } from "react-icons/bi";
 
 function McqTest() {
 
     const [timeLeft, setTimeLeft] = useState(30 * 60);
     const [isSubmit, setIsSubmit] = useState(false);
     const [shuffledQuestions, setShuffledQuestions] = useState([]);
-    // const [fileName, setFileName] = useState('');
-    const [qes, setQuestions] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [selectedAnswers, setSelectedAnswers] = useState({});
+    const [totalScores, setScores] = useState(0);
     const [error, setError] = useState("");
     const [load, setLoad] = useState(true);
-
     const navigate = useNavigate();
 
     const { mcqid, mcqlevel, encName } = useParams();
 
     const secKey = 'getMCQfileName@76';
     let decName = '';
+    // dec filename
     useEffect(() => {
-
+        
         try {
             const byte = CryptoJS.AES.decrypt(decodeURIComponent(encName), secKey);
             decName = byte.toString(CryptoJS.enc.Utf8);
@@ -37,45 +39,15 @@ function McqTest() {
             console.error("Decryption fail:", error);
         }
     }, [])
-    // console.log(encName);
-    // console.log(fileName);
-
-
-
-    const icons = {
-        HTML: <FaHtml5 size={50} />,
-        CSS: <FaCss3Alt size={50} />,
-        Javascript: <FaJsSquare size={50} />,
-        React: <FaReact size={50} />,
-
-    }
-
-    const formatTime = (seconds) => {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-    };
-
-
-    // time display
-    useEffect(() => {
-        if (timeLeft > 0 && !isSubmit) {
-            const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-            return () => clearTimeout(timer);
-        } else if (timeLeft === 0) {
-            autoSubmit();
-        }
-    }, [timeLeft, isSubmit]);
-
-
+    
     // select mcq file
-
+    
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
                 const fileRef = ref(storage, `mcqFiles/${decName}`);
                 const url = await getDownloadURL(fileRef);
-
+                
                 const response = await fetch(url);
                 const data = await response.json();
                 if (data.questions) {
@@ -89,44 +61,82 @@ function McqTest() {
                 setLoad(false);
                 console.log(data);
                 console.log(decName);
-
+                
                 // setError("");
             } catch (err) {
                 console.error("Error fetching questions:", err);
                 setError("Failed to fetch questions. Please check the file name or upload a valid file.");
             }
         };
-
+        
         fetchQuestions();
     }, []);
-
-    // shuffle
-    // useEffect(() => {
-    //     if (qes.questions) {
-    //         const shuffled = shuffleArray(qes.questions).map((question) => ({
-    //             ...question,
-    //             options: shuffleArray(question.options),
-    //         }));
-    //         setShuffledQuestions(shuffled);
-    //         }
-    // }, []);
-    // console.log(qes);
-
-    const autoSubmit = () => {
-        setIsSubmit(true);
-        toast.success("Time's Up, Your test submitted!", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
+    
+    // next prev page
+    const quePerPage = 10;
+    
+    const startIndex = (currentPage - 1) * quePerPage;
+    const endIndex = startIndex + quePerPage;
+    const currentQes = shuffledQuestions.slice(startIndex, endIndex);
+    
+    const nextPage = () => {
+        if (currentPage < Math.ceil(shuffledQuestions.length / quePerPage)) {
+            setCurrentPage((prev) => prev + 1);
+        }
     }
-    const manualSubmit = () => {
+    
+    const prevPage = () => {
+        if (currentPage > 1)
+            setCurrentPage((prev) => prev - 1);
+    }
+    // time display
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    };
+    
+    useEffect(() => {
+        if (timeLeft > 0 && !isSubmit) {
+            const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+            return () => clearTimeout(timer);
+        } else if (timeLeft === 0) {
+            autoSubmit();
+        }
+    }, [timeLeft, isSubmit]);
+    
+    // auto submit
+    
+    const autoSubmit = () => {
+        validateAns();
         setIsSubmit(true);
+        // toast.success("Time's Up, Your test submitted!", {
+        //     position: "top-center",
+        //     autoClose: 5000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        //     theme: "light",
+        // });
+    }
+    
+    // manual submit
+    
+    const manualSubmit = () => {
+        validateAns();
+        setIsSubmit(true);
+    }
+    
+    const validateAns = () => {
+        let totalPoints = 0;
+        shuffledQuestions.forEach((ans) => {
+            if (selectedAnswers[ans.id] === ans.correct_answer) {
+                totalPoints++;
+            }
+        })
+        setScores(totalPoints);
         toast.success('Test Submitted Successfully!', {
             position: "top-center",
             autoClose: 5000,
@@ -139,21 +149,42 @@ function McqTest() {
         });
     }
 
-    const testRes = () => {
-        alert("Result feature under development.")
-        navigate('/qsuser/mcqs')
+    const handleOptionSelect = (Id, opt) => {
+        setSelectedAnswers((prev) => ({
+            ...prev,
+            [Id]: opt,
+        }));
+    };
+   
+
+    // dynamic Icon
+
+    const icons = {
+        HTML: <FaHtml5 size={50} />,
+        CSS: <FaCss3Alt size={50} />,
+        Javascript: <FaJsSquare size={50} />,
+        React: <FaReact size={50} />,
+
     }
 
-    // if (error) {
-    //     return <p style={{ color: "red" }}>{error}</p>;
-    // } 
+    const results = {
+        mcq: mcqid,
+        level: mcqlevel,
+        qes: shuffledQuestions,
+        ans: selectedAnswers,
+        res: totalScores,
+
+    }
+
+    if (error) {
+        return <p style={{ color: "red" }}>{error}</p>;
+    }
 
     return (
-        <div className='w-4/5 ms-16 p-16 flex flex-col gap-40 '>
+        <div className='w-4/5 ms-16 p-16 flex flex-col gap-20 '>
             {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
                 {!isSubmit ? (<>
-                    {/* {qes.categories.map((que, i) => {
-                    return ( */}
+
                     <div className='flex flex-col gap-8'>
                         <div className='w-full flex justify-between items-center bg-outlg p-8'>
                             <div className=' flex flex-row justify-center items-center gap-2'>{icons[mcqid] || <FaCode size={50} />} <span className='font-bold'>{mcqid} ( {mcqlevel} )</span></div>
@@ -165,7 +196,8 @@ function McqTest() {
                         <div className='flex flex-col justify-around gap-16'>
 
                             {
-                                shuffledQuestions && shuffledQuestions.map((q, i) => {
+                                // shuffledQuestions && shuffledQuestions
+                                currentQes && currentQes.map((q, i) => {
                                     return (
 
                                         <div key={i} className='flex flex-col justify-around gap-4'>
@@ -174,8 +206,14 @@ function McqTest() {
                                                 {q.options.map((opt, id) => {
                                                     return (
                                                         <div className=' h-8 flex justify-center items-center gap-2 ms-8'>
-                                                            <input type='radio' key={id} id={opt} name={q.id} value={opt} />
-                                                            <label htmlFor={opt}>{opt}</label>
+                                                            <input type='radio' key={id} id={`${q.id}+${opt}`}
+                                                                name={`question-${q.id}`}
+                                                                value={opt}
+                                                                checked={selectedAnswers[q.id] === opt} // Check if already selected
+                                                                onChange={() => handleOptionSelect(q.id, opt)}
+                                                            // onClick={()=>calcPoint(q.id, )}
+                                                            />
+                                                            <label htmlFor={`${q.id}+${opt}`}>{opt}</label>
                                                         </div>
 
                                                     )
@@ -188,29 +226,45 @@ function McqTest() {
                             }
                         </div>
                     </div>
-                    {/* )
-                })} */}
 
-                    <div className='flex justify-center items-center'>
-                        <button className="px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-                            onClick={manualSubmit}
-                        >Submit</button>
-                        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
+
+                    <div className='flex justify-between items-center'>
+                        <button className="px-40 py-2 flex justify-center items-center gap-2 bg-lggray text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                            onClick={prevPage} disabled={currentPage === 1}
+                        ><BiChevronsLeft /> Previous page</button>
+                        <button className="px-40 py-2 bg-bgwhite text-stgray border rounded-md" disabled>
+                            Page {currentPage} of {Math.ceil(shuffledQuestions.length / quePerPage)}
+                        </button>
+                        <button className="px-40 py-2 flex justify-center items-center gap-2 bg-lggray text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                            onClick={nextPage} disabled={currentPage === Math.ceil(shuffledQuestions.length / quePerPage)}
+                        ><BiChevronsRight /> Next page</button>
                     </div>
+                    {currentPage === Math.ceil(shuffledQuestions.length / quePerPage) ?
+
+                        <div className='flex justify-center items-center'>
+                            <button className="px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                                onClick={manualSubmit}
+                            >Submit</button>
+                        </div> : <div></div>
+
+                    }
 
                 </>) : (<div className='bg-graylg w-full h-60 flex flex-col justify-around items-center rounded-md'>
                     <div className='flex justify-center items-center gap-4 text-success'>
                         <GrDocumentVerified size={80} />
                         <span className='font-bold text-2xl'>Test Submitted!</span>
                     </div>
+                    
                     <div className='flex justify-center items-center'>
-                        <button className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-                            onClick={() => testRes()}
-                        >Show Result</button>
-                    </div>
+                        <Link className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                        to={'/quiz/resultpage'}
+                        state={results}
+                        >Show Result</Link>
+                        </div>
 
                 </div>)}
             </>}
+            <ToastContainer />
         </div>
     )
 }

@@ -16,6 +16,7 @@ import SearchBar from './SearchBar';
 
 function TopNav() {
 
+    const [activeLink, setActiveLink] = useState(null);
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
@@ -25,6 +26,10 @@ function TopNav() {
     const [userData, setUserData] = useState({ name: "", email: "", uid: "" });
 
     const showUser = () => setShowDown(!showDown);
+
+    const setActive = (id) =>{
+        setActiveLink(id);
+    }
 
     useEffect(() => {
         if (isAuthenticated()) {
@@ -74,8 +79,8 @@ function TopNav() {
                         {/* <li className='flex text-bgwhite mb-8 relative right-8 md:hidden'><RiCloseLargeLine className='w-40 inline' size={35} onClick={showSidebar} /></li> */}
                         {MenuData.map((navData, index) => {
                             return (
-                                <li key={index} className='item-name'>
-                                    <Link to={navData.path} className='flex flex-row justify-center items-center gap-4 text-xl' onClick={() => { setSidebar(false) }}>
+                                <li key={index} className='item-name' onClick={() => setActive(navData.title)}>
+                                    <Link to={navData.path} className={`flex flex-row justify-center items-center gap-4 text-xl ${activeLink === navData.title ? 'text-primary' : '' }`} onClick={() => { setSidebar(false) }}>
                                         <span className='text-xl' >{navData.icon}</span>
                                         <span className={`w-40 !text-[1rem] inline`}>{navData.title}</span>
                                     </Link>
@@ -93,8 +98,8 @@ function TopNav() {
                         {
                             UserMenuData.map((navData, index) => {
                                 return (
-                                    <Link to={navData.path} className='tline'>
-                                        <li key={index} className=' flex flex-row justify-center items-center gap-2 text-[1rem]'>
+                                    <Link to={navData.path} className='tline' onClick={() => setActive(navData.title)}>
+                                        <li key={index} className={`flex flex-row justify-center items-center gap-2 text-[1rem] ${activeLink === navData.title ? 'text-primary' : '' }`}>
                                             {navData.icon}
                                             {navData.title}
                                         </li>
