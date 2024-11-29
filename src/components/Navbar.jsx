@@ -36,7 +36,7 @@ function Navbar() {
     ]
 
     return (
-        <header className='w-full flex p-5 justify-between items-center z-10'>
+        <header className='w-full flex p-5 justify-between items-center z-20'>
 
             <div className='w-1/6 bg-slate-700'>
                 <a href='#' className='text-secondary text-2xl font-semibold'>QuizSnap</a>

@@ -56,7 +56,7 @@ function QSNav() {
     }
     return (
         <>
-            <div className='w-full bg-bluebg border-b-2 border-b-graylg flex justify-between items-center h-16 fixed z-10'>
+            <div className='w-full bg-bluebg border-b-2 border-b-graylg flex justify-between items-center h-16 fixed z-50'>
 
                 <div className={`hidden lg:flex justify-center items-center gap-20 md:gap-40 ms-8 duration-500 ${sidebar ? "md:ms-72" : "md:ms-28"}`}>
 
@@ -112,7 +112,7 @@ function QSNav() {
 
 
                     {showDown && (
-                        <div className="origin-top-right absolute right-4  mt-2 w-48 md:w-64 rounded-md shadow-lg bg-primary ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+                        <div className="origin-top-right absolute right-4  mt-2 w-48 md:w-64 rounded-md shadow-lg bg-primary ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                             <div className="py-1 text-bgwhite" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                 <p role='menuitem' className='px-4 py-2 flex gap-2 items-center'>Signed in as {userData.email}</p>
                                 <Link role="menuitem" to={profile} className='px-4 py-2 flex gap-2 items-center duration-200 hover:translate-x-2' onClick={() => setShowDown(false)}><PiUserListDuotone /> Profile</Link>
