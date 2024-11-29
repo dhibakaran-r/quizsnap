@@ -128,7 +128,7 @@ function QSNav() {
 
             </div>
 
-            <nav className={`bg-primary w-[16.1rem] h-dvh flex lg:hidden flex-col fixed top-16 ${sidebar ? 'left-0' : '-left-96'} duration-500 z-10`} >
+            <nav className={`bg-primary w-[16.1rem] h-dvh flex lg:hidden flex-col fixed top-16 ${sidebar ? 'left-0' : '-left-96'} duration-500 z-50`} >
 
 
 
