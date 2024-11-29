@@ -149,7 +149,7 @@ function QSNav() {
                 </ul>
             </nav>
 
-            <nav className={`hidden lg:flex bg-primary h-dvh flex-col fixed top-0 duration-500 z-10  ${sidebar ? ' w-[16.1rem]' : ' hidden w-20 pe-2'}`} >
+            <nav className={`hidden lg:flex bg-primary h-dvh flex-col fixed top-0 duration-500 z-50  ${sidebar ? ' w-[16.1rem]' : ' hidden w-20 pe-2'}`} >
 
                 <ul className='w-full relative top-12'>
 

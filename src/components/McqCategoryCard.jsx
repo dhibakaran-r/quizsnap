@@ -49,13 +49,13 @@ function McqCategoryCard() {
                     return (
                         <div key={index} className='bg-bgimg9 bg-cover relative overflow-hidden group w-11/12 md:w-full lg:w-[30%] h-auto p-4 flex  justify-around border border-xltgray shadow-[0_1px_8px_2px] shadow-lggray duration-300 hover:shadow-none rounded-md'>
                             <div className=' w-full flex flex-col justify-around items-center z-10 relative  '>
-                                <p className='flex flex-col justify-center items-center text-textsec text-3xl lg:text-xl'>{cat.category} <span>( {cat.level} )</span></p>
+                                <p className='flex flex-col justify-center items-center text-textsec text-xl md:text-3xl xl:text-3xl lg:text-xl'>{cat.category} <span>( {cat.level} )</span></p>
                                 <Link to={`/quiz/instructions/${cat.category}/${cat.level}`} state={cat.name}>
                                     <p className='flex items-center justify-center gap-0 text-textlg capitalize text-xl duration-300 hover:text-primary group'>Start now <RxCaretRight className='duration-300 group-hover:translate-x-1' /></p>
                                 </Link>
                             </div>
                             <div className=' flex justify-around items-center text-xl'>
-                                <p className='bg text-xltgray group-hover:text-stgray rounded-full text-[10rem] lg:text-[5rem] p-2 z-10 relative'>{icons[cat.category] || <FaCode />}</p>
+                                <p className='bg text-xltgray group-hover:text-stgray rounded-full text-[5rem] md:text-[10rem] xl:text-[10rem] lg:text-[5rem] p-2 z-10 relative'>{icons[cat.category] || <FaCode />}</p>
                             </div>
                         </div>
                     )
