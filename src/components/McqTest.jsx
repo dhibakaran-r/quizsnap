@@ -13,11 +13,11 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { TbLoader3 } from 'react-icons/tb';
 
 function McqTest() {
-    
+
     const [timeLeft, setTimeLeft] = useState(30 * 60);
     const [isSubmit, setIsSubmit] = useState(false);
     const [shuffledQuestions, setShuffledQuestions] = useState([]);
-    const [fileName, setFileName] = useState('');
+    // const [fileName, setFileName] = useState('');
     const [qes, setQuestions] = useState([]);
     const [error, setError] = useState("");
     const [load, setLoad] = useState(true);
@@ -27,18 +27,18 @@ function McqTest() {
     const { mcqid, mcqlevel, encName } = useParams();
 
     const secKey = 'getMCQfileName@76';
-    // let decName = '';
-    useEffect(()=>{
+    let decName = '';
+    useEffect(() => {
 
-        try{
+        try {
             const byte = CryptoJS.AES.decrypt(decodeURIComponent(encName), secKey);
-            setFileName(byte.toString(CryptoJS.enc.Utf8));
-        } catch(error){
+            decName = byte.toString(CryptoJS.enc.Utf8);
+        } catch (error) {
             console.error("Decryption fail:", error);
         }
-    },[])
-// console.log(encName);
-// console.log(fileName);
+    }, [])
+    // console.log(encName);
+    // console.log(fileName);
 
 
 
@@ -73,16 +73,22 @@ function McqTest() {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const fileRef = ref(storage, `mcqFiles/${fileName}`);
+                const fileRef = ref(storage, `mcqFiles/${decName}`);
                 const url = await getDownloadURL(fileRef);
-                
+
                 const response = await fetch(url);
                 const data = await response.json();
-                 
-                setQuestions(data);
+                if (data.questions) {
+                    const shuffled = shuffleArray(data.questions).map((question) => ({
+                        ...question,
+                        options: shuffleArray(question.options),
+                    }));
+                    setShuffledQuestions(shuffled);
+                }
+                // setQuestions(data);
                 setLoad(false);
                 console.log(data);
-                console.log(fileName);
+                console.log(decName);
 
                 // setError("");
             } catch (err) {
@@ -145,66 +151,65 @@ function McqTest() {
     return (
         <div className='w-4/5 ms-16 p-16 flex flex-col gap-40 '>
             {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
-            {!isSubmit ? (<>
-                {/* {qes.categories.map((que, i) => {
+                {!isSubmit ? (<>
+                    {/* {qes.categories.map((que, i) => {
                     return ( */}
-                <div className='flex flex-col gap-8'>
-                    <div className='w-full flex justify-between items-center bg-outlg p-8'>
-                        <div className=' flex flex-row justify-center items-center gap-2'>{icons[mcqid] || <FaCode size={50} />} <span className='font-bold'>{mcqid} ( {mcqlevel} {fileName})</span></div>
-                        <div className='w-40 flex flex-row justify-center items-center gap-2 p-4  rounded-full '>
-                            <LuClock12 size={50} className='clockSpin' />
-                            <span className='text-2xl font-bold text-textsec'>{formatTime(timeLeft)}</span>
+                    <div className='flex flex-col gap-8'>
+                        <div className='w-full flex justify-between items-center bg-outlg p-8'>
+                            <div className=' flex flex-row justify-center items-center gap-2'>{icons[mcqid] || <FaCode size={50} />} <span className='font-bold'>{mcqid} ( {mcqlevel} )</span></div>
+                            <div className='w-40 flex flex-row justify-center items-center gap-2 p-4  rounded-full '>
+                                <LuClock12 size={50} className='clockSpin' />
+                                <span className='text-2xl font-bold text-textsec'>{formatTime(timeLeft)}</span>
+                            </div>
+                        </div>
+                        <div className='flex flex-col justify-around gap-16'>
+
+                            {
+                                shuffledQuestions && shuffledQuestions.map((q, i) => {
+                                    return (
+
+                                        <div key={i} className='flex flex-col justify-around gap-4'>
+                                            <p className='text-xl'><span className='me-4'>{i + 1}.</span>{q.question}</p>
+                                            <div className=' flex flex-wrap'>
+                                                {q.options.map((opt, id) => {
+                                                    return (
+                                                        <div className=' h-8 flex justify-center items-center gap-2 ms-8'>
+                                                            <input type='radio' key={id} id={opt} name={q.id} value={opt} />
+                                                            <label htmlFor={opt}>{opt}</label>
+                                                        </div>
+
+                                                    )
+                                                })}
+                                            </div>
+                                        </div>
+
+                                    )
+                                })
+                            }
                         </div>
                     </div>
-                    <div className='flex flex-col justify-around gap-16'>
-
-                        {
-                            // shuffledQuestions && shuffledQuestions.
-                            qes.questions.map((q, i) => {
-                                return (
-
-                                    <div key={i} className='flex flex-col justify-around gap-4'>
-                                        <p className='text-xl'><span className='me-4'>{i + 1}.</span>{q.question}</p>
-                                        <div className=' flex flex-wrap'>
-                                            {q.options.map((opt, id) => {
-                                                return (
-                                                    <div className=' h-8 flex justify-center items-center gap-2 ms-8'>
-                                                        <input type='radio' key={id} id={opt} name={q.id} value={opt} />
-                                                        <label htmlFor={opt}>{opt}</label>
-                                                    </div>
-
-                                                )
-                                            })}
-                                        </div>
-                                    </div>
-
-                                )
-                            })
-                        }
-                    </div>
-                </div>
-                {/* )
+                    {/* )
                 })} */}
 
-                <div className='flex justify-center items-center'>
-                    <button className="px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-                        onClick={manualSubmit}
-                    >Submit</button>
-                    <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
-                </div>
+                    <div className='flex justify-center items-center'>
+                        <button className="px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                            onClick={manualSubmit}
+                        >Submit</button>
+                        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
+                    </div>
 
-            </>) : (<div className='bg-graylg w-full h-60 flex flex-col justify-around items-center rounded-md'>
-                <div className='flex justify-center items-center gap-4 text-success'>
-                    <GrDocumentVerified size={80} />
-                    <span className='font-bold text-2xl'>Test Submitted!</span>
-                </div>
-                <div className='flex justify-center items-center'>
-                    <button className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-                        onClick={() => testRes()}
-                    >Show Result</button>
-                </div>
+                </>) : (<div className='bg-graylg w-full h-60 flex flex-col justify-around items-center rounded-md'>
+                    <div className='flex justify-center items-center gap-4 text-success'>
+                        <GrDocumentVerified size={80} />
+                        <span className='font-bold text-2xl'>Test Submitted!</span>
+                    </div>
+                    <div className='flex justify-center items-center'>
+                        <button className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                            onClick={() => testRes()}
+                        >Show Result</button>
+                    </div>
 
-            </div>)}
+                </div>)}
             </>}
         </div>
     )
