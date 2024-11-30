@@ -13,6 +13,7 @@ import { PiPlus } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { Helmet } from 'react-helmet-async';
+import AddCategory from "./AddCategory";
 
 
 function McqUpload() {
@@ -24,38 +25,36 @@ function McqUpload() {
   const [bgBlur, setBlur] = useState(false);
   const [delData, setDelData] = useState({ fileID: '', fileName: '' });
   const [deletePopup, setDeletePopup] = useState(false);
-  const [categoryName, setCategoryName] = useState('');
   const [allCategories, setAllCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('');
 
 
-    // search filter operation
+  // search filter operation
 
-    const searchText = useSelector((state) => state.search.search)
-    //  console.log("search"+searchText);
-    
-    let filterDatas = [...uploadedFiles];
-  
-    if (searchText) {
-      filterDatas = uploadedFiles.filter((files) => {
-        if (files.name.toLowerCase().includes(searchText) || files.category.toLowerCase().includes(searchText) || files.level.toLowerCase().includes(searchText)) {
-          return files;
-        }
-      })
-    }
+  const searchText = useSelector((state) => state.search.search)
+  //  console.log("search"+searchText);
+
+  let filterDatas = [...uploadedFiles];
+
+  if (searchText) {
+    filterDatas = uploadedFiles.filter((files) => {
+      if (files.name.toLowerCase().includes(searchText) || files.category.toLowerCase().includes(searchText) || files.level.toLowerCase().includes(searchText)) {
+        return files;
+      }
+    })
+  }
 
   const fileInputRef = useRef();
-
-  const filesCollectionRef = collection(db, "mcqFiles");
   const categoryRef = collection(db, "mcqCategory");
+  const filesCollectionRef = collection(db, "mcqFiles");
 
   // Fetch uploaded files from Firestore
   useEffect(() => {
     const fetchUploadedFiles = async () => {
       try {
-        const querySnapshot = await getDocs(filesCollectionRef);
-        const files = querySnapshot.docs.map((doc) => ({
+        const query = await getDocs(filesCollectionRef);
+        const files = query.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
@@ -71,8 +70,8 @@ function McqUpload() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const querySnapshot = await getDocs(categoryRef);
-        const cats = querySnapshot.docs.map((doc) => ({
+        const query = await getDocs(categoryRef);
+        const cats = query.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
@@ -83,25 +82,7 @@ function McqUpload() {
     };
 
     fetchCategories();
-  }, [categoryName]);
-
-  //Add category
-
-  const newCategory = (newCat) => {
-    setCategoryName(newCat);
-  }
-
-  const addCategory = async (catData) => {
-
-    const catRef = await addDoc(categoryRef, {
-      id: catData,
-      category: catData,
-      addDT: new Date()
-    })
-    setCategoryName('');
-    toast.success('Category Added Successfully!');
-
-  }
+  }, [allCategories]);
 
   // select setCategory & level
   const setCategory = (value) => {
@@ -261,7 +242,7 @@ function McqUpload() {
     <div className="w-full flex flex-col items-center gap-24">
       <Helmet><title>QuizSnap MCQ Management</title></Helmet>
 
-      <div className="flex flex-col w-full justify-center items-center gap-12 p-4 shadow-shadbg shadow-lg">
+      <div className="flex flex-col w-full  gap-12 p-4 shadow-shadbg shadow-lg">
         <div className="flex w-full justify-center items-center gap-12">
           <div
             className={`w-1/2 h-96 flex flex-col items-center justify-evenly border border-dashed rounded-lg ${dragging ? "bg-stgray" : "bg-secbr"} cursor-pointer duration-75`}
@@ -300,7 +281,7 @@ function McqUpload() {
             <p>Drag and drop JSON files here or click to select files</p>
           </div>
 
-          <div className="w-1/2 h-96 flex flex-col gap-8 upbox">
+          <div className="w-1/2 h-96 flex flex-col justify-center gap-8 upbox">
 
             <div className="flex flex-col justify-center items-center gap-8">
               <h1 className="text-2xl text-bluetext text-center">Select Category & Level</h1>
@@ -328,24 +309,18 @@ function McqUpload() {
               </form>
             </div>
 
-            <div className="flex flex-col justify-center items-center gap-8">
-              <label htmlFor="addcat" className="text-2xl text-bluetext text-center">Add Category</label>
-              <div className="flex justify-center items-center gap-4">
-                <input type="text" placeholder="Enter a Category" id="addcat" onChange={(e) => newCategory(e.target.value)} value={categoryName} className=" px-6 py-3 text-xl border outline-none rounded-md" />
-                <button className="flex gap-2 justify-center items-center px-4 py-2 text-sm bg-bluedk text-bluebg border border-bluedk duration-200 hover:bg-bluebg hover:text-bluedk rounded"
-                  onClick={() => addCategory(categoryName)}
-                >
-                  <FiPlus size={20} /> Add</button>
-              </div>
-            </div>
           </div>
         </div>
-
-        <button className="px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+        <div className="w-full flex justify-center items-center">
+        <button className="w-1/2 px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
           onClick={uploadFiles}
         >
           <MdOutlineCloudUpload size={30} /> Upload Files
         </button>
+        </div>          
+        <div className="flex items-center flex-col gap-8">
+          <AddCategory />
+        </div>
 
       </div>
       <div className="w-4/5 flex flex-col p-8 gap-8 border border-primlight rounded-lg">

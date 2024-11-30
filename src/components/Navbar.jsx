@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 function Navbar() {
 
     const [toggle, setToggle] = useState(false);
+    const [activeLink, setActive] = useState('');
 
     const menus = [
         {
@@ -35,8 +36,12 @@ function Navbar() {
         },
     ]
 
+    const isActiveLink = (name) => {
+        setActive(name);
+    }
+
     return (
-        <header className='w-full flex p-5 justify-between items-center z-20'>
+        <header className='fixed top-0 bg-bgwhite w-full flex p-5 justify-between items-center z-20'>
 
             <div className='w-1/6 bg-slate-700'>
                 <a href='#' className='text-secondary text-2xl font-semibold'>QuizSnap</a>
@@ -47,7 +52,10 @@ function Navbar() {
                 <ul className='flex justify-center items-center gap-[3rem]'>
                     {
                         menus.map((item, index) => {
-                            return <li className='uline' key={index}><a href={item.link} className='flex justify-center items-center gap-2'>{item.name}</a></li>
+                            return <li className={`uline ${activeLink === item.name ? 'text-primary' : ''}`} key={index} onClick={() => isActiveLink(item.name)}>
+                                <a href={item.link} className='flex justify-center items-center gap-2'>{item.name}
+                                </a>
+                            </li>
                         })
                     }
                 </ul>
@@ -67,7 +75,10 @@ function Navbar() {
                         <ul className='flex flex-col justify-center items-start gap-2'>
                             {
                                 menus.map((item, index) => {
-                                    return <li className='uline' onClick={() => setToggle(!toggle)} key={index}><a href={item.link} className='flex justify-center items-center gap-2'>{item.icon} {item.name}</a></li>
+                                    return <li className={`uline ${activeLink === item.name ? 'text-primary' : ''}`} onClick={() => setToggle(!toggle)} key={index}>
+                                        <a href={item.link} onClick={() => isActiveLink(item.name)} className='flex justify-center items-center gap-2'>{item.icon} {item.name}
+                                        </a>
+                                    </li>
                                 })
                             }
                         </ul>

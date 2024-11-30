@@ -1,59 +1,52 @@
 
 import { AiOutlineHome } from "react-icons/ai";
 import { LiaBookReaderSolid } from "react-icons/lia";
-import { FaUsersRays } from "react-icons/fa6";
+import { FaHandshakeSimple, FaUsersRays } from "react-icons/fa6";
 import { GrContact } from "react-icons/gr";
 import { Link, Navigate } from 'react-router-dom';
+import { IoMdMail } from "react-icons/io";
 
 export default function Footer() {
 
-    const menus = [
+    const contact = [
         {
-            "name": "Home",
-            "icon": <AiOutlineHome />,
-            "link": "#home"
+          icon: <IoMdMail />,
+          title: "Contact",
+          detail: "quizsnapoffi@gmail.com"
         },
         {
-            "name": "MCQ's",
-            "icon": <LiaBookReaderSolid />,
-            "link": "#mcq"
-        },
-        {
-            "name": "About us",
-            "icon": <FaUsersRays />,
-            "link": "#about"
-        },
-        {
-            "name": "Contact us",
-            "icon": <GrContact />,
-            "link": "#contact"
-        },
-    ]
+          icon: <FaHandshakeSimple />,
+          title: "Partner",
+          detail: "businesswithquizsnap@gmail.com"
+        }
+      ]
 
     return (
-        <footer className='bg-bluellg p-8 w-full' id='resume'>
+        <footer className='bg-bluellg p-4 md:p-8 w-full'>
 
-            <div className="flex flex-col md:flex-row justify-around items-center gap-8 md:gap-0">
+            <div className=" md:h-40 flex flex-col justify-between items-center gap-8 md:gap-0">
 
-                {
-                    <div className='flex justify-center items-center gap-4 md:gap-24'>
+                <div className='w-full flex flex-col justify-center items-center lg:flex-row lg:justify-around lg:items-center gap-5 lg:gap-20'>
+                    <ul className='list-none text-sm md:text-base flex flex-row justify-center items-center gap-6'>
+                        <li>Terms</li>
+                        <li>Privacy Policy</li>
+                        <Link to="login"><li className="p-2 border border-primary text-textsec hover:text-primary hover:border-textsec duration-300 rounded-full  font-bold">Join Now +</li></Link>
+                    </ul>
+                    <ul className='text-sm list-none flex flex-col md:flex-row gap-6'>
+                        {contact.map((items, index) => {
+                            return (
 
-                        <ul className='flex flex-col justify-center items-start gap-2'>
-                            {
-                                menus.map((item, index) => {
-                                    return <li className='uline' key={index}><a href={item.link} className='flex justify-center items-center gap-2'>{item.icon} {item.name}</a></li>
-                                })
-                            }
-                        </ul>
+                                <li key={index} className='flex flex-row justify-center items-center gap-2 p-2 border border-outlg rounded-full'>
+                                    <span className='text-xl' >{items.icon}</span>
+                                    <span className=''>{items.title}:</span>
+                                    <span className='text-secondary'>{items.detail}</span>
+                                </li>
 
-                        <div className='flex flex-row justify-center items-center gap-3'>
-                            <button className='py-1 px-5 rounded-full border border-primary bg-primary text-bluebg duration-300 hover:bg-secondary hover:border-secondary'><Link to="login">Log in</Link></button>
-                            <button className='py-1 px-3 rounded-full border border-primlight text-primary duration-300 hover:border-primary'><Link to="register">Sign Up</Link></button>
-                        </div>
+                            )
+                        })}
 
-                    </div>
-
-                }
+                    </ul>
+                </div>
                 <p className='py-5 text-xl text-primary text-center italic tracking-widest leading-3'>&copy; QuizSnap 2024</p>
 
             </div>
