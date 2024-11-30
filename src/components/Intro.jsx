@@ -64,9 +64,9 @@ function Intro() {
                 {
                     card.map((card, index) => {
                         return (
-                            <div key={index} className='flex justify-center items-center p-1 w-[280px] h-[470px] lg:w-[245px] lg:h-[470px] md:w-[380px] md:h-[500]  xl:w-[320px] xl:h-[500px] 2xl:w-[350] 2xl:h-[500px] bg-primary rounded-2xl rotate-12 group hover:rotate-0 duration-300'>
+                            <div key={index} className='flex justify-center items-center p-1 w-[280px] h-[470px] lg:w-[245px] lg:h-[470px] md:w-[380px] md:h-[500]  xl:w-[320px] xl:h-[500px] 2xl:w-[350] 2xl:h-[500px] bg-primary rounded-2xl rotate-0 md:rotate-12 group md:hover:rotate-0 duration-300'>
 
-                                <div className='flex flex-col border border-[#fff] justify-evenly items-center p-1 w-[300px] h-[450px] lg:w-[250px] md:w-[380px] xl:w-[400px] xl:h-[480px] bg-bluebg rounded-lg -rotate-12 group-hover:rotate-0 duration-300'>
+                                <div className='flex flex-col border border-[#fff] justify-evenly items-center p-1 w-[300px] h-[450px] lg:w-[250px] md:w-[380px] xl:w-[400px] xl:h-[480px] bg-bluebg rounded-lg rotate-0 md:-rotate-12 md:group-hover:rotate-0 duration-300'>
                                     <div className='flex w-full lg:px-0 items-center justify-center'>
                                         {/* <img src={card.image} className='w-[260px] lg:w-[260px] rounded-t-[8px] rounded-br-[10px] rounded-bl-[220px]'/> */}
                                         <LazyLoadComponent>
