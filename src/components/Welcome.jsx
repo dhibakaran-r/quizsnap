@@ -9,7 +9,7 @@ function Welcome() {
 
 
       <ReactTypingEffect
-        className='text-2xl md:text-4xl xl:text-5xl text-bgwhite px-8 py-4 popup-card !border-none '
+        className='text-2xl md:text-4xl 2xl:text-5xl text-bgwhite px-8 py-4 popup-card !border-none '
         text={[
           "Welcome To QuizSnap !!!",
           "Test your knowledge, one quiz at a time.",

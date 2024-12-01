@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import levels from '../service/Levels.json'
 import { ref, uploadBytesResumable, deleteObject, getDownloadURL } from "firebase/storage";
-import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, writeBatch } from "firebase/firestore";
 import { db, storage } from "../service/firebase/firebaseConfig";
 import { ToastContainer, toast } from 'react-toastify';
 import { BsFiletypeJson } from "react-icons/bs";
@@ -126,51 +126,126 @@ function McqUpload() {
   };
 
   // Upload files to Firebase Storage and Firestore
-  const uploadFiles = () => {
 
+  const uploadFiles = async () => {
     const fileSelect = selectedFiles[0];
     if (!fileSelect) {
-      // alert("Please select a file to update.");
-      toast.info("Please select a file to upload!")
+      toast.info("Please select a file to upload!");
       return;
     }
-
-    selectedFiles.forEach((file) => {
-      const storageRef = ref(storage, `mcqFiles/${file.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setUploadProgress((prev) => ({
-            ...prev,
-            [file.name]: progress,
-          }));
-        },
-        (error) => {
-          console.error("Upload failed:", error);
-        },
-        async () => {
-          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-          const docRef = await addDoc(filesCollectionRef, {
-            name: file.name,
-            category: selectedCategory,
-            level: selectedLevel,
-            url: downloadURL,
-            uploadedAt: new Date(),
-          });
-
-          setUploadedFiles((prev) => [
-            ...prev,
-            { id: docRef.id, name: file.name, url: downloadURL },
-          ]);
-          toast.success('File Upload Successfully!');
-          setSelectedFiles((prev) => prev.filter((f) => f.name !== file.name));
-        }
-      );
-    });
+  
+    const batch = writeBatch(db); // Initialize a Firestore batch operation
+    const updatedFiles = [];
+    let totalProgress = 0;
+  
+    for (const file of selectedFiles) {
+      try {
+        const storageRef = ref(storage, `mcqFiles/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+  
+        // Wait for the upload to complete
+        await new Promise((resolve, reject) => {
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              totalProgress += progress / selectedFiles.length; // Average progress across all files
+              setUploadProgress((prev) => ({
+                ...prev,
+                [file.name]: totalProgress,
+              }));
+            },
+            (error) => {
+              console.error("Upload failed:", error);
+              reject(error);
+            },
+            resolve // Resolve the promise when upload completes
+          );
+        });
+  
+        // Get the download URL and prepare the document
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        const docRef = doc(filesCollectionRef); // Generate a new document reference
+        batch.set(docRef, {
+          name: file.name,
+          category: selectedCategory,
+          level: selectedLevel,
+          url: downloadURL,
+          uploadedAt: new Date(),
+        });
+        
+        updatedFiles.push({
+          id: docRef.id,
+          name: file.name,
+          category: selectedCategory,
+          level: selectedLevel,
+          url: downloadURL,
+          uploadedAt: new Date(),
+        });
+      } catch (error) {
+        console.error(`Failed to upload ${file.name}:`, error);
+        toast.error(`Failed to upload ${file.name}. Please try again.`);
+      }
+    }
+  
+    // Commit the batch operation
+    try {
+      await batch.commit();
+      setUploadedFiles((prev) => [...prev, ...updatedFiles]);
+      setSelectedFiles([]); // Clear selected files after successful upload
+      toast.success("Files uploaded successfully!");
+    } catch (error) {
+      console.error("Error committing batch:", error);
+      toast.error("An error occurred while saving file metadata.");
+    }
   };
+  
+
+  // const uploadFiles = () => {
+
+  //   const fileSelect = selectedFiles[0];
+  //   if (!fileSelect) {
+      // alert("Please select a file to update.");
+  //     toast.info("Please select a file to upload!")
+  //     return;
+  //   }
+
+  //   selectedFiles.forEach((file) => {
+  //     const storageRef = ref(storage, `mcqFiles/${file.name}`);
+  //     const uploadTask = uploadBytesResumable(storageRef, file);
+
+  //     uploadTask.on(
+  //       "state_changed",
+  //       (snapshot) => {
+  //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //         setUploadProgress((prev) => ({
+  //           ...prev,
+  //           [file.name]: progress,
+  //         }));
+  //       },
+  //       (error) => {
+  //         console.error("Upload failed:", error);
+  //       },
+  //       async () => {
+  //         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+  //         const docRef = await addDoc(filesCollectionRef, {
+  //           name: file.name,
+  //           category: selectedCategory,
+  //           level: selectedLevel,
+  //           url: downloadURL,
+  //           uploadedAt: new Date(),
+  //         });
+
+  //         setUploadedFiles((prev) => [
+  //           ...prev,
+  //           { id: docRef.id, name: file.name, url: downloadURL },
+  //         ]);
+  //         toast.success('File Upload Successfully!');
+  //         setSelectedFiles((prev) => prev.filter((f) => f.name !== file.name));
+  //       }
+  //     );
+  //   });
+  // };
 
   // Update a file in Firebase Storage
   const updateFile = async (fileId, fileName) => {
@@ -285,7 +360,7 @@ function McqUpload() {
 
             <div className="flex flex-col justify-center items-center gap-8">
               <h1 className="text-2xl text-bluetext text-center">Select Category & Level</h1>
-              <form className="flex flex-col justify-center items-center gap-4">
+              <div className="flex flex-col justify-center items-center gap-4">
                 <select onChange={(e) => { setCategory(e.target.value) }} id="cats" class="block w-[30rem] px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option selected>Choose a category</option>
                   {
@@ -306,7 +381,7 @@ function McqUpload() {
                     })
                   }
                 </select>
-              </form>
+              </div>
             </div>
 
           </div>
@@ -319,7 +394,7 @@ function McqUpload() {
         </button>
         </div>          
         <div className="flex items-center flex-col gap-8">
-          <AddCategory />
+          <AddCategory allCategories={allCategories} />
         </div>
 
       </div>

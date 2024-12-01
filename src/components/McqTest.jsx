@@ -252,7 +252,7 @@ function McqTest() {
 
                     }
 
-                </>) : (<div className='bg-graylg w-full h-60 mb-80 flex flex-col justify-around items-center rounded-md'>
+                </>) : (<div className='bg-graylg w-full h-60 mb-72 flex flex-col justify-around items-center rounded-md'>
                     <div className='flex justify-center items-center gap-4 text-success'>
                         <GrDocumentVerified size={80} />
                         <span className='font-bold text-2xl'>Test Submitted!</span>

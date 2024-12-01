@@ -23,7 +23,7 @@ function McqResult() {
 
     return (
         // <section className='flex flex-col justify-between items-center gap-40'>
-        <div className='flex flex-col justify-center items-center gap-20'>
+        <div className='flex flex-col justify-center items-center gap-20 mb-16'>
             {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
                 <div className='flex justify-center items-center'>
                     <h1 className='text-3xl'>{result.mcq} ( {result.level} ) MCQ Result</h1>
@@ -42,7 +42,7 @@ function McqResult() {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col justify-around gap-16'>
+                <div className='flex flex-col mx-60 justify-around gap-16'>
 
                     {
 

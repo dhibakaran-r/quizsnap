@@ -4,6 +4,7 @@ import AdminCard from './AdminCard'
 import Welcome from './Welcome'
 import FooterIn from './FooterIn'
 import { Helmet } from 'react-helmet-async'
+import Explore from './Explore'
 
 function AdminDashboard() {
   return (
@@ -12,6 +13,7 @@ function AdminDashboard() {
       <Greeting />
       <Welcome />
       <AdminCard />
+      <Explore />
       <FooterIn />
     </>
   )

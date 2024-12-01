@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 // import qes from '../assets/datas/questions.json'
 import { Link } from 'react-router-dom'
-import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode, FaArrowLeft, FaArrowRight, FaPython } from "react-icons/fa";
 import { RxCaretRight } from "react-icons/rx";
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../service/firebase/firebaseConfig';
 import { TbLoader3 } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
+import { SiMysql } from 'react-icons/si';
 
 function McqCategoryCard() {
 
@@ -54,6 +55,8 @@ function McqCategoryCard() {
         CSS: <FaCss3Alt />,
         Javascript: <FaJsSquare />,
         React: <FaReact />,
+        Python: <FaPython />,
+        Mysql: <SiMysql />
 
     }
 

@@ -5,6 +5,7 @@ import McqInstructions from '../components/McqInstructions'
 import { Helmet } from 'react-helmet-async'
 import McqResult from '../components/McqResult'
 import FooterIn from '../components/FooterIn'
+import ExploreCategory from '../components/ExploreCategory'
 
 function QuizPage() {
   return (
@@ -13,6 +14,7 @@ function QuizPage() {
         <title>QuizSnap MCQ page</title>
       </Helmet>
         <Routes>
+          <Route path='/explore/:mcqid' element={<ExploreCategory />} />
           <Route path='/instructions/:mcqid/:mcqlevel' element={<McqInstructions />} />
           <Route path='/testpage/:mcqid/:mcqlevel/:encName' element={<McqTest />} />
           <Route path='/resultpage' element={<McqResult />} />

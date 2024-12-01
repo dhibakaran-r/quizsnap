@@ -28,7 +28,11 @@ module.exports = {
       lggray: "#ADBBC7",
       stgray: "#a7a8a9",
       xltgray: "#DDDEE2",
-      secgray: "#39424E"
+      secgray: "#39424E",
+      htmlic: "#E85E2E",
+      cssic: "#0974BD",
+      jsic: "#FEB34A",
+      reactic: "#17D9FF"
 
     },
     extend: {

@@ -16,7 +16,7 @@ import SearchBar from './SearchBar';
 
 function TopNav() {
 
-    const [activeLink, setActiveLink] = useState(null);
+    const [activeLink, setActiveLink] = useState('Dashboard');
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 

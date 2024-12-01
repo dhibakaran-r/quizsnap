@@ -11,6 +11,7 @@ import AccessRoute from './AccessRoute'
 import McqInstructions from '../components/McqInstructions'
 import McqTest from '../components/McqTest'
 import { Helmet } from 'react-helmet-async'
+import ExploreCategory from '../components/ExploreCategory'
 
 
 function QSAdmin() {
@@ -32,6 +33,7 @@ function QSAdmin() {
             <Route path='/testpage' element={<McqTest />} />
             <Route path='/instructions/:mcqid' element={<McqInstructions />} />
             <Route path='/userprofile' element={<UserProfile />} />
+            <Route path='/explore/:mcqid' element={<ExploreCategory />} />
           </Route>
         </Routes>
       </section>

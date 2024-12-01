@@ -17,7 +17,7 @@ function Dashboard() {
       <Greeting />
       <div className='flex flex-col justify-center items-center gap-20'>
         <Welcome />
-        {/* <Explore /> */}
+        <Explore />
       </div>
       <FooterIn />
     </>
