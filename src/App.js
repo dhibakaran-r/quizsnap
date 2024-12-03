@@ -8,6 +8,7 @@ import PrivateRoute from './pages/PrivateRoute';
 import AccessDenied from './pages/AccessDenied';
 import McqInstructions from './components/McqInstructions';
 import QuizPage from './pages/QuizPage';
+import { ToastContainer } from 'react-toastify';
 
 
 const QuizSnap = React.lazy(() => import('./pages/QuizSnap'));
@@ -62,6 +63,7 @@ function App() {
 
 
       </Suspense>
+      <ToastContainer />
     </div>
 
   );

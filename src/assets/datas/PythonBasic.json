@@ -1,0 +1,337 @@
+{
+    "category": "Python",
+    "level": "basic",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What is Python?",
+        "options": [
+          "A high-level programming language",
+          "A type of snake",
+          "A web development framework",
+          "A database management system"
+        ],
+        "correct_answer": "A high-level programming language"
+      },
+      {
+        "id": 2,
+        "question": "Which of the following is a valid variable name in Python?",
+        "options": [
+          "2variable",
+          "variable_name",
+          "variable-name",
+          "variable.name"
+        ],
+        "correct_answer": "variable_name"
+      },
+      {
+        "id": 3,
+        "question": "How do you start a comment in Python?",
+        "options": [
+          "//",
+          "/*",
+          "#",
+          "?"
+        ],
+        "correct_answer": "#"
+      },
+      {
+        "id": 4,
+        "question": "What is the correct file extension for Python files?",
+        "options": [
+          ".py",
+          ".python",
+          ".pt",
+          ".txt"
+        ],
+        "correct_answer": ".py"
+      },
+      {
+        "id": 5,
+        "question": "Which function is used to output text in Python?",
+        "options": [
+          "echo()",
+          "write()",
+          "print()",
+          "output()"
+        ],
+        "correct_answer": "print()"
+      },
+      {
+        "id": 6,
+        "question": "Which keyword is used to define a function in Python?",
+        "options": [
+          "function",
+          "def",
+          "func",
+          "define"
+        ],
+        "correct_answer": "def"
+      },
+      {
+        "id": 7,
+        "question": "What is the output of `print(2 + 3)`?",
+        "options": [
+          "23",
+          "5",
+          "2 + 3",
+          "Error"
+        ],
+        "correct_answer": "5"
+      },
+      {
+        "id": 8,
+        "question": "Which of the following is a correct way to create a list in Python?",
+        "options": [
+          "[1, 2, 3]",
+          "{1, 2, 3}",
+          "(1, 2, 3)",
+          "<1, 2, 3>"
+        ],
+        "correct_answer": "[1, 2, 3]"
+      },
+      {
+        "id": 9,
+        "question": "How do you create a single-line string in Python?",
+        "options": [
+          "'This is a string'",
+          "\"This is a string\"",
+          "`This is a string`",
+          "Both 1 and 2"
+        ],
+        "correct_answer": "Both 1 and 2"
+      },
+      {
+        "id": 10,
+        "question": "Which of the following is a Python data type?",
+        "options": [
+          "int",
+          "str",
+          "list",
+          "All of the above"
+        ],
+        "correct_answer": "All of the above"
+      },
+      {
+        "id": 11,
+        "question": "What does the `len()` function do in Python?",
+        "options": [
+          "Calculates the length of an object",
+          "Returns the last element of a list",
+          "Counts the number of functions in a module",
+          "Measures the size of a file"
+        ],
+        "correct_answer": "Calculates the length of an object"
+      },
+      {
+        "id": 12,
+        "question": "How do you start a for loop in Python?",
+        "options": [
+          "for(i = 0; i < 10; i++)",
+          "for i in range(10):",
+          "for i in 10:",
+          "foreach i in range(10):"
+        ],
+        "correct_answer": "for i in range(10):"
+      },
+      {
+        "id": 13,
+        "question": "What is the correct syntax to check equality in Python?",
+        "options": [
+          "=",
+          "==",
+          "===",
+          "!="
+        ],
+        "correct_answer": "=="
+      },
+      {
+        "id": 14,
+        "question": "Which of these is used to handle exceptions in Python?",
+        "options": [
+          "try-except",
+          "catch-finally",
+          "throw-catch",
+          "error-handling"
+        ],
+        "correct_answer": "try-except"
+      },
+      {
+        "id": 15,
+        "question": "What is the output of `print(type(5))`?",
+        "options": [
+          "<class 'int'>",
+          "<type 'integer'>",
+          "<data 'int'>",
+          "<class 'number'>"
+        ],
+        "correct_answer": "<class 'int'>"
+      },
+      {
+        "id": 16,
+        "question": "How do you import a module in Python?",
+        "options": [
+          "import module_name",
+          "include module_name",
+          "require module_name",
+          "load module_name"
+        ],
+        "correct_answer": "import module_name"
+      },
+      {
+        "id": 17,
+        "question": "Which method is used to add an element to a list?",
+        "options": [
+          "add()",
+          "insert()",
+          "append()",
+          "push()"
+        ],
+        "correct_answer": "append()"
+      },
+      {
+        "id": 18,
+        "question": "What is the result of `10 // 3` in Python?",
+        "options": [
+          "3.33",
+          "3",
+          "10",
+          "Error"
+        ],
+        "correct_answer": "3"
+      },
+      {
+        "id": 19,
+        "question": "How do you create a dictionary in Python?",
+        "options": [
+          "{'key': 'value'}",
+          "['key': 'value']",
+          "('key': 'value')",
+          "{'key', 'value'}"
+        ],
+        "correct_answer": "{'key': 'value'}"
+      },
+      {
+        "id": 20,
+        "question": "Which keyword is used to exit a loop prematurely in Python?",
+        "options": [
+          "break",
+          "exit",
+          "stop",
+          "quit"
+        ],
+        "correct_answer": "break"
+      },
+      {
+        "id": 21,
+        "question": "How do you convert a string to an integer in Python?",
+        "options": [
+          "int()",
+          "str()",
+          "float()",
+          "convert()"
+        ],
+        "correct_answer": "int()"
+      },
+      {
+        "id": 22,
+        "question": "Which function returns the smallest value in a list?",
+        "options": [
+          "min()",
+          "max()",
+          "smallest()",
+          "reduce()"
+        ],
+        "correct_answer": "min()"
+      },
+      {
+        "id": 23,
+        "question": "How do you define a multi-line string in Python?",
+        "options": [
+          "Using triple quotes",
+          "Using a backslash at the end of each line",
+          "Using parentheses",
+          "Using curly braces"
+        ],
+        "correct_answer": "Using triple quotes"
+      },
+      {
+        "id": 24,
+        "question": "What does the `input()` function do?",
+        "options": [
+          "Takes user input",
+          "Prints output",
+          "Executes a loop",
+          "Exits a program"
+        ],
+        "correct_answer": "Takes user input"
+      },
+      {
+        "id": 25,
+        "question": "How do you check the type of a variable?",
+        "options": [
+          "type()",
+          "checktype()",
+          "typeof()",
+          "variableType()"
+        ],
+        "correct_answer": "type()"
+      },
+      {
+        "id": 26,
+        "question": "What is the output of `bool(0)` in Python?",
+        "options": [
+          "True",
+          "False",
+          "0",
+          "None"
+        ],
+        "correct_answer": "False"
+      },
+      {
+        "id": 27,
+        "question": "Which of the following is immutable in Python?",
+        "options": [
+          "List",
+          "Dictionary",
+          "Tuple",
+          "Set"
+        ],
+        "correct_answer": "Tuple"
+      },
+      {
+        "id": 28,
+        "question": "Which operator is used for exponentiation in Python?",
+        "options": [
+          "^",
+          "**",
+          "^^",
+          "exp()"
+        ],
+        "correct_answer": "**"
+      },
+      {
+        "id": 29,
+        "question": "Which of the following is a Python keyword?",
+        "options": [
+          "function",
+          "define",
+          "class",
+          "value"
+        ],
+        "correct_answer": "class"
+      },
+      {
+        "id": 30,
+        "question": "What does `range(5)` do?",
+        "options": [
+          "Generates numbers from 1 to 5",
+          "Generates numbers from 0 to 5",
+          "Generates numbers from 0 to 4",
+          "Generates an error"
+        ],
+        "correct_answer": "Generates numbers from 0 to 4"
+      }
+    ]
+  }
+  

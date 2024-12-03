@@ -1,0 +1,274 @@
+import React, { useState } from "react";
+
+const Quiz = ({ questions }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedAnswers, setSelectedAnswers] = useState({}); // Store answers by question ID
+
+  const questionsPerPage = 10;
+  const totalPages = Math.ceil(questions.length / questionsPerPage);
+
+  // Get questions for the current page
+  const startIndex = (currentPage - 1) * questionsPerPage;
+  const currentQuestions = questions.slice(startIndex, startIndex + questionsPerPage);
+
+  // Handle option selection
+  const handleOptionSelect = (questionId, option) => {
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [questionId]: option,
+    }));
+  };
+
+  // Move to the next page
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  // Move to the previous page
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Quiz Page {currentPage}</h1>
+      {currentQuestions.map((q) => (
+        <div key={q.id}>
+          <h3>{q.question}</h3>
+          {q.options.map((option, index) => (
+            <label key={index}>
+              <input
+                type="radio"
+                name={`question-${q.id}`}
+                value={option}
+                checked={selectedAnswers[q.id] === option} // Check if already selected
+                onChange={() => handleOptionSelect(q.id, option)}
+              />
+              {option}
+            </label>
+          ))}
+        </div>
+      ))}
+      <div>
+        <button onClick={prevPage} disabled={currentPage === 1}>
+          Previous
+        </button>
+        <button onClick={nextPage} disabled={currentPage === totalPages}>
+          Next
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Quiz;
+
+
+
+// if(res === ans){
+//   setTotalPoints((prev)=> prev + 1);
+// } else if (res === null){
+//   setTotalPoints((prev)=> prev - 1);
+// }else{
+//   setTotalPoints((prev)=> prev - 1);
+// }
+
+const uploadFiles = async () => {
+  const fileSelect = selectedFiles[0];
+  if (!fileSelect) {
+    toast.info("Please select a file to upload!");
+    return;
+  }
+
+  const batch = writeBatch(db); // Initialize a Firestore batch operation
+  const updatedFiles = [];
+  let totalProgress = 0;
+
+  for (const file of selectedFiles) {
+    try {
+      const storageRef = ref(storage, `mcqFiles/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      // Wait for the upload to complete
+      await new Promise((resolve, reject) => {
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            totalProgress += progress / selectedFiles.length; // Average progress across all files
+            setUploadProgress((prev) => ({
+              ...prev,
+              [file.name]: totalProgress,
+            }));
+          },
+          (error) => {
+            console.error("Upload failed:", error);
+            reject(error);
+          },
+          resolve // Resolve the promise when upload completes
+        );
+      });
+
+      // Get the download URL and prepare the document
+      const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+      const docRef = doc(filesCollectionRef); // Generate a new document reference
+      batch.set(docRef, {
+        name: file.name,
+        category: selectedCategory,
+        level: selectedLevel,
+        url: downloadURL,
+        uploadedAt: new Date(),
+      });
+      
+      updatedFiles.push({
+        id: docRef.id,
+        name: file.name,
+        category: selectedCategory,
+        level: selectedLevel,
+        url: downloadURL,
+        uploadedAt: new Date(),
+      });
+    } catch (error) {
+      console.error(`Failed to upload ${file.name}:`, error);
+      toast.error(`Failed to upload ${file.name}. Please try again.`);
+    }
+  }
+
+  // Commit the batch operation
+  try {
+    await batch.commit();
+    setUploadedFiles((prev) => [...prev, ...updatedFiles]);
+    setSelectedFiles([]); // Clear selected files after successful upload
+    toast.success("Files uploaded successfully!");
+  } catch (error) {
+    console.error("Error committing batch:", error);
+    toast.error("An error occurred while saving file metadata.");
+  }
+}; 
+
+// const uploadFiles = () => {
+
+//   const fileSelect = selectedFiles[0];
+//   if (!fileSelect) {
+    // alert("Please select a file to update.");
+//     toast.info("Please select a file to upload!")
+//     return;
+//   }
+
+//   selectedFiles.forEach((file) => {
+//     const storageRef = ref(storage, `mcqFiles/${file.name}`);
+//     const uploadTask = uploadBytesResumable(storageRef, file);
+
+//     uploadTask.on(
+//       "state_changed",
+//       (snapshot) => {
+//         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//         setUploadProgress((prev) => ({
+//           ...prev,
+//           [file.name]: progress,
+//         }));
+//       },
+//       (error) => {
+//         console.error("Upload failed:", error);
+//       },
+//       async () => {
+//         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+//         const docRef = await addDoc(filesCollectionRef, {
+//           name: file.name,
+//           category: selectedCategory,
+//           level: selectedLevel,
+//           url: downloadURL,
+//           uploadedAt: new Date(),
+//         });
+
+//         setUploadedFiles((prev) => [
+//           ...prev,
+//           { id: docRef.id, name: file.name, url: downloadURL },
+//         ]);
+//         toast.success('File Upload Successfully!');
+//         setSelectedFiles((prev) => prev.filter((f) => f.name !== file.name));
+//       }
+//     );
+//   });
+// };
+
+
+
+const updateFile = async (fileId, fileName) => {
+  const fileToUpdate = selectedFiles[0]; // Assume the first file is for the update
+
+  if (!fileToUpdate) {
+    // alert("Please select a file to update.");
+    toast.info("Please select a file to update!")
+    return;
+  }
+
+  const storageRef = ref(storage, `mcqFiles/${fileName}`);
+
+  try {
+    const snapshot = await uploadBytesResumable(storageRef, fileToUpdate);
+    const newUrl = await getDownloadURL(snapshot.ref);
+
+    const docRef = doc(db, "mcqFiles", fileId);
+    await updateDoc(docRef, {
+      url: newUrl,
+      updatedAt: new Date(),
+    });
+
+    setUploadedFiles((prev) =>
+      prev.map((file) =>
+        file.id === fileId ? { ...file, url: newUrl } : file
+      )
+    );
+    toast.success('File updated successfully!');
+    setSelectedFiles((prev) => prev.filter((f) => f.name !== fileId.name));
+    // alert("File updated successfully.");
+  } catch (error) {
+    console.error("Error updating file:", error);
+  }
+};
+
+
+
+/**
+ * Delete a document from a Firestore collection.
+ * @param {string} collectionName - The name of the Firestore collection.
+ * @param {string} id - The ID of the document to delete.
+ * @param {function} setStateCallback - Optional callback to reset state after deletion.
+ */
+export const deleteDatas = async (collectionName, id, setStateCallback = null) => {
+  try {
+    if (!id || !collectionName) {
+      toast.info("Please provide valid data to delete.");
+      return;
+    }
+
+    console.log(`Attempting to delete document from ${collectionName} with ID:`, id);
+
+    // Get the document reference
+    const docRef = doc(db, collectionName, id);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
+      console.error("Document not found in Firestore:", id);
+      toast.error("Document not found. Please check the ID.");
+      return;
+    }
+
+    // Delete the document
+    await deleteDoc(docRef);
+
+    if (setStateCallback) {
+      setStateCallback(""); // Reset state if callback is provided
+    }
+
+    toast.success("Document deleted successfully!");
+  } catch (error) {
+    console.error(`Error deleting document in ${collectionName}:`, error);
+    toast.error("An error occurred while deleting the document. Please try again.");
+  }
+};

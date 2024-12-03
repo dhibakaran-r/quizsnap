@@ -14,12 +14,16 @@ import { FiPlus } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { Helmet } from 'react-helmet-async';
 import AddCategory from "./AddCategory";
+import { fetchData } from "../service/fetchData";
+import { uploadDatas } from "../service/uploadDatas";
+import { updateData } from "../service/updateData";
+import { deleteFile } from "../service/deleteFile";
+import { deleteDatas } from "../service/deleteDatas";
 
 
 function McqUpload() {
   const [dragging, setDragging] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [invalidFiles, setInvalidFiles] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState({});
   const [bgBlur, setBlur] = useState(false);
@@ -49,40 +53,19 @@ function McqUpload() {
   const categoryRef = collection(db, "mcqCategory");
   const filesCollectionRef = collection(db, "mcqFiles");
 
+  const fetchUploadedFiles = async () => {
+    await fetchData(filesCollectionRef, setUploadedFiles);
+  }
+  const fetchCategories = async () => {
+    await fetchData(categoryRef, setAllCategories);
+  };
   // Fetch uploaded files from Firestore
-  useEffect(() => {
-    const fetchUploadedFiles = async () => {
-      try {
-        const query = await getDocs(filesCollectionRef);
-        const files = query.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setUploadedFiles(files);
-      } catch (error) {
-        console.error("Error fetching files:", error);
-      }
-    };
 
+  useEffect(() => {
     fetchUploadedFiles();
-  }, []);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const query = await getDocs(categoryRef);
-        const cats = query.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setAllCategories(cats);
-      } catch (error) {
-        console.error("Error fetching files:", error);
-      }
-    };
-
     fetchCategories();
-  }, [allCategories]);
+
+  }, [uploadedFiles, allCategories]);
 
   // select setCategory & level
   const setCategory = (value) => {
@@ -93,193 +76,48 @@ function McqUpload() {
     setSelectedLevel(value);
   }
 
-  // Validate and add files
-  const validateFiles = (files) => {
-    const validFiles = [];
-    const invalidFilesList = [];
-
-    files.forEach((file) => {
-      if (file.type === "application/json") {
-        validFiles.push(file);
-      } else {
-        invalidFilesList.push(file.name);
-      }
-    });
-
-    setSelectedFiles((prev) => [...prev, ...validFiles]);
-    setInvalidFiles(invalidFilesList);
-  };
-
   // Handle file drop
   const handleDrop = (event) => {
     event.preventDefault();
     setDragging(false);
 
-    const files = Array.from(event.dataTransfer.files);
-    validateFiles(files);
+    const files = Array.from(event.dataTransfer.files);;
   };
 
   // Handle file selection
   const handleFileSelection = (event) => {
     const files = Array.from(event.target.files);
-    validateFiles(files);
   };
 
   // Upload files to Firebase Storage and Firestore
 
   const uploadFiles = async () => {
-    const fileSelect = selectedFiles[0];
-    if (!fileSelect) {
-      toast.info("Please select a file to upload!");
-      return;
-    }
-  
-    const batch = writeBatch(db); // Initialize a Firestore batch operation
-    const updatedFiles = [];
-    let totalProgress = 0;
-  
-    for (const file of selectedFiles) {
-      try {
-        const storageRef = ref(storage, `mcqFiles/${file.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-  
-        // Wait for the upload to complete
-        await new Promise((resolve, reject) => {
-          uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              totalProgress += progress / selectedFiles.length; // Average progress across all files
-              setUploadProgress((prev) => ({
-                ...prev,
-                [file.name]: totalProgress,
-              }));
-            },
-            (error) => {
-              console.error("Upload failed:", error);
-              reject(error);
-            },
-            resolve // Resolve the promise when upload completes
-          );
-        });
-  
-        // Get the download URL and prepare the document
-        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-        const docRef = doc(filesCollectionRef); // Generate a new document reference
-        batch.set(docRef, {
-          name: file.name,
-          category: selectedCategory,
-          level: selectedLevel,
-          url: downloadURL,
-          uploadedAt: new Date(),
-        });
-        
-        updatedFiles.push({
-          id: docRef.id,
-          name: file.name,
-          category: selectedCategory,
-          level: selectedLevel,
-          url: downloadURL,
-          uploadedAt: new Date(),
-        });
-      } catch (error) {
-        console.error(`Failed to upload ${file.name}:`, error);
-        toast.error(`Failed to upload ${file.name}. Please try again.`);
-      }
-    }
-  
-    // Commit the batch operation
-    try {
-      await batch.commit();
-      setUploadedFiles((prev) => [...prev, ...updatedFiles]);
-      setSelectedFiles([]); // Clear selected files after successful upload
-      toast.success("Files uploaded successfully!");
-    } catch (error) {
-      console.error("Error committing batch:", error);
-      toast.error("An error occurred while saving file metadata.");
-    }
+    await uploadDatas({
+      filesToUpload: selectedFiles,
+      storagePath: "mcqFiles", // Folder in Firebase Storage
+      collectionName: "mcqFiles", // Firestore collection name
+      additionalMetadata: {
+        category: selectedCategory, // Example: additional data from state
+        level: selectedLevel,
+      },
+      updateUploadedFiles: setUploadedFiles, // Function to update uploaded files state
+      updateProgress: setUploadProgress, // Function to track upload progress
+    });
+
+    // Clear selected files after successful upload
+    setSelectedFiles([]);
   };
-  
 
-  // const uploadFiles = () => {
-
-  //   const fileSelect = selectedFiles[0];
-  //   if (!fileSelect) {
-      // alert("Please select a file to update.");
-  //     toast.info("Please select a file to upload!")
-  //     return;
-  //   }
-
-  //   selectedFiles.forEach((file) => {
-  //     const storageRef = ref(storage, `mcqFiles/${file.name}`);
-  //     const uploadTask = uploadBytesResumable(storageRef, file);
-
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         setUploadProgress((prev) => ({
-  //           ...prev,
-  //           [file.name]: progress,
-  //         }));
-  //       },
-  //       (error) => {
-  //         console.error("Upload failed:", error);
-  //       },
-  //       async () => {
-  //         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-  //         const docRef = await addDoc(filesCollectionRef, {
-  //           name: file.name,
-  //           category: selectedCategory,
-  //           level: selectedLevel,
-  //           url: downloadURL,
-  //           uploadedAt: new Date(),
-  //         });
-
-  //         setUploadedFiles((prev) => [
-  //           ...prev,
-  //           { id: docRef.id, name: file.name, url: downloadURL },
-  //         ]);
-  //         toast.success('File Upload Successfully!');
-  //         setSelectedFiles((prev) => prev.filter((f) => f.name !== file.name));
-  //       }
-  //     );
-  //   });
-  // };
 
   // Update a file in Firebase Storage
   const updateFile = async (fileId, fileName) => {
-    const fileToUpdate = selectedFiles[0]; // Assume the first file is for the update
-
-    if (!fileToUpdate) {
-      // alert("Please select a file to update.");
-      toast.info("Please select a file to update!")
-      return;
-    }
-
-    const storageRef = ref(storage, `mcqFiles/${fileName}`);
-
-    try {
-      const snapshot = await uploadBytesResumable(storageRef, fileToUpdate);
-      const newUrl = await getDownloadURL(snapshot.ref);
-
-      const docRef = doc(db, "mcqFiles", fileId);
-      await updateDoc(docRef, {
-        url: newUrl,
-        updatedAt: new Date(),
-      });
-
-      setUploadedFiles((prev) =>
-        prev.map((file) =>
-          file.id === fileId ? { ...file, url: newUrl } : file
-        )
-      );
-      toast.success('File updated successfully!');
-      setSelectedFiles((prev) => prev.filter((f) => f.name !== fileId.name));
-      // alert("File updated successfully.");
-    } catch (error) {
-      console.error("Error updating file:", error);
-    }
+    await updateData({
+      collectionName: "mcqFiles", // Firestore collection
+      fileId: fileId,            // Document ID
+      fileName: fileName,        // File name in storage
+      selectedFiles: selectedFiles, // Array of files selected for upload
+      updateUploadedFiles: setUploadedFiles, // State updater function
+    });
   };
 
   const showDeletePopup = (fileID, fileName) => {
@@ -298,19 +136,11 @@ function McqUpload() {
 
 
   // Delete a file from Firebase Storage and Firestore
-  const deleteFile = async (fileId, fileName) => {
-    const fileRef = ref(storage, `mcqFiles/${fileName}`);
-    const docRef = doc(db, "mcqFiles", fileId);
 
-    try {
-      await deleteObject(fileRef);
-      await deleteDoc(docRef);
-      setUploadedFiles((prev) => prev.filter((file) => file.id !== fileId));
-      toast.warning('File Deleted Successfully!')
-      setDeletePopup(false);
-    } catch (error) {
-      console.error("Error deleting file:", error);
-    }
+  const deleteFiles = async(fileId, fileName) => {
+    await deleteFile(fileName, 'mcqFiles');  // Delete the file from Firebase Storage
+    await deleteDatas(fileId, 'mcqFiles', setUploadedFiles);  // Delete the document from Firestore
+    setDeletePopup(false);
   };
 
   return (
@@ -387,12 +217,12 @@ function McqUpload() {
           </div>
         </div>
         <div className="w-full flex justify-center items-center">
-        <button className="w-1/2 px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-          onClick={uploadFiles}
-        >
-          <MdOutlineCloudUpload size={30} /> Upload Files
-        </button>
-        </div>          
+          <button className="w-1/2 px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+            onClick={uploadFiles}
+          >
+            <MdOutlineCloudUpload size={30} /> Upload Files
+          </button>
+        </div>
         <div className="flex items-center flex-col gap-8">
           <AddCategory allCategories={allCategories} />
         </div>
@@ -413,7 +243,7 @@ function McqUpload() {
               </a>
               <span>Category: {file.category}</span>
               <span>Level: {file.level}</span>
-              <div className="flex w-1/5 justify-between">
+              <div className="flex w-56 lg:w-64 xl:w-56 justify-between">
                 <button
                   onClick={() => updateFile(file.id, file.name)}
                   className="flex gap-2 justify-center items-center px-4 py-2 text-sm bg-secondary text-bluebg border border-secondary duration-200 hover:bg-bluebg hover:text-secondary rounded"
@@ -443,7 +273,7 @@ function McqUpload() {
           <div className="w-full flex flex-col justify-center items-center gap-4">
             <p id='ID' className='font-semibold'>File ID: {delData.fileID}</p>
             <p className='text-xl font-bold'>Are You sure, you want to delete this file <span className="text-textsec font-bold">{delData.fileName}</span>!</p>
-            <button className="px-4 py-2 flex justify-center items-center gap-2 border bg-redbg text-bluebg rounded-md duration-200 hover:text-redbg hover:bg-bluebg hover:border-redbg" onClick={() => deleteFile(delData.fileID, delData.fileName)}><span><MdOutlineDeleteOutline /></span><span>Delete</span></button>
+            <button className="px-4 py-2 flex justify-center items-center gap-2 border bg-redbg text-bluebg rounded-md duration-200 hover:text-redbg hover:bg-bluebg hover:border-redbg" onClick={() => deleteFiles(delData.fileID, delData.fileName)}><span><MdOutlineDeleteOutline /></span><span>Delete</span></button>
           </div>
         </div>
       )}

@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component';
 import useric from '../assets/images/useric.png'
 import { Helmet } from 'react-helmet-async';
+import { toast } from 'react-toastify';
+import { fetchData } from '../service/fetchData';
 
 function UserLists() {
 
@@ -16,92 +18,89 @@ function UserLists() {
   const [load, setLoad] = useState(true);
   const [bgBlur, setBlur] = useState(false);
   // const [editData, setEditData] = useState([{ id: '', firstname: '', lastname: '', email: '' }]);
-  const [delData, setDelData] = useState('');
+  const [delData, setDelData] = useState({id: '', uid: '', name: ''});
   // const [editPopup, setEditPopup] = useState(false);
   const [deletePopup, setDeletePopup] = useState(false);
-
+  
   // const handleData = (e) => {
-  //   setEditData({ ...editData, [e.target.name]: e.target.value });
-  // }
-
-  const getUserData = async () => {
-    let users = [];
-    const qry = query(collection(db, "users"));
-    const datasnapshot = await getDocs(qry);
-    datasnapshot.forEach((ele) => {
-      users.push({ ...ele.data(), id: ele.id })
-    });
-    setUserDatas(users);
-    setLoad(false);
-  }
-
-  // search filter operation
-
-  const searchText = useSelector((state) => state.search.search)
-  //  console.log("search"+searchText);
-
-  let filterDatas = [...userDatas];
-
-  if (searchText) {
-    filterDatas = userDatas.filter((theuser) => {
-      if (theuser.firstname.toLowerCase().includes(searchText) || theuser.lastname.toLowerCase().includes(searchText) || theuser.email.toLowerCase().includes(searchText) || theuser.id.includes(searchText) || theuser.joinedat?.toDate().toLocaleString().includes(searchText)) {
-        return theuser;
+    //   setEditData({ ...editData, [e.target.name]: e.target.value });
+    // }
+    
+    const usersRef = collection(db, "users");
+    
+    const fetchUsers = async () => {
+      await fetchData(usersRef, setUserDatas);
+      setLoad(false);
+    };
+    
+    
+    // search filter operation
+    
+    const searchText = useSelector((state) => state.search.search)
+    //  console.log("search"+searchText);
+    
+    let filterDatas = [...userDatas];
+    
+    if (searchText) {
+      filterDatas = userDatas.filter((theuser) => {
+        if (theuser.firstname.toLowerCase().includes(searchText) || theuser.lastname.toLowerCase().includes(searchText) || theuser.email.toLowerCase().includes(searchText) || theuser.id.includes(searchText) || theuser.joinedat?.toDate().toLocaleString().includes(searchText)) {
+          return theuser;
       }
     })
   }
-
+  
   // console.log(filterDatas);
-
+  
   // search operation end
-
+  
   // const showEditPopup = (data) => {
-  //   setEditPopup(true);
-  //   setDeletePopup(false);
-  //   setBlur(!bgBlur);
-  //   setEditData(data);
-  // };
-
-  const showDeletePopup = (data) => {
-    setDeletePopup(true);
-    // setEditPopup(false);
-    setBlur(!bgBlur);
-    setDelData(data);
-  };
-
-  const closePopup = () => {
-    // setEditPopup(false);
-    setDeletePopup(false);
-    setBlur(false);
-    setDelData('')
-  };
-
-  // const updateUser = async () => {
-
-  //   await updateDoc(doc(db, "users", editData.id), {
-  //     firstname: editData.firstname,
-  //     lastname: editData.lastname,
-  //     email: editData.email
-  //   });
+    //   setEditPopup(true);
+    //   setDeletePopup(false);
+    //   setBlur(!bgBlur);
+    //   setEditData(data);
+    // };
+    
+    const showDeletePopup = (id, uid, name) => {
+      setDeletePopup(true);
+      // setEditPopup(false);
+      setBlur(!bgBlur);
+      setDelData({id, uid, name});
+    };
+    
+    const closePopup = () => {
+      // setEditPopup(false);
+      setDeletePopup(false);
+      setBlur(false);
+      setDelData('')
+    };
+    
+    // const updateUser = async () => {
+      
+      //   await updateDoc(doc(db, "users", editData.id), {
+        //     firstname: editData.firstname,
+        //     lastname: editData.lastname,
+        //     email: editData.email
+        //   });
   //   setEditPopup(false);
   //   setBlur(false);
   //   getUserData()
-
+  
   // }
-
+  
   const deleteUser = async (id) => {
-
+    
     await deleteDoc(doc(db, "users", id));
+    toast.success('user deleted!');
     setDeletePopup(false);
     setBlur(false);
-    getUserData()
   }
-
+  
   useEffect(() => {
-    getUserData()
-  }, [])
-
+    fetchUsers()
+  }, [deleteUser])
+  
   return (
-
+    
     <div className='w-full flex lg:flex-row flex-col lg:flex-wrap gap-8 xl:justify-evenly justify-center items-center mb-8'>
       <Helmet><title>QuizSnap Userslist</title></Helmet>
       {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
@@ -121,7 +120,7 @@ function UserLists() {
                       onClick={bgBlur ? null : () => showEditPopup(data)}><AiTwotoneEdit /></button> */}
 
                     <button className={"flex gap-2 justify-center items-center px-4 py-2 text-sm bg-outlg duration-300 text-redbg border border-redbg hover:bg-redbg hover:text-bluebg rounded-full"}
-                      onClick={bgBlur ? null : () => showDeletePopup(data.id)}><MdOutlineDeleteOutline /> Delete</button>
+                      onClick={bgBlur ? null : () => showDeletePopup(data.id, `@${data.firstname}${data.lastname}`, data.firstname)}><MdOutlineDeleteOutline /> Delete</button>
 
                   </div>
                 </div>
@@ -132,7 +131,7 @@ function UserLists() {
 
                   <div className='flex justify-start items-center text-sm md:text-xl gap-6'>
                     <p className='text-textgray text-start'>User ID </p>
-                    <p className='text-center text-secondary'> {data.id}</p>
+                    <p className='text-center text-secondary lowercase'> {`@${data.firstname}${data.lastname}`}</p>
                   </div>
 
                   <div className='flex justify-start items-center text-sm md:text-xl gap-6'>
@@ -230,9 +229,10 @@ function UserLists() {
           </div>
 
           <div className="w-full flex flex-col justify-center items-center gap-4">
-            <p id='ID' className='font-semibold'>User ID: {delData}</p>
+            <p id='ID' className='font-semibold lowercase'>User ID: {delData.uid}</p>
+            <p id='name' className='font-semibold'>User Name: {delData.name}</p>
             <p className='text-xl font-bold'>Are You sure, you want to delete this user!</p>
-            <button className="px-4 py-2 flex justify-center items-center gap-2 border bg-redbg text-bluebg rounded-md duration-200 hover:text-redbg hover:bg-bluebg hover:border-redbg" onClick={() => deleteUser(delData)}><span><MdOutlineDeleteOutline /></span><span>Delete</span></button>
+            <button className="px-4 py-2 flex justify-center items-center gap-2 border bg-redbg text-bluebg rounded-md duration-200 hover:text-redbg hover:bg-bluebg hover:border-redbg" onClick={() => deleteUser(delData.id)}><span><MdOutlineDeleteOutline /></span><span>Delete</span></button>
           </div>
         </div>
       )}

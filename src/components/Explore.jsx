@@ -41,7 +41,7 @@ function Explore() {
         <div className='w-full flex flex-col justify-center items-center gap-10'>
 
             <h1 className='text-3xl font-bold'>Explore Categories</h1>
-            <div className='w-3/5 flex flex-wrap justify-around items-center'>
+            <div className='w-4/5 flex flex-wrap items-center'>
                 {
                     allCategory.map((category, i) => {
                         return (
