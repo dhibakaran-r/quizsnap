@@ -12,6 +12,20 @@ export const deleteDatas = async (fileId, collectionName, setUploadedFiles) => {
     const docRef = doc(db, collectionName, fileId);
   
     try {
+      if (!fileId || !collectionName) {
+       toast.info("Please provide valid data to delete.");
+       return;
+     }
+     console.log(`Attempting to delete document from ${collectionName} with ID:`, fileId);
+     const docSnap = await getDoc(docRef);
+     console.log(docSnap);
+     console.log(docRef);
+     
+     if (!docSnap.exists()) {
+       console.error("Document not found in Firestore:", fileId);
+       toast.error(`Document not found. Please check the ID:${fileId}`);
+       return;
+     }
       await deleteDoc(docRef);
       toast.success(`Deleted successfully!`);
       setUploadedFiles((prev) => prev.filter((file) => file.id !== fileId));
@@ -20,3 +34,4 @@ export const deleteDatas = async (fileId, collectionName, setUploadedFiles) => {
     }
   };
     
+ 

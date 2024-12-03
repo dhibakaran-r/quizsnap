@@ -73,16 +73,16 @@ function ExploreCategory() {
                     allCategory.map((det, i)=>{ return( det.category === mcqid ? <>
                         <div className='flex flex-col justify-center items-center gap-8'>
                             <div className='flex justify-center items-center gap-8 p-8 border border-bluedk shadow-2xl'>
-                                <h1 className='w-96 text-lg font-bold'>Basic Level</h1>
-                                <p className='text-lg font-semibold'>{det.basicDesc}</p>
+                                <h1 className='w-80 text-lg font-bold'>Basic Level</h1>
+                                <p className='ps-8 text-lg font-semibold border-bluedk border-l'>{det.basicDesc}</p>
                             </div>
                             <div className='flex justify-center items-center gap-8 p-8 border border-textsec shadow-2xl'>
-                                <h1 className='w-96 text-lg font-bold'>Intermediate Level</h1>
-                                <p className='text-lg font-semibold'>{det.interDesc}</p>
+                                <h1 className='w-80 text-lg font-bold'>Intermediate Level</h1>
+                                <p className='ps-8 text-lg font-semibold border-textsec border-l'>{det.interDesc}</p>
                             </div>
                             <div className='flex justify-center items-center gap-8 p-8 border border-redbg shadow-2xl'>
-                                <h1 className='w-96 text-lg font-bold'>Advanced Level</h1>
-                                <p className='text-lg font-semibold'>{det.advDesc}</p>
+                                <h1 className='w-80 text-lg font-bold'>Advanced Level</h1>
+                                <p className='ps-8 text-lg font-semibold border-redbg border-l'>{det.advDesc}</p>
                             </div>
                         </div>
                         </>:<></>)})

@@ -19,11 +19,13 @@ import { uploadDatas } from "../service/uploadDatas";
 import { updateData } from "../service/updateData";
 import { deleteFile } from "../service/deleteFile";
 import { deleteDatas } from "../service/deleteDatas";
+import { TbLoader3 } from "react-icons/tb";
 
 
 function McqUpload() {
   const [dragging, setDragging] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [invalidFiles, setInvalidFiles] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState({});
   const [bgBlur, setBlur] = useState(false);
@@ -32,7 +34,7 @@ function McqUpload() {
   const [allCategories, setAllCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('');
-
+  const [load, setLoad] = useState(true);
 
   // search filter operation
 
@@ -49,23 +51,42 @@ function McqUpload() {
     })
   }
 
+  // Validate and add files
+  const validateFiles = (files) => {
+    const validFiles = [];
+    const invalidFilesList = [];
+
+    files.forEach((file) => {
+      if (file.type === "application/json") {
+        validFiles.push(file);
+      } else {
+        invalidFilesList.push(file.name);
+      }
+    });
+
+    setSelectedFiles((prev) => [...prev, ...validFiles]);
+    setInvalidFiles((prev) => [...prev, ...invalidFilesList]);
+  };
+
   const fileInputRef = useRef();
   const categoryRef = collection(db, "mcqCategory");
   const filesCollectionRef = collection(db, "mcqFiles");
 
-  const fetchUploadedFiles = async () => {
-    await fetchData(filesCollectionRef, setUploadedFiles);
+  const fetchUploadedFiles = () => {
+    const files = fetchData(filesCollectionRef, setUploadedFiles);
+    return () => files()
   }
-  const fetchCategories = async () => {
-    await fetchData(categoryRef, setAllCategories);
+  const fetchCategories = () => {
+    const cats = fetchData(categoryRef, setAllCategories);
+    return () => cats()
   };
   // Fetch uploaded files from Firestore
 
   useEffect(() => {
     fetchUploadedFiles();
     fetchCategories();
-
-  }, [uploadedFiles, allCategories]);
+    setLoad(false);
+  }, []);
 
   // select setCategory & level
   const setCategory = (value) => {
@@ -81,16 +102,22 @@ function McqUpload() {
     event.preventDefault();
     setDragging(false);
 
-    const files = Array.from(event.dataTransfer.files);;
+    const files = Array.from(event.dataTransfer.files);
+    validateFiles(files);
   };
 
   // Handle file selection
   const handleFileSelection = (event) => {
     const files = Array.from(event.target.files);
+    validateFiles(files);
   };
 
   // Upload files to Firebase Storage and Firestore
 
+  const goUploadFiles = () => {
+    setLoad(true);
+    uploadFiles();
+  }
   const uploadFiles = async () => {
     await uploadDatas({
       filesToUpload: selectedFiles,
@@ -103,9 +130,10 @@ function McqUpload() {
       updateUploadedFiles: setUploadedFiles, // Function to update uploaded files state
       updateProgress: setUploadProgress, // Function to track upload progress
     });
-
+    
     // Clear selected files after successful upload
     setSelectedFiles([]);
+    setLoad(false);
   };
 
 
@@ -134,10 +162,16 @@ function McqUpload() {
     setDelData('')
   };
 
+  const clearAll = () =>{
+    setInvalidFiles([]);
+    setSelectedFiles([]);
+    setSelectedCategory('');
+    setSelectedLevel('');
+  }
 
   // Delete a file from Firebase Storage and Firestore
 
-  const deleteFiles = async(fileId, fileName) => {
+  const deleteFiles = async (fileId, fileName) => {
     await deleteFile(fileName, 'mcqFiles');  // Delete the file from Firebase Storage
     await deleteDatas(fileId, 'mcqFiles', setUploadedFiles);  // Delete the document from Firestore
     setDeletePopup(false);
@@ -169,19 +203,36 @@ function McqUpload() {
             <BsFiletypeJson size={100} />
             <div className="upbox">
               <h3 className="head">Selected Files</h3>
-              {selectedFiles.length > 0 ? (
-                <ul className="list">
-                  {selectedFiles.map((file, index) => (
-                    <li key={index}>
-                      {file.name} ({(file.size / 1024).toFixed(2)} KB)
-                    </li>
-                  ))}
-                  <li>category: {selectedCategory}</li>
-                  <li>level: {selectedLevel}</li>
-                </ul>
-              ) : (
-                <p className="list">No valid JSON files selected</p>
-              )}
+              {
+                invalidFiles.length > 0 ? <>{
+                  <ul className="list">
+                    {
+                      invalidFiles.map((iv, i) => {
+                        return (
+                          <li key={i} className="text-redbg">{`${iv} Not a JSON file`}</li>
+                        )
+                      })
+                    }
+                  </ul>
+                }</> : <>
+
+                  {selectedFiles.length > 0 ? (
+                    <ul className="list">
+                      {selectedFiles.map((file, index) => (
+                        <li key={index}>
+                          {file.name} ({(file.size / 1024).toFixed(2)} KB)
+                        </li>
+                      ))}
+                      <li>category: {selectedCategory}</li>
+                      <li>level: {selectedLevel}</li>
+                    </ul>
+                  ) : (
+                    <p className="list">No valid JSON files selected</p>
+                  )}
+
+                </>
+              }
+              <div className="flex justify-center items-center mt-2 border border-lggray rounded-sm text-primlight" onClick={() => clearAll()}><button>Clear</button></div>
             </div>
             <p>Drag and drop JSON files here or click to select files</p>
           </div>
@@ -217,18 +268,25 @@ function McqUpload() {
           </div>
         </div>
         <div className="w-full flex justify-center items-center">
-          <button className="w-1/2 px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-            onClick={uploadFiles}
+          {load ?   <button className="w-3/5 px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary">
+            <TbLoader3 className='animate-spin text-xl' /> Uploaing...
+          </button> 
+          : <button className="w-3/5 px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+            onClick={goUploadFiles}
           >
             <MdOutlineCloudUpload size={30} /> Upload Files
-          </button>
+          </button> }
+        
+
         </div>
         <div className="flex items-center flex-col gap-8">
           <AddCategory allCategories={allCategories} />
         </div>
 
       </div>
-      <div className="w-4/5 flex flex-col p-8 gap-8 border border-primlight rounded-lg">
+
+      <div className="w-full flex flex-col p-8 gap-8 shadow-shadbg shadow-2xl">
+      {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
         <h1 className="text-2xl">Uploaded MCQ Files</h1>
         <ul className=" mx-16 p-0 text-secgray">
           {filterDatas.map((file) => (
@@ -260,6 +318,7 @@ function McqUpload() {
             </li>
           ))}
         </ul>
+        </>}
       </div>
       {deletePopup && (
         <div className="popup-card fixed top-48  w-[40rem] h-[20rem] flex flex-col justify-around items-center">

@@ -137,16 +137,16 @@ function McqTest() {
             }
         })
         setScores(totalPoints);
-        toast.success('Test Submitted Successfully!', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
+        // toast.success('Test Submitted Successfully!', {
+        //     position: "top-center",
+        //     autoClose: 5000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        //     theme: "light",
+        // });
     }
 
     const handleOptionSelect = (Id, opt) => {
@@ -175,9 +175,9 @@ function McqTest() {
         res: totalScores,
 
     }
-    const handleOpenInNewTab = () => {
+    const setResults = () => {
         localStorage.setItem("objectData", JSON.stringify(results));
-        window.open("/quiz/resultpage", "_blank");
+        // window.open("/quiz/resultpage", "_blank");
       };
     if (error) {
         return <p style={{ color: "red" }}>{error}</p>;
@@ -259,12 +259,12 @@ function McqTest() {
                     </div>
                     
                     <div className='flex justify-center items-center'>
-                        <button className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
-                        // to={'/quiz/resultpage'}
-                        // target='_blank'
+                        <Link className="px-4 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+                        to={'/quiz/resultpage'}
+                        target='_blank'
                         // state={results}
-                        onClick={()=> handleOpenInNewTab()}
-                        >Show Result</button>
+                        onClick={()=> setResults()}
+                        >Show Result</Link>
                         </div>
 
                 </div>)}

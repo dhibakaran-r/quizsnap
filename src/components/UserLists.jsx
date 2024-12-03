@@ -29,8 +29,9 @@ function UserLists() {
     const usersRef = collection(db, "users");
     
     const fetchUsers = async () => {
-      await fetchData(usersRef, setUserDatas);
+      const users = fetchData(usersRef, setUserDatas);
       setLoad(false);
+      return ()=> users() 
     };
     
     
@@ -97,7 +98,7 @@ function UserLists() {
   
   useEffect(() => {
     fetchUsers()
-  }, [deleteUser])
+  }, [])
   
   return (
     

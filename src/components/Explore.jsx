@@ -41,7 +41,8 @@ function Explore() {
         <div className='w-full flex flex-col justify-center items-center gap-10'>
 
             <h1 className='text-3xl font-bold'>Explore Categories</h1>
-            <div className='w-4/5 flex flex-wrap items-center'>
+            { allCategory.length > 0 ?
+            <div className='w-4/5 flex flex-wrap justify-evenly items-center'>
                 {
                     allCategory.map((category, i) => {
                         return (
@@ -50,14 +51,15 @@ function Explore() {
                                     <p className='text-[5rem]'>{icons[category.id] || <FaCode className='text-primlight' />}</p>
                                     <p className='text-3xl'>{category.category}</p>
                                 </div>
-                                <Link className='hidden duration-200 group-hover:flex hover:text-primary font-bold text-lg tracking-widest justify-center items-center' 
+                                <Link className='duration-200 flex hover:text-primary font-bold text-lg tracking-widest justify-center items-center' 
                                 to={`/quiz/explore/${category.category}`} >View <CgArrowsExpandUpRight /></Link>
                             </div>
                         )
                     })
 
                 }
-            </div>
+            </div> : <div className='text-xl font-bold text-redbg text-center'>No Category</div>
+            }
         </div>
     )
 }

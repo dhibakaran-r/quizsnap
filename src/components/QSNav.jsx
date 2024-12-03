@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { TbLoaderQuarter } from "react-icons/tb";
 import { RiCloseLargeLine } from "react-icons/ri";
@@ -22,6 +22,27 @@ function QSNav() {
     const [userData, setUserData] = useState({ name: "", email: "", uid: "" });
 
     const showUser = () => setShowDown(!showDown);
+    const tabRef = useRef(null);   
+
+    const handleClickOutside = (event) => {
+      if (tabRef.current && !tabRef.current.contains(event.target)) {
+        setShowDown(false);
+      }
+    };
+  
+    // Attach and detach event listener for clicks
+    useEffect(() => {
+      if (showDown) {
+        document.addEventListener("click", handleClickOutside);
+      } else {
+        document.removeEventListener("click", handleClickOutside);
+      }
+  
+      // Cleanup on component unmount or state change
+      return () => {
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }, [showDown]);
 
     useEffect(() => {
         if (isAuthenticated()) {
@@ -92,7 +113,7 @@ function QSNav() {
 
                 <SearchBar />
 
-                <div className="relative inline-block text-left right-4 md:right-8">
+                <div ref={tabRef} className="relative inline-block text-left right-4 md:right-8">
                     {userData.name && userData.email && userData.uid ? (
                         // <div>
                         <button
@@ -115,7 +136,7 @@ function QSNav() {
                         <div className="origin-top-right absolute right-4  mt-2 w-48 md:w-64 rounded-md shadow-lg bg-primary ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                             <div className="py-1 text-bgwhite" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                 <p role='menuitem' className='px-4 py-2 flex gap-2 items-center'>Signed in as {userData.email}</p>
-                                <Link role="menuitem" to={profile} className='px-4 py-2 flex gap-2 items-center duration-200 hover:translate-x-2' onClick={() => setShowDown(false)}><PiUserListDuotone /> Profile</Link>
+                                {/* <Link role="menuitem" to={profile} className='px-4 py-2 flex gap-2 items-center duration-200 hover:translate-x-2' onClick={() => setShowDown(false)}><PiUserListDuotone /> Profile</Link> */}
                                 <Link role="menuitem" className='flex px-4 py-2 gap-2 items-center duration-200 hover:translate-x-2' onClick={handleLogout}><LuLogOut /> Logout</Link>
 
 
