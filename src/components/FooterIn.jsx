@@ -20,7 +20,7 @@ function FooterIn() {
   return (
     <footer className='w-full h-24 flex flex-col justify-center items-center'>
       <div className='w-full flex flex-col justify-center items-center lg:flex-row lg:justify-around lg:items-center gap-5 lg:gap-20'>
-        <ul className='list-none text-sm md:text-base flex flex-row justify-center items-center gap-6'>
+        <ul className='list-none text-sm lg:text-base flex flex-row justify-center items-center gap-6'>
           <li>Terms</li>
           <li>Privacy Policy</li>
         </ul>

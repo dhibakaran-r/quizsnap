@@ -9,7 +9,7 @@ import ExploreCategory from '../components/ExploreCategory'
 
 function QuizPage() {
   return (
-    <section className='flex flex-col justify-center items-center gap-24 mx-8 relative top-8'>
+    <section className='flex flex-col justify-center items-center gap-24 relative top-8'>
       <Helmet>
         <title>QuizSnap MCQ page</title>
       </Helmet>

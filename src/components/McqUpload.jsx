@@ -20,6 +20,7 @@ import { updateData } from "../service/updateData";
 import { deleteFile } from "../service/deleteFile";
 import { deleteDatas } from "../service/deleteDatas";
 import { TbLoader3 } from "react-icons/tb";
+import McqFiles from "./McqFiles";
 
 
 function McqUpload() {
@@ -146,6 +147,7 @@ function McqUpload() {
       selectedFiles: selectedFiles, // Array of files selected for upload
       updateUploadedFiles: setUploadedFiles, // State updater function
     });
+    setSelectedFiles([]);
   };
 
   const showDeletePopup = (fileID, fileName) => {
@@ -285,39 +287,9 @@ function McqUpload() {
 
       </div>
 
-      <div className="w-full flex flex-col p-8 gap-8 shadow-shadbg shadow-2xl">
+      <div className="w-4/5 flex flex-col p-8 gap-8 shadow-shadbg shadow-2xl">
       {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
-        <h1 className="text-2xl">Uploaded MCQ Files</h1>
-        <ul className=" mx-16 p-0 text-secgray">
-          {filterDatas.map((file) => (
-            <li key={file.id} className="my-4 flex justify-between items-center">
-              <a
-                href={file.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-row gap-2 items-center"
-              >
-                <LuFileJson2 className="text-bluelg" /> {file.name}
-              </a>
-              <span>Category: {file.category}</span>
-              <span>Level: {file.level}</span>
-              <div className="flex w-56 lg:w-64 xl:w-56 justify-between">
-                <button
-                  onClick={() => updateFile(file.id, file.name)}
-                  className="flex gap-2 justify-center items-center px-4 py-2 text-sm bg-secondary text-bluebg border border-secondary duration-200 hover:bg-bluebg hover:text-secondary rounded"
-                >
-                  <GrDocumentUpdate />  Update
-                </button>
-                <button
-                  onClick={() => showDeletePopup(file.id, file.name)}
-                  className="flex gap-2 justify-center items-center px-4 py-2 text-sm bg-redbg text-bluebg border border-redbg duration-200 hover:bg-bluebg hover:text-redbg rounded"
-                >
-                  <MdOutlineDelete size={20} /> Delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <McqFiles filterDatas={filterDatas} update={updateFile} deletePop={showDeletePopup} />
         </>}
       </div>
       {deletePopup && (

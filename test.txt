@@ -178,4 +178,294 @@ function McqUpload() {
   )
 }
 
-export default McqUpload
+export default McqUpload                
+
+
+
+
+
+import React, { useState, useEffect } from "react";
+// import { storage, db } from "./firebase"; // Import Firebase setup
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
+import { db, storage } from "../service/firebase/firebaseConfig";
+
+const McqUpload = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [dragging, setDragging] = useState(false);
+
+  const filesCollectionRef = collection(db, "files");
+
+  useEffect(() => {
+    const fetchFiles = async () => {
+      try {
+        const querySnapshot = await getDocs(filesCollectionRef);
+        const fileData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setFiles(fileData);
+      } catch (error) {
+        console.error("Error fetching files:", error);
+      }
+    };
+
+    fetchFiles();
+  }, []);
+
+  const uploadFile = async () => {
+    if (!selectedFile) return;
+    setLoading(true);
+    const storageRef = ref(storage, `files/${selectedFile.name}`);
+
+    try {
+      const snapshot = await uploadBytes(storageRef, selectedFile);
+      const url = await getDownloadURL(snapshot.ref);
+
+      const docRef = await addDoc(filesCollectionRef, {
+        name: selectedFile.name,
+        url,
+        uploadedAt: new Date(),
+      });
+
+      setFiles((prev) => [
+        ...prev,
+        { id: docRef.id, name: selectedFile.name, url },
+      ]);
+      setSelectedFile(null);
+    } catch (error) {
+      console.error("Upload failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateFile = async (fileId, fileName) => {
+    if (!selectedFile) {
+      alert("Please select a file to update!");
+      return;
+    }
+
+    setLoading(true);
+    const fileRef = ref(storage, `files/${fileName}`);
+
+    try {
+      await uploadBytes(fileRef, selectedFile);
+      const newUrl = await getDownloadURL(fileRef);
+
+      const docRef = doc(db, "files", fileId);
+      await updateDoc(docRef, {
+        url: newUrl,
+        updatedAt: new Date(),
+      });
+
+      setFiles((prev) =>
+        prev.map((file) =>
+          file.id === fileId ? { ...file, url: newUrl } : file
+        )
+      );
+
+      alert("File updated successfully!");
+    } catch (error) {
+      console.error("Error updating file:", error);
+      alert("Failed to update the file. Please try again.");
+    } finally {
+      setLoading(false);
+      setSelectedFile(null);
+    }
+  };
+
+  const deleteFile = async (fileId, fileName) => {
+    const fileRef = ref(storage, `files/${fileName}`);
+    const docRef = doc(db, "files", fileId);
+
+    try {
+      await deleteObject(fileRef);
+      await deleteDoc(docRef);
+
+      setFiles((prev) => prev.filter((file) => file.id !== fileId));
+    } catch (error) {
+      console.error("Error deleting file:", error);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragging(false);
+    const file = e.dataTransfer.files[0];
+
+    if (file && file.type === "application/json") {
+      setSelectedFile(file);
+    } else {
+      alert("Only JSON files are allowed!");
+    }
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h2>File Manager</h2>
+
+      <div
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        style={{
+          border: dragging ? "2px dashed #00f" : "2px dashed #aaa",
+          padding: "20px",
+          borderRadius: "10px",
+          textAlign: "center",
+          marginBottom: "20px",
+        }}
+      >
+        {dragging
+          ? "Drop your JSON file here"
+          : "Drag and drop a JSON file or click to upload"}
+      </div>
+
+      <input
+        type="file"
+        onChange={(e) => {
+          const file = e.target.files[0];
+          if (file && file.type === "application/json") {
+            setSelectedFile(file);
+          } else {
+            alert("Only JSON files are allowed!");
+          }
+        }}
+        accept=".json"
+        style={{ display: "block", marginBottom: "10px" }}
+      />
+      <button
+        onClick={uploadFile}
+        disabled={loading || !selectedFile}
+        style={{ marginLeft: "10px" }}
+      >
+        {loading ? "Uploading..." : "Upload File"}
+      </button>
+
+      <ul style={{ marginTop: "20px" }}>
+        {files.map((file) => (
+          <li key={file.id} style={{ marginBottom: "10px" }}>
+            <a href={file.url} target="_blank" rel="noopener noreferrer">
+              {file.name}
+            </a>
+            <button
+              onClick={() => deleteFile(file.id, file.name)}
+              style={{ marginLeft: "10px" }}
+              className="px-4 py-2 bg-redbg text-bgwhite"
+            >
+              Delete
+            </button>
+            <button
+              onClick={() => updateFile(file.id, file.name)}
+              style={{ marginLeft: "10px" }}
+              className="px-4 py-2 bg-bluelg text-bgwhite"
+              disabled={!selectedFile || loading}
+            >
+              Update
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default McqUpload;
+
+
+
+
+import React, { useState, useEffect } from "react";
+import questionsData from "./questions.json"; // Import your JSON file
+
+const QuizApp = () => {
+  const [questions, setQuestions] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const questionsPerPage = 10;
+
+  useEffect(() => {
+    // Load and set questions
+    const shuffledQuestions = [...questionsData.questions].sort(() => Math.random() - 0.5);
+    setQuestions(shuffledQuestions);
+  }, []);
+
+  // Calculate the range of questions to display
+  const startIndex = (currentPage - 1) * questionsPerPage;
+  const endIndex = startIndex + questionsPerPage;
+  const currentQuestions = questions.slice(startIndex, endIndex);
+
+  // Handle pagination
+  const handleNextPage = () => {
+    if (currentPage < Math.ceil(questions.length / questionsPerPage)) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Quiz</h1>
+      {currentQuestions.map((q, index) => (
+        <div key={q.id} style={{ marginBottom: "20px" }}>
+          <p>
+            <strong>
+              {startIndex + index + 1}. {q.question}
+            </strong>
+          </p>
+          {q.options.map((option, idx) => (
+            <label key={idx} style={{ display: "block", margin: "5px 0" }}>
+              <input type="radio" name={`question-${q.id}`} /> {option}
+            </label>
+          ))}
+        </div>
+      ))}
+
+      <div style={{ marginTop: "20px" }}>
+        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+          Previous
+        </button>
+        <span style={{ margin: "0 10px" }}>
+          Page {currentPage} of {Math.ceil(questions.length / questionsPerPage)}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === Math.ceil(questions.length / questionsPerPage)}
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default QuizApp;
+        

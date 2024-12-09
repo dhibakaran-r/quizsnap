@@ -9,6 +9,10 @@ html{
 body{
   @apply bg-bluebg;
 }
+/* 
+table, th, td {
+  @apply border;
+} */
 
 .mobile-nav{
   @apply fixed flex flex-row justify-around items-center gap-2 top-10 left-4 bg-bluebg py-3 px-5 w-[80%];
