@@ -110,7 +110,7 @@ function UserLists() {
           filterDatas.map((data, index) => {
             return (
 
-              <div key={index} className={' relative bg-bgimg2 bg-cover border-2 border-secbr  lg:w-[46%] w-11/12 h-60 p-4 flex flex-col md:flex-row justify-evenly items-center rounded-md duration-150 hover:scale-[1.02]'}>
+              <div key={index} className={'relative bg-bgimg2 bg-cover border-2 border-secbr  lg:w-[46%] w-full h-60 p-4 flex flex-col md:flex-row justify-evenly items-center rounded-md duration-150 hover:scale-[1.02]'}>
 
                 <div className='flex flex-row gap-16 md:flex-col justify-around items-center md:gap-2'>
                   <LazyLoadImage className='block w-12 md:w-40' src={useric} effect='blur' placeholderSrc={useric} />

@@ -183,10 +183,10 @@ function McqUpload() {
     <div className="w-full flex flex-col items-center gap-24">
       <Helmet><title>QuizSnap MCQ Management</title></Helmet>
 
-      <div className="flex flex-col w-full  gap-12 p-4 shadow-shadbg shadow-lg">
-        <div className="flex w-full justify-center items-center gap-12">
+      <div className="flex flex-col w-full gap-12 p-4 shadow-shadbg shadow-lg">
+        <div className="flex flex-col md:flex-row w-full justify-center items-center gap-6 xl:gap-12">
           <div
-            className={`w-1/2 h-96 flex flex-col items-center justify-evenly border border-dashed rounded-lg ${dragging ? "bg-stgray" : "bg-secbr"} cursor-pointer duration-75`}
+            className={`w-full md:w-1/2 h-96 flex flex-col items-center justify-evenly border border-dashed rounded-lg ${dragging ? "bg-stgray" : "bg-secbr"} cursor-pointer duration-75`}
             onDragOver={(e) => {
               e.preventDefault();
               setDragging(true);
@@ -202,7 +202,7 @@ function McqUpload() {
               onChange={handleFileSelection}
               className="hidden"
             />
-            <BsFiletypeJson size={100} />
+            <BsFiletypeJson className="text-[5rem]" />
             <div className="upbox">
               <h3 className="head">Selected Files</h3>
               {
@@ -236,15 +236,15 @@ function McqUpload() {
               }
               <div className="flex justify-center items-center mt-2 border border-lggray rounded-sm text-primlight" onClick={() => clearAll()}><button>Clear</button></div>
             </div>
-            <p>Drag and drop JSON files here or click to select files</p>
+            <p className="m-4">Drag and drop JSON files here or click to select files</p>
           </div>
 
-          <div className="w-1/2 h-96 flex flex-col justify-center gap-8 upbox">
+          <div className="w-full md:w-1/2 h-96 flex flex-col justify-center gap-8 upbox">
 
             <div className="flex flex-col justify-center items-center gap-8">
               <h1 className="text-2xl text-bluetext text-center">Select Category & Level</h1>
               <div className="flex flex-col justify-center items-center gap-4">
-                <select onChange={(e) => { setCategory(e.target.value) }} id="cats" class="block w-[30rem] px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select onChange={(e) => { setCategory(e.target.value) }} id="cats" class="block w-60 md:w-80 xl:w-[30rem] px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option selected>Choose a category</option>
                   {
                     allCategories.map((cat, i) => {
@@ -254,7 +254,7 @@ function McqUpload() {
                     })
                   }
                 </select>
-                <select onChange={(e) => { setLevel(e.target.value) }} id="levels" class="block w-[30rem] px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select onChange={(e) => { setLevel(e.target.value) }} id="levels" class="block w-60 md:w-80 xl:w-[30rem] px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option selected>Choose a level</option>
                   {
                     levels.map((level, i) => {
@@ -270,10 +270,10 @@ function McqUpload() {
           </div>
         </div>
         <div className="w-full flex justify-center items-center">
-          {load ?   <button className="w-3/5 px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary">
+          {load ?   <button className="w-full xl:w-3/5 px-12 md:px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary">
             <TbLoader3 className='animate-spin text-xl' /> Uploaing...
           </button> 
-          : <button className="w-3/5 px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
+          : <button className="w-full xl:w-3/5 px-12 md:px-60 py-2 flex justify-center items-center gap-2 bg-secondary text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
             onClick={goUploadFiles}
           >
             <MdOutlineCloudUpload size={30} /> Upload Files
@@ -287,7 +287,7 @@ function McqUpload() {
 
       </div>
 
-      <div className="w-4/5 flex flex-col p-8 gap-8 shadow-shadbg shadow-2xl">
+      <div className="w-full flex flex-col p-8 gap-8 shadow-shadbg shadow-2xl">
       {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
         <McqFiles filterDatas={filterDatas} update={updateFile} deletePop={showDeletePopup} />
         </>}

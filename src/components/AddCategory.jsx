@@ -73,7 +73,7 @@ function AddCategory() {
 
     return (
         <div className='w-full flex flex-col justify-center items-center gap-8 mb-8'>
-            <div className="flex p-4 justify-center items-center gap-4 text-2xl text-bluetext text-center border border-primlight rounded-full">
+            <div className="flex p-4 justify-center items-center gap-4 text-md md:text-2xl text-bluetext text-center border border-primlight rounded-full">
                 <a
                     onClick={() => setActive('Add Category')}
                     className={`cursor-pointer pr-4 border-r border-r-bluetext ${activeLink === 'Add Category' ? 'text-primary' : ''}`}
@@ -83,21 +83,25 @@ function AddCategory() {
                     className={`cursor-pointer ${activeLink === 'Delete Category' ? 'text-primary' : ''}`}
                 >Delete Category</a>
             </div>
-            <div className="w-3/4 p-8 flex flex-col gap-8 border border-lggray rounded-lg">
+            <div className="w-full xl:w-3/4 p-8 flex flex-col gap-8 border border-lggray rounded-lg">
                 {
                     activeLink === 'Add Category' ? <>
 
-                        <label htmlFor='addcat' className='text-lg font-bold'>Enter Category</label>
-                        <input type="text" placeholder="Enter a Category" name='categoryName' id="addcat" required onChange={newCategory} value={categoryDetails.categoryName} className="ms-4 px-6 py-3 text-xl border outline-none rounded-md" />
+                        <label htmlFor='addcat' className='text-md md:text-lg font-bold'>Enter Category</label>
+                        <input type="text" placeholder="Enter a Category" name='categoryName' id="addcat" required onChange={newCategory}
+                         value={categoryDetails.categoryName} className="ms-4 px-6 py-3 text-md md:text-xl border outline-none rounded-md" />
 
-                        <label htmlFor='addBasic' className='text-lg font-bold'>Basic Level Description</label>
-                        <textarea placeholder="Enter a Description" name='basicDesc' id="addBasic" required onChange={newCategory} value={categoryDetails.basicDesc} className="ms-4 px-6 py-3 text-xl border outline-none rounded-md" />
+                        <label htmlFor='addBasic' className='text-md md:text-lg font-bold'>Basic Level Description</label>
+                        <textarea placeholder="Enter a Description" name='basicDesc' id="addBasic" required onChange={newCategory}
+                         value={categoryDetails.basicDesc} className="ms-4 px-6 py-3 text-md md:text-xl border outline-none rounded-md" />
 
-                        <label htmlFor='addInter' className='text-lg font-bold'>Intermediate Level Description</label>
-                        <textarea placeholder="Enter a Description" name='interDesc' id="addInter" required onChange={newCategory} value={categoryDetails.interDesc} className="ms-4 px-6 py-3 text-xl border outline-none rounded-md" />
+                        <label htmlFor='addInter' className='text-md md:text-lg font-bold'>Intermediate Level Description</label>
+                        <textarea placeholder="Enter a Description" name='interDesc' id="addInter" required onChange={newCategory}
+                         value={categoryDetails.interDesc} className="ms-4 px-6 py-3 text-md md:text-xl border outline-none rounded-md" />
 
-                        <label htmlFor='addAdv' className='text-lg font-bold'>Advanced Level Description</label>
-                        <textarea placeholder="Enter a Description" name='advDesc' id="addAdv" required onChange={newCategory} value={categoryDetails.advDesc} className="ms-4 px-6 py-3 text-xl border outline-none rounded-md" />
+                        <label htmlFor='addAdv' className='text-md md:text-lg font-bold'>Advanced Level Description</label>
+                        <textarea placeholder="Enter a Description" name='advDesc' id="addAdv" required onChange={newCategory}
+                         value={categoryDetails.advDesc} className="ms-4 px-6 py-3 text-md md:text-xl border outline-none rounded-md" />
 
                         <div className='w-full flex justify-center items-center'>
                             {load ?
@@ -115,15 +119,15 @@ function AddCategory() {
                             {
                                 allCategories.map((c, i) => {
                                     return (
-                                        <div key={i} className='w-3/5 p-4 flex justify-between items-center gap-4 border border-lggray shadow-md rounded-sm duration-200 hover:shadow-2xl'>
+                                        <div key={i} className='w-full md:w-3/5 p-4 flex justify-between items-center gap-4 border border-lggray shadow-md rounded-sm duration-200 hover:shadow-2xl'>
                                             <p>{c.category}</p>
-                                            <p>{c.addDT?.toDate().toLocaleString()}</p>
+                                            <p className='hidden md:block'>{c.addDT?.toDate().toDateString()}</p>
 
                                             <button className="flex gap-2 justify-center items-center px-4 py-2 text-sm bg-redbg text-bluebg border border-redbg duration-200 hover:bg-bluebg hover:text-redbg rounded"
                                                 onClick={() => setDeleteCategory(c.id)}
                                                 disabled={load === true}
                                             >
-                                                <MdOutlineDeleteOutline size={20} /> Delete</button>
+                                                <MdOutlineDeleteOutline className='text-xl' /> <span className='hidden md:block'>Delete</span></button>
                                             {/* {
                                                 load ? <>
                                                     <button className="flex gap-2 justify-center items-center px-4 py-2 text-sm bg-redbg text-bluebg border border-redbg duration-200 hover:bg-bluebg hover:text-redbg rounded">
