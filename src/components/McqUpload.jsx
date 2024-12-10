@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import levels from '../service/Levels.json'
-import { ref, uploadBytesResumable, deleteObject, getDownloadURL } from "firebase/storage";
-import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, writeBatch } from "firebase/firestore";
-import { db, storage } from "../service/firebase/firebaseConfig";
-import { ToastContainer, toast } from 'react-toastify';
+import levels from '../service/Levels.json';
+import { collection } from "firebase/firestore";
+import { db } from "../service/firebase/firebaseConfig";
+import { ToastContainer } from 'react-toastify';
 import { BsFiletypeJson } from "react-icons/bs";
-import { MdOutlineCloudUpload, MdOutlineDelete, MdOutlineDeleteOutline } from "react-icons/md";
-import { LuFileJson2 } from "react-icons/lu";
-import { GrDocumentUpdate } from "react-icons/gr";
+import { MdOutlineCloudUpload, MdOutlineDeleteOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
-import { PiPlus } from "react-icons/pi";
-import { FiPlus } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { Helmet } from 'react-helmet-async';
 import AddCategory from "./AddCategory";
@@ -28,7 +23,7 @@ function McqUpload() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [invalidFiles, setInvalidFiles] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const [uploadProgress, setUploadProgress] = useState({});
+  // const [uploadProgress, setUploadProgress] = useState({});
   const [bgBlur, setBlur] = useState(false);
   const [delData, setDelData] = useState({ fileID: '', fileName: '' });
   const [deletePopup, setDeletePopup] = useState(false);
@@ -87,7 +82,7 @@ function McqUpload() {
     fetchUploadedFiles();
     fetchCategories();
     setLoad(false);
-  }, []);
+  },[]);
 
   // select setCategory & level
   const setCategory = (value) => {
@@ -129,7 +124,7 @@ function McqUpload() {
         level: selectedLevel,
       },
       updateUploadedFiles: setUploadedFiles, // Function to update uploaded files state
-      updateProgress: setUploadProgress, // Function to track upload progress
+      // updateProgress: setUploadProgress, // Function to track upload progress
     });
     
     // Clear selected files after successful upload

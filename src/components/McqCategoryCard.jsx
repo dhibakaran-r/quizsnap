@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-// import qes from '../assets/datas/questions.json'
 import { Link } from 'react-router-dom'
-import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode, FaArrowLeft, FaArrowRight, FaPython } from "react-icons/fa";
+import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode, FaPython } from "react-icons/fa";
 import { RxCaretRight } from "react-icons/rx";
-import { collection, getDocs } from 'firebase/firestore';
+import { collection } from 'firebase/firestore';
 import { db } from '../service/firebase/firebaseConfig';
 import { TbLoader3 } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
 import { SiMysql } from 'react-icons/si';
+import { fetchData } from '../service/fetchData';
 
 function McqCategoryCard() {
 
@@ -17,21 +17,13 @@ function McqCategoryCard() {
     const categoryRef = collection(db, "mcqFiles");
 
     // Fetch categories from Firestore
+    const fetchAllCategories = () => {
+        const allCat = fetchData(categoryRef, setAllCategory);
+        return ()=> allCat();
+    };
     useEffect(() => {
-        const fetchAllCategories = async () => {
-            try {
-                const query = await getDocs(categoryRef);
-                const cats = query.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-                setAllCategory(cats);
-                setLoad(false);
-            } catch (error) {
-                console.error("Error fetching files:", error);
-            }
-        };
         fetchAllCategories();
+        setLoad(false);
     }, []);
 
 

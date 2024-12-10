@@ -1,5 +1,4 @@
-import React, { Suspense, useEffect } from 'react'
-import { BallTriangle, Circles, Triangle } from 'react-loader-spinner';
+import React from 'react'
 import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar'
 import Home from '../components/Home'
@@ -10,11 +9,6 @@ import Footer from '../components/Footer'
 
 
 function QShome() {
-
-  useEffect(() => {
-    console.log('welcome');
-
-  })
 
   return (
 

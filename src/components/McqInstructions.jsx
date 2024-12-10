@@ -109,7 +109,7 @@ function McqInstructions() {
         </div>
       </div>
 
-      <div className='lg:w-1/2 flex flex-col gap-20 md:gap-40'>
+      <div className='p-8 lg:w-1/2 flex flex-col gap-20 md:gap-40'>
         <p className='hidden md:block w-full tracking-wide leading-8 text-xl'>
           You're about to embark on a quiz journey that will challenge your knowledge and help you master key concepts across multiple categories and levels of difficulty. Please read the following instructions carefully before starting the quiz.
         </p>

@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { db } from '../service/firebase/firebaseConfig';
 import { FaCode, FaCss3Alt, FaHtml5, FaJsSquare, FaPython, FaReact } from 'react-icons/fa';
@@ -45,8 +45,8 @@ function Explore() {
                                             <p className='text-[3.5rem] md:text-[5rem]'>{icons[category.category] || <FaCode className='text-primlight' />}</p>
                                             <p className='text-2xl md:text-3xl'>{category.category}</p>
                                         </div>
-                                        <a className='duration-200 flex font-bold text-md md:text-lg group-hover:text-primary tracking-widest justify-center items-center'
-                                        >View <CgArrowsExpandUpRight /></a>
+                                        <p className='cursor-pointer duration-200 flex font-bold text-md md:text-lg group-hover:text-primary tracking-widest justify-center items-center'
+                                        >View <CgArrowsExpandUpRight /></p>
                                     </div>
                                 </Link>
                             )

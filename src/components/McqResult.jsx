@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { GrScorecard } from 'react-icons/gr';
 import { TbLoader3, TbScoreboard } from 'react-icons/tb';
-import { useLocation } from 'react-router-dom';
-import FooterIn from './FooterIn';
 
 function McqResult() {
 
-    // const location = useLocation();
-    // const result = location.state;
     const [result, setResult] = useState(null);
     const [load, setLoad] = useState(true);
 

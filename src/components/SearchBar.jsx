@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { IoMdSearch } from 'react-icons/io';
 import { clearData, searchData } from '../states/slices/SearchSlice';
 import { useDispatch } from 'react-redux';
@@ -7,10 +7,6 @@ function SearchBar() {
 
   const [input, setInput] = useState('');
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   console.log("h");
-
-  // })
 
   const handleChange = (e) => {
     setInput(e);

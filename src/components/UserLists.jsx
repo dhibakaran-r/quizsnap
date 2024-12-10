@@ -1,12 +1,11 @@
-import { collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../service/firebase/firebaseConfig';
-import { AiTwotoneEdit } from "react-icons/ai";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { TbLoader3 } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
-import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useric from '../assets/images/useric.png'
 import { Helmet } from 'react-helmet-async';
 import { toast } from 'react-toastify';
@@ -98,7 +97,7 @@ function UserLists() {
   
   useEffect(() => {
     fetchUsers()
-  }, [])
+  },[])
   
   return (
     

@@ -16,10 +16,10 @@ import { Helmet } from 'react-helmet-async';
 function Login() {
 
 	const navigate = useNavigate();
-	const [showPassword, setShowPassword] = useState(false);
+	// const [showPassword, setShowPassword] = useState(false);
 	const [load, setLoad] = useState(false);
 	const [errorMessage, setErrorMessage] = useState({});
-	const [checkId, setCheckId] = useState();
+	// const [checkId, setCheckId] = useState();
 
 
 	const [inputs, setInputs] = useState({
@@ -61,7 +61,7 @@ function Login() {
 
 			loginAPI(inputs).then((res) => {
 				storeData(res.data.idToken);
-				setCheckId(res.data.email);
+				// setCheckId(res.data.email);
 				const isAdmin = res.data.email === "admin@quizsnap.com";
 				localStorage.setItem('role', isAdmin ? 'admin' : 'user');
 
@@ -133,7 +133,8 @@ function Login() {
 										className="relative flex items-center w-full px-3 pe-8 py-2 mb-3 text-sm leading-tight text-textlg border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										name='password'
 										id="password"
-										type={showPassword ? 'text' : 'password'}
+										// type={showPassword ? 'text' : 'password'}
+										type='password'
 										placeholder="Password"
 										onChange={handleInput}
 										required

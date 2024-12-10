@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { TbLoaderQuarter } from "react-icons/tb";
 import { RiCloseLargeLine } from "react-icons/ri";
 import { FaBars, FaAngleDown } from 'react-icons/fa6'
 import { LuLogOut } from "react-icons/lu";
-import { PiUserListDuotone } from "react-icons/pi";
 import { UserDataAPI } from '../service/Api'
 import { checkAdmin, isAuthenticated, logout } from '../service/Auth'
 import { AdminMenuData, UserMenuData } from '../service/MenuItems';
@@ -71,7 +70,7 @@ function TopNav() {
 
     // console.log(checkAdmin())
     const MenuData = checkAdmin() ? AdminMenuData : UserMenuData;
-    const profile = checkAdmin() ? '/qsadmin/userprofile' : '/qsuser/userprofile';
+    // const profile = checkAdmin() ? '/qsadmin/userprofile' : '/qsuser/userprofile';
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -145,7 +144,7 @@ function TopNav() {
                         className="inline-flex justify-center items-center gap-2 w-full rounded-md border-2 border-graylg shadow-sm px-0 py-0 md:px-4 md:py-2 bg-bgwhite text-sm font-medium text-bluetext"
                         onClick={showUser} // Toggle dropdown on click
                     >
-                        <img src={pro} className='w-12 md:w-8 rounded-3xl' />
+                        <img src={pro} className='w-12 md:w-8 rounded-3xl' alt='user' />
                         {/* <p className='hidden md:w-36 md:flex justify-start overflow-hidden'>{userData.name}</p>  */}
                         <FaAngleDown className={`hidden md:block ${showDown ? 'rotate-180' : 'rotate-0'} duration-300`} />
 

@@ -1,9 +1,5 @@
-
-import { AiOutlineHome } from "react-icons/ai";
-import { LiaBookReaderSolid } from "react-icons/lia";
-import { FaHandshakeSimple, FaUsersRays } from "react-icons/fa6";
-import { GrContact } from "react-icons/gr";
-import { Link, Navigate } from 'react-router-dom';
+import { FaHandshakeSimple } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 import { IoMdMail } from "react-icons/io";
 
 export default function Footer() {

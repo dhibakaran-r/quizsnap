@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../service/firebase/firebaseConfig';
 import { toast, ToastContainer } from 'react-toastify';
@@ -74,14 +74,14 @@ function AddCategory() {
     return (
         <div className='w-full flex flex-col justify-center items-center gap-8 mb-8'>
             <div className="flex p-4 justify-center items-center gap-4 text-md md:text-2xl text-bluetext text-center border border-primlight rounded-full">
-                <a
+                <p
                     onClick={() => setActive('Add Category')}
                     className={`cursor-pointer pr-4 border-r border-r-bluetext ${activeLink === 'Add Category' ? 'text-primary' : ''}`}
-                >Add Category</a>
-                <a
+                >Add Category</p>
+                <p
                     onClick={() => setActive('Delete Category')}
                     className={`cursor-pointer ${activeLink === 'Delete Category' ? 'text-primary' : ''}`}
-                >Delete Category</a>
+                >Delete Category</p>
             </div>
             <div className="w-full xl:w-3/4 p-8 flex flex-col gap-8 border border-lggray rounded-lg">
                 {

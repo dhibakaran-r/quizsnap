@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, query, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../service/firebase/firebaseConfig';
 import { AiTwotoneEdit } from "react-icons/ai";

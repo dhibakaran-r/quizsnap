@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FiSunrise, FiSunset, FiSun, FiMoon } from "react-icons/fi";
-import { userName } from "../service/dataStorage";
 import { UserDataAPI } from "../service/Api";
 import { isAuthenticated } from "../service/Auth";
 

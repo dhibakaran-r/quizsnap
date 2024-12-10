@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode } from "react-icons/fa";
 import { RxCaretRight } from "react-icons/rx";
-import { collection, getDocs } from 'firebase/firestore';
+import { collection } from 'firebase/firestore';
 import { db } from '../service/firebase/firebaseConfig';
 import { TbLoader3 } from 'react-icons/tb';
 import { fetchData } from '../service/fetchData';
@@ -46,7 +46,7 @@ function ExploreCategory() {
         <div className='w-full md:w-11/12 flex flex-col lg:flex-row flex-wrap justify-center items-center gap-8'>
             {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
 
-                <div className='m-4 md:m-0 flex flex-col justify-center items-center gap-8'>
+                <div className='p-4 flex flex-col justify-center items-center gap-8'>
                     <h1 className='text-xl md:text-2xl lg:text-3xl font-bold mb-4'>Explore {mcqid} MCQ's</h1>
 
                     {

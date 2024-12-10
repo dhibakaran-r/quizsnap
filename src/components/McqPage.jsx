@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import FooterIn from './FooterIn';
 import McqCategoryCard from './McqCategoryCard';
 
 function McqPage() {
-
-
-  useEffect(() => {
-  })
 
   return (
     <>

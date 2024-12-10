@@ -4,7 +4,6 @@ import tumb2 from '../assets/images/totuser.jpg'
 import tumb3 from '../assets/images/actmcq.jpg'
 import { SiDatabricks } from "react-icons/si";
 import { LiaUsersSolid } from "react-icons/lia";
-import { VscLayersActive } from "react-icons/vsc";
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import { app, storage } from '../service/firebase/firebaseConfig';
 import { TbLoader3 } from "react-icons/tb";

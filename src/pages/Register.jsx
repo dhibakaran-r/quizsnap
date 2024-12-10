@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { emailValidator, nameValidator, passwordValidator } from '../components/regexValidator';
 import { TbLoader3 } from "react-icons/tb";
 import { RegisterAPI } from '../service/Api';

@@ -13,7 +13,6 @@ function AccessDenied() {
       {isAuthenticated ? <>
         <div className='w-full bg-bluebg flex flex-col md:flex-row justify-center items-center'>
           <div className='w-1/2'>
-            {/* <img src={ad} alt="access denied" /> */}
             <LazyLoadComponent>
               <LazyLoadImage src={ad} alt="access denied" effect='blur' placeholderSrc={ad} />
             </LazyLoadComponent>

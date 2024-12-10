@@ -2,7 +2,6 @@ import React from 'react'
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import mcq from '../assets/images/mcq.png'
-// import { BallTriangle, MutatingDots } from 'react-loader-spinner'
 
 function Home() {
   return (
@@ -20,15 +19,7 @@ function Home() {
         </LazyLoadComponent>
 
       </div>
-      {/* <MutatingDots visible={true} height="100" width="100" color="#0144CB" secondaryColor="#3572EF" radius="12.5" ariaLabel="mutating-dots-loading" wrapperStyle={{}} wrapperClass=""/>
-        <BallTriangle
-                              visible={true}
-                              height="80"
-                              width="80"
-                              color="#0144CB"
-                              ariaLabel="ball-triangle-loading"
-                              wrapperStyle={{}}
-                              wrapperClass=""/> */}
+  
     </section>
   )
 }
