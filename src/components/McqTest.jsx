@@ -208,10 +208,10 @@ function McqTest() {
                                             <div className='text-lg md:text-xl flex flex-row gap-0 md:gap-4'>
                                                 <span className='me-4'>{i + 1}.</span><span>{q.question}</span>
                                             </div>
-                                            <div className=' flex flex-col items-start md:flex-row md:items-center md:flex-wrap'>
+                                            <div className=' flex flex-col items-start'>
                                                 {q.options.map((opt, id) => {
                                                     return (
-                                                        <div className='w-full pb-4 flex gap-4 md:gap-2 ms-4 md:ms-12'>
+                                                        <div className='pb-4 flex gap-4 md:gap-2 ms-4 md:ms-12'>
                                                             <input type='radio' key={id} id={`${q.id}+${opt}`}
                                                                 name={`question-${q.id}`}
                                                                 value={opt}

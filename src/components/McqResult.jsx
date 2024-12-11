@@ -21,24 +21,24 @@ function McqResult() {
         // <section className='flex flex-col justify-between items-center gap-40'>
         <div className='flex flex-col justify-center items-center gap-20'>
             {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
-                <div className='flex justify-center items-center'>
-                    <h1 className='text-3xl'>{result.mcq} ( {result.level} ) MCQ Result</h1>
-                </div>
+                {/* <div className='flex justify-center items-center'> */}
+                <h1 className='text-xl md:text-3xl'>{result.mcq} ({result.level}) MCQ Result</h1>
+                {/* </div> */}
 
-                <div className=' h-40 p-4 flex justify-evenly items-center gap-4 border border-bluelg rounded-md'>
-                    <div className='text-[10rem] text-primlight'><TbScoreboard /></div>
+                <div className=' md:h-40 p-4 flex justify-evenly items-center gap-4 border border-bluelg rounded-md'>
+                    <div className='text-[5rem] md:text-[10rem] text-primlight'><TbScoreboard /></div>
                     <div className='flex justify-center items-center gap-2'>
                         <div className='pr-4 flex flex-col justify-center items-center gap-2 border-r border-r-bluelg'>
-                            <h1 className='text-3xl'>Total Score</h1>
-                            <p className='text-2xl font-bold text-bluetext'>{result.qes.length}</p>
+                            <h1 className='text-xl md:text-3xl'>Total Score</h1>
+                            <p className='text-lg md:text-2xl font-bold text-bluetext'>{result.qes.length}</p>
                         </div>
                         <div className='pl-2 flex flex-col justify-center items-center gap-2'>
-                            <h1 className='text-3xl'>Your Score</h1>
-                            <p className='text-2xl font-bold text-primary'>{result.res}</p>
+                            <h1 className='text-xl md:text-3xl'>Your Score</h1>
+                            <p className='text-lg md:text-2xl font-bold text-primary'>{result.res}</p>
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col mx-40 xl:mx-60 justify-around gap-16'>
+                <div className='flex flex-col md:px-4 lg:ps-40 lg:pe-20 2xl:ps-60 justify-around gap-16'>
 
                     {
 
@@ -46,8 +46,10 @@ function McqResult() {
                             return (
 
                                 <div key={i} className='flex flex-col justify-around gap-4'>
-                                    <p className='text-xl'><span className='me-4'>{i + 1}.</span>{q.question}</p>
-                                    <div className=' flex flex-wrap'>
+                                    <div className='text-lg md:text-xl flex flex-row gap-0 md:gap-4'>
+                                        <span className='me-4'>{i + 1}.</span><span>{q.question}</span>
+                                    </div>
+                                    <div className='flex flex-col items-start'>
                                         {q.options.map((opt, id) => {
                                             return (
                                                 <div className=' h-8 flex justify-center items-center gap-2 ms-8'>
@@ -66,8 +68,8 @@ function McqResult() {
                                             )
                                         })}
                                     </div>
-                                    <div className='flex items-center gap-4 text-xl font-bold'><span>Correct Answer:</span> <span className=' text-primary'>{q.correct_answer}</span></div>
-                                    <div className='flex items-center gap-4 text-xl font-bold'><span>Your Answer:</span> <span className={` ${result.ans[q.id] === q.correct_answer ? 'text-success' : 'text-redbg'}`}>{result.ans[q.id] ? result.ans[q.id] : 'Not answering'}</span></div>
+                                    <div className='ms-8 flex items-center gap-4 text-lg md:text-xl font-bold'><span>Correct Answer:</span> <span className=' text-primary'>{q.correct_answer}</span></div>
+                                    <div className='ms-8 flex items-center gap-4 text-lg md:text-xl font-bold'><span>Your Answer:</span> <span className={` ${result.ans[q.id] === q.correct_answer ? 'text-success' : 'text-redbg'}`}>{result.ans[q.id] ? result.ans[q.id] : 'Not answering'}</span></div>
                                 </div>
 
                             )
