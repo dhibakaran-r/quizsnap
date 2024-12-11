@@ -22,12 +22,12 @@ function ExploreCategory() {
     const fetchAllCategories = () => {
         const fetchAllcat = fetchData(catRef, setChooseCategory);
         setLoad(false);
-        return ()=> fetchAllcat();
+        return () => fetchAllcat();
     };
     const fetchCategories = () => {
         const fetchCat = fetchData(categoryRef, setAllCategories);
         setLoad(false);
-        return ()=> fetchCat();
+        return () => fetchCat();
     };
     useEffect(() => {
         fetchAllCategories();
@@ -46,13 +46,13 @@ function ExploreCategory() {
         <div className='w-full md:w-11/12 flex flex-col lg:flex-row flex-wrap justify-center items-center gap-8'>
             {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
 
+                <h1 className='text-xl md:text-2xl lg:text-3xl font-bold mb-4'>Explore {mcqid} MCQ's</h1>
                 <div className='p-4 flex flex-col justify-center items-center gap-8'>
-                    <h1 className='text-xl md:text-2xl lg:text-3xl font-bold mb-4'>Explore {mcqid} MCQ's</h1>
 
                     {
                         allCategory.map((det, i) => {
                             return (det.category === mcqid ? <>
-                                <div className='flex flex-col justify-center items-center gap-8'>
+                                {/* <div className='flex flex-col justify-center items-center gap-8'> */}
                                     <div className='flex flex-col md:flex-row justify-center items-center gap-8 p-4 md:p-8 border border-bluedk shadow-2xl'>
                                         <h1 className='w-80 text-md md:text-lg font-bold'>Basic Level</h1>
                                         <p className='pt-8 md:pt-0 md:ps-8 text-sm md:text-md lg:text-lg font-semibold border-bluedk border-t md:border-t-0 md:border-l'>{det.basicDesc}</p>
@@ -65,7 +65,7 @@ function ExploreCategory() {
                                         <h1 className='w-80 text-md md:text-lg font-bold'>Advanced Level</h1>
                                         <p className='pt-8 md:pt-0 md:ps-8 text-sm md:text-md lg:text-lg font-semibold border-redbg border-t md:border-t-0 md:border-l'>{det.advDesc}</p>
                                     </div>
-                                </div>
+                                {/* </div> */}
                             </> : <></>)
                         })
                     }

@@ -3,6 +3,7 @@ import { TbLoader3, TbScoreboard } from 'react-icons/tb';
 
 function McqResult() {
 
+
     const [result, setResult] = useState(null);
     const [load, setLoad] = useState(true);
 
@@ -37,7 +38,7 @@ function McqResult() {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col mx-60 justify-around gap-16'>
+                <div className='flex flex-col mx-40 xl:mx-60 justify-around gap-16'>
 
                     {
 
