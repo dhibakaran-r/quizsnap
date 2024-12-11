@@ -177,13 +177,13 @@ function McqTest() {
     }
 
     return (
-        <div className='w-4/5 flex flex-col gap-20 '>
+        <div className='w-full flex flex-col gap-20 '>
             {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
                 {!isSubmit ? (<>
 
                     <div className='flex flex-col gap-8'>
                         <div className='w-full flex flex-col gap-4 bg-outlg p-4 md:p-8'>
-                            <div className='flex justify-between items-center'>
+                            <div className='w-full flex justify-between items-center'>
                                 <div className=' flex flex-col md:flex-row justify-center items-center gap-2'>
                                     {icons[mcqid] || <FaCode className='text-[2rem] md:text-[3rem]' />}
                                     <div className='font-semibold md:text-md md:font-bold flex flex-col md:flex-row justify-center items-center gap-0 md:gap-2'>
@@ -197,7 +197,7 @@ function McqTest() {
                             </div>
                             <p className='ms-4 text-md text-redbg'><span className='font-semibold'>Warning:</span>  Do not refresh the page, as it may cause your responses to be lost and the questions to be reshuffled.</p>
                         </div>
-                        <div className='flex flex-col ms-4 gap-12'>
+                        <div className='flex flex-col ms-4 md:ms-20 gap-12'>
 
                             {
                                 // shuffledQuestions && shuffledQuestions
@@ -234,7 +234,7 @@ function McqTest() {
                     </div>
 
 
-                    <div className='w-full flex justify-between items-center'>
+                    <div className='w-full px-10 md:px-20 flex justify-between items-center'>
                         <button className="px-2 md:px-8 lg:px-20 py-2 flex justify-center items-center gap-2 text-xs md:text-lg bg-lggray text-bluebg border rounded-md duration-200 hover:text-primary hover:bg-bluebg hover:border-primary"
                             onClick={prevPage} disabled={currentPage === 1}
                         ><BiChevronsLeft /> Previous</button>
@@ -272,6 +272,7 @@ function McqTest() {
 
                 </div>)}
             </>}
+            <p className='pb-4 text-sm lg:text-md text-textgray text-center italic tracking-widest leading-3'>&copy; QuizSnap 2024</p>
         </div>
     )
 }

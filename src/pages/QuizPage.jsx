@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import McqTest from '../components/McqTest'
 import McqInstructions from '../components/McqInstructions'
 import { Helmet } from 'react-helmet-async'
@@ -8,6 +8,9 @@ import FooterIn from '../components/FooterIn'
 import ExploreCategory from '../components/ExploreCategory'
 
 function QuizPage() {
+  const location = useLocation();
+
+  const showFooter = ["/testpage/:mcqid/:mcqlevel/:encName", "/resultpage"]; 
   return (
     <section className='flex flex-col justify-center items-center gap-24 relative top-8'>
       <Helmet>
@@ -19,7 +22,7 @@ function QuizPage() {
           <Route path='/testpage/:mcqid/:mcqlevel/:encName' element={<McqTest />} />
           <Route path='/resultpage' element={<McqResult />} />
         </Routes>
-        <FooterIn />
+        {showFooter.includes(location.pathname) && <FooterIn />}
       </section>
   )
 }

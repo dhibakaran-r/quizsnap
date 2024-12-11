@@ -92,7 +92,7 @@ function McqInstructions() {
         <div className='flex flex-col gap-8'>
 
           <p className='flex text-xl text-textlg tracking-widest'>Hay {userData.name},</p>
-          <p className='w-full lg:w-11/12 tracking-wide text-4xl leading-[3rem] md:text-5xl md:leading-[4rem] font-bold p-4 capitalize'>welcome to quizsnap {mcqid} ( {mcqlevel} ) skill test</p>
+          <p className='w-full lg:w-11/12 tracking-wide text-4xl leading-[3rem] md:text-5xl md:leading-[4rem] font-bold p-4 capitalize'>welcome to quizsnap {mcqid} <span className='text-cssic'>({mcqlevel})</span> skill test</p>
           <div className='flex flex-row gap-10 md:gap-16'>
             {
               quickIn.map((inc, index) => {

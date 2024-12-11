@@ -19,7 +19,7 @@ function McqResult() {
 
     return (
         // <section className='flex flex-col justify-between items-center gap-40'>
-        <div className='flex flex-col justify-center items-center gap-20 mb-16'>
+        <div className='flex flex-col justify-center items-center gap-20'>
             {load ? <div className='w-full h-96 flex justify-center items-center text-primary text-3xl'>Loading Data <TbLoader3 className='animate-spin' /></div> : <>
                 <div className='flex justify-center items-center'>
                     <h1 className='text-3xl'>{result.mcq} ( {result.level} ) MCQ Result</h1>
@@ -78,6 +78,7 @@ function McqResult() {
                 {/* <FooterIn /> */}
                 {/* </section> */}
             </>}
+            <p className='pb-5 text-sm lg:text-md text-textgray text-center italic tracking-widest leading-3'>&copy; QuizSnap 2024</p>
         </div>
     )
 }
