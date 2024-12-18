@@ -21,7 +21,7 @@ function AccessDenied() {
             <Link to={'/qsuser/dashboard'} className='flex justify-center items-center'><FaAngleDoubleLeft />Go Back</Link>
           </div>
         </div>
-      </> : navigate('/login')}
+      </> : navigate('login')}
     </section>
   )
 }

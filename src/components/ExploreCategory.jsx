@@ -70,7 +70,7 @@ function ExploreCategory() {
                         })
                     }
                 </div>
-                <div className='w-full flex flex-col lg:flex-row gap-8 justify-center items-center'>
+                <div className='w-full flex flex-col lg:flex-row pt-8 pb-20 gap-8 justify-center items-center'>
                     {
                         chooseCategory.map((cat, index) => {
                             return (cat.category === mcqid ? <>

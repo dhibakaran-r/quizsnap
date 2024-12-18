@@ -5,7 +5,7 @@ import mcq from '../assets/images/mcq.png'
 
 function Home() {
   return (
-    <section className='container mt-8 px-5 py-8 w-full lg:flex items-center justify-around' id='home'>
+    <section className='container mt-5 px-5 py-8 w-full lg:flex items-center justify-around' id='home'>
 
       <div className=' lg:w-1/2 px-5'>
         <p className='text-2xl lg:text-[2rem] xl:text-[3rem] xl:leading-[4rem] lg:leading[3rem] tracking-[2px] text-bluetext font-bold'>Welcome to your challenge zone—dive in, test your knowledge, and unlock your potential!</p>
