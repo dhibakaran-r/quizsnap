@@ -40,7 +40,7 @@ function Explore() {
                         allCategory.map((category, i) => {
                             return (
                                 <Link to={`/quiz/explore/${category.category}`}>
-                                    <div className='w-72 flex flex-col p-4 justify-center items-center gap-4 m-8 shadow-2xl border-t border-lggray rounded-t-lg hover:-translate-y-2 duration-300 group'>
+                                    <div className='w-72 flex flex-col p-4 justify-center items-center gap-4 m-4 xl:m-8 shadow-2xl border-t border-lggray rounded-t-lg hover:-translate-y-2 duration-300 group'>
                                         <div className='flex justify-center items-center gap-8 '>
                                             <p className='text-[3.5rem] md:text-[5rem]'>{icons[category.category] || <FaCode className='text-primlight' />}</p>
                                             <p className='text-2xl md:text-3xl'>{category.category}</p>
