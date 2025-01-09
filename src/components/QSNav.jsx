@@ -121,7 +121,7 @@ function QSNav() {
                             className="inline-flex justify-center items-center gap-2 w-full rounded-md border-2 border-graylg shadow-sm px-0 py-0 md:px-4 md:py-2 bg-bgwhite text-sm font-medium text-bluetext"
                             onClick={showUser} // Toggle dropdown on click
                         >
-                            <img src={pro} className='w-12 md:w-8 rounded-3xl' />
+                            <img src={pro} className='w-12 md:w-8 rounded-3xl' alt='toggle' />
                             {/* <p className='hidden md:w-36 md:flex justify-start overflow-hidden'>{userData.name}</p>  */}
                             <FaAngleDown className={`hidden md:block ${showDown ? 'rotate-180' : 'rotate-0'} duration-300`} />
 

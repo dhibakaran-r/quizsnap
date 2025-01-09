@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import tumb1 from '../assets/images/totmcq.jpg'
 import tumb2 from '../assets/images/totuser.jpg'
 import tumb3 from '../assets/images/actmcq.jpg'
@@ -49,7 +49,7 @@ function AdminCard() {
 
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetchCount();
     }, [])
 
