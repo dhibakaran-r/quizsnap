@@ -6,7 +6,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import PrivateRoute from './pages/PrivateRoute';
 import AccessDenied from './pages/AccessDenied';
-import McqInstructions from './components/McqInstructions';
+import McqInstructions from './components/QuizPage/McqInstruction/McqInstructions';
 import QuizPage from './pages/QuizPage';
 import { ToastContainer } from 'react-toastify';
 

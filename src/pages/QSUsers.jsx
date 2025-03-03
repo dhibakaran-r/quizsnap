@@ -3,10 +3,10 @@ import { Routes, Route } from 'react-router-dom'
 import Dashboard from '../components/Dashboard';
 import McqPage from '../components/McqPage';
 import UserProfile from '../components/UserProfile';
-import McqTest from '../components/McqTest';
+import McqTest from '../components/QuizPage/McqTest/McqTest';
 import TopNav from '../components/TopNav';
 import { Helmet } from 'react-helmet-async';
-import ExploreCategory from '../components/ExploreCategory';
+import ExploreCategory from '../components/QuizPage/ExploreCategory/ExploreCategory';
 
 function QSUsers() {
 

@@ -1,15 +1,15 @@
 import { collection, deleteDoc, doc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import { db } from '../service/firebase/firebaseConfig';
+import { db } from '../../../service/firebase/firebaseConfig';
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { TbLoader3 } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import useric from '../assets/images/useric.png'
+import useric from '../../../assets/images/useric.png'
 import { Helmet } from 'react-helmet-async';
 import { toast } from 'react-toastify';
-import { fetchData } from '../service/fetchData';
+import { fetchData } from '../../../service/fetchData';
 
 function UserLists() {
 

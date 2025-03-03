@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
-import { isAuthenticated } from '../service/Auth';
-import { UserDataAPI } from '../service/Api';
+import { isAuthenticated } from '../../../service/Auth';
+import { UserDataAPI } from '../../../service/Api';
 import CryptoJS from "crypto-js";
 import { TbTimeDuration30 } from "react-icons/tb";
 import { MdFormatListNumbered } from "react-icons/md";

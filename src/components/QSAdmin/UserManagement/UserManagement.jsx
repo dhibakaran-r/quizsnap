@@ -1,6 +1,6 @@
 import React from 'react'
-import UserLists from './UserLists';
-import FooterIn from './FooterIn';
+import UserLists from '../UserLists/UserLists';
+import FooterIn from '../../FooterIn';
 
 function UserManagement() {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import '../App.css'
+import '../../../../src/App.css'
 import { FaBars } from "react-icons/fa";
 import { AiOutlineHome } from "react-icons/ai";
 import { LiaBookReaderSolid } from "react-icons/lia";

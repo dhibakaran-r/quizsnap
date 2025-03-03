@@ -1,6 +1,6 @@
 import React from 'react';
-import McqUpload from './McqUpload';
-import FooterIn from './FooterIn';
+import McqUpload from '../McqUpload/McqUpload';
+import FooterIn from '../../FooterIn';
 
 const McqManagement = () => {
 

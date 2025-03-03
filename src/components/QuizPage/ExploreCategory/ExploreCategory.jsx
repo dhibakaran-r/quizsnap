@@ -3,9 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode } from "react-icons/fa";
 import { RxCaretRight } from "react-icons/rx";
 import { collection } from 'firebase/firestore';
-import { db } from '../service/firebase/firebaseConfig';
+import { db } from '../../../service/firebase/firebaseConfig';
 import { TbLoader3 } from 'react-icons/tb';
-import { fetchData } from '../service/fetchData';
+import { fetchData } from '../../../service/fetchData';
 
 function ExploreCategory() {
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import us1 from '../assets/images/ourtarget.png'
-import us2 from '../assets/images/ogteam.png'
-import us3 from '../assets/images/ogsworks.png'
+import us1 from '../../../assets/images/ourtarget.png'
+import us2 from '../../../assets/images/ogteam.png'
+import us3 from '../../../assets/images/ogsworks.png'
 
 function AboutUs() {
 

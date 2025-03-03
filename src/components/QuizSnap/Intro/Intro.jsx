@@ -1,12 +1,12 @@
 import React from 'react'
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import img1 from '../assets/images/idea.png'
-import img2 from '../assets/images/prep.png'
-import img3 from '../assets/images/target.png'
-import cardimg1 from '../assets/images/achives.jpg'
-import cardimg2 from '../assets/images/get.jpg'
-import cardimg3 from '../assets/images/ogstudy.jpg'
+import img1 from '../../../assets/images/idea.png'
+import img2 from '../../../assets/images/prep.png'
+import img3 from '../../../assets/images/target.png'
+import cardimg1 from '../../../assets/images/achives.jpg'
+import cardimg2 from '../../../assets/images/get.jpg'
+import cardimg3 from '../../../assets/images/ogstudy.jpg'
 import { GiArrowScope } from "react-icons/gi";
 import { Link } from 'react-router-dom';
 
@@ -70,7 +70,7 @@ function Intro() {
                                     <div className='flex w-full lg:px-0 items-center justify-center'>
                                         {/* <img src={card.image} className='w-[260px] lg:w-[260px] rounded-t-[8px] rounded-br-[10px] rounded-bl-[220px]'/> */}
                                         <LazyLoadComponent>
-                                            <LazyLoadImage src={card.image} effect='blur' placeholderSrc={card.image} className='w-[260px] lg:w-[260px] rounded-t-[8px] rounded-br-[10px] rounded-bl-[220px]' />
+                                            <LazyLoadImage src={card.image} alt='card image' effect='blur' placeholderSrc={card.image} className='w-[260px] lg:w-[260px] rounded-t-[8px] rounded-br-[10px] rounded-bl-[220px]' />
                                         </LazyLoadComponent>
                                     </div>
                                     <p className='text-2xl text-secondary text-center'>{card.title}</p>

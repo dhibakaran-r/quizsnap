@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import McqTest from '../components/McqTest'
-import McqInstructions from '../components/McqInstructions'
+import McqTest from '../components/QuizPage/McqTest/McqTest'
+import McqInstructions from '../components/QuizPage/McqInstruction/McqInstructions'
 import { Helmet } from 'react-helmet-async'
-import McqResult from '../components/McqResult'
+import McqResult from '../components/QuizPage/McqResult/McqResult'
 import FooterIn from '../components/FooterIn'
-import ExploreCategory from '../components/ExploreCategory'
+import ExploreCategory from '../components/QuizPage/ExploreCategory/ExploreCategory'
 
 function QuizPage() {
   const location = useLocation();

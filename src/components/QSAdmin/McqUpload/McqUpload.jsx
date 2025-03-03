@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import levels from '../service/Levels.json';
+import levels from '../../../service/Levels.json';
 import { collection } from "firebase/firestore";
-import { db } from "../service/firebase/firebaseConfig";
+import { db } from "../../../service/firebase/firebaseConfig";
 import { ToastContainer } from 'react-toastify';
 import { BsFiletypeJson } from "react-icons/bs";
 import { MdOutlineCloudUpload, MdOutlineDeleteOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { Helmet } from 'react-helmet-async';
-import AddCategory from "./AddCategory";
-import { fetchData } from "../service/fetchData";
-import { uploadDatas } from "../service/uploadDatas";
-import { updateData } from "../service/updateData";
-import { deleteFile } from "../service/deleteFile";
-import { deleteDatas } from "../service/deleteDatas";
+import AddCategory from "../../AddCategory";
+import { fetchData } from "../../../service/fetchData";
+import { uploadDatas } from "../../../service/uploadDatas";
+import { updateData } from "../../../service/updateData";
+import { deleteFile } from "../../../service/deleteFile";
+import { deleteDatas } from "../../../service/deleteDatas";
 import { TbLoader3 } from "react-icons/tb";
-import McqFiles from "./McqFiles";
+import McqFiles from "../../McqFiles";
 
 
 function McqUpload() {

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import CryptoJS from 'crypto-js';
 import { ref, getDownloadURL } from "firebase/storage";
-import { storage } from "../service/firebase/firebaseConfig";
+import { storage } from "../../../service/firebase/firebaseConfig";
 import { LuClock12 } from "react-icons/lu";
 import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaCode } from "react-icons/fa";
 import { GrDocumentVerified } from "react-icons/gr";
-import { shuffleArray } from '../utils/shuffle';
+import { shuffleArray } from '../../../utils/shuffle';
 import { Link, useParams } from 'react-router-dom';
 import { TbLoader3 } from 'react-icons/tb';
 import { BiChevronsLeft, BiChevronsRight } from "react-icons/bi";
